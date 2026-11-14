@@ -20,6 +20,7 @@ docs/                  Yayınlanan site (GitHub Pages bu klasörden yayınlayabi
   hakkimda.html        Hakkımda
   cozycamp.html        Cozy Camp proje sayfası
   sucustu.html         SUÇÜSTÜ! Deniz Devriyesi proje sayfası
+  muchineko.html       Muchineko proje sayfası
   img/                 Proje ekran görüntüleri (webp)
   engine.js            Orman motoru (üretilir, elle düzenleme)
   site.css             Alt sayfaların ortak stili
@@ -38,7 +39,7 @@ Motor ve sahne `tasarim/Main.dc.html` içinde. Değişiklikten sonra siteyi yeni
 python3 build_standalone.py
 ```
 
-`docs/hakkimda.html`, `docs/cozycamp.html`, `docs/sucustu.html` ve `docs/site.css` elle yazılmış sayfalar; doğrudan düzenlenir.
+`docs/hakkimda.html`, `docs/cozycamp.html`, `docs/sucustu.html`, `docs/muchineko.html` ve `docs/site.css` elle yazılmış sayfalar; doğrudan düzenlenir.
 
 ## Yerelde açmak
 
@@ -59,7 +60,7 @@ cd docs && python3 -m http.server 8000
 
 Sitede amber renkli, kesik çizgili alanlar doldurulmayı bekleyen yer tutuculardır:
 
-- Muchineko ve Pati Kulaç için proje sayfaları (ikisi de iç testte; şimdilik kartta "Yakında" yazıyor)
+- Pati Kulaç proje sayfası (oyun erken prototip aşamasında, sanatı henüz taslak; kartta "Yakında" yazıyor)
 - Suçüstü App Store'da yayımlanınca sayfadaki TestFlight notunun yerine mağaza bağlantısı
 - Cozy Camp ekran görüntüleri ve "Neden yaptım?" metni
 - Nazartesi kartındaki tek cümle ve araç listesindeki diğer araçlar (Hakkımda sayfası)

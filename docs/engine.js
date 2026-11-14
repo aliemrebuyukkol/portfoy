@@ -121,7 +121,7 @@ window.BuyukkolEngine = class {
       { cx: 96, stop: 112, say: [86, 100] },
       { cx: 246, stop: 216, say: [226, 121] },
       { cx: 552, stop: 522, say: [552, 97] },
-      { cx: 846, stop: 828, say: [852, 116] },
+      { cx: 860, stop: 838, say: [852, 116] },
       { cx: 1146, stop: 1116, say: [1084, 74] },
       { cx: 1450, stop: 1420, say: [1416, 127] },
       { cx: 1695, stop: 1676, say: [1695, 119] }

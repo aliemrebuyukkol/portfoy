@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>Muchineko — Ali Emre Büyükkol</title>
+<meta name="description" content="Muchineko: krem kâğıt ve mürekkepten bir şehrin çatılarında kedini koşturduğun yatay iPhone oyunu. Ne kadar tok olduğun, nasıl zıpladığını belirler.">
+<meta property="og:title" content="Muchineko">
+<meta property="og:description" content="Kedi kendi koşar, sen zıplatırsın. Tokluk ne kadarsa sıçrayış o kadar.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='3' y='6' width='10' height='7' fill='%23F3ECDD'/%3E%3Crect x='3' y='4' width='2' height='2' fill='%23F3ECDD'/%3E%3Crect x='11' y='4' width='2' height='2' fill='%23F3ECDD'/%3E%3Crect x='9' y='6' width='4' height='3' fill='%23141A30'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{--accent:#F5A8CB}
+.stage{position:relative;height:clamp(300px,58vh,560px);overflow:hidden;overflow:clip;background:#141A30}
+.scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
+.stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
+.stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
+.pill{min-height:44px;padding:0 14px;border:0;border-radius:3px;background:rgba(14,16,30,.84);color:var(--text);font-family:var(--body);font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pill:hover{background:rgba(14,16,30,.96)}
+.hint{position:absolute;left:calc(16px + env(safe-area-inset-left));bottom:30px;z-index:2;font-family:var(--pixel);font-size:13px;letter-spacing:.08em;color:#E4DDEC;text-shadow:0 1px 0 rgba(14,16,30,.9)}
+@media (max-width:420px){.hint{display:none}}
+.intro{display:flex;flex-direction:column;gap:18px;padding-top:8px}
+.title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{width:64px;height:64px;border-radius:14px;background:#1E2442;box-shadow:inset 0 0 0 1px var(--line2);display:grid;place-items:center;flex:0 0 64px}
+.mark svg{width:40px;height:40px}
+h1{color:var(--accent)}
+.sub{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,24px);color:var(--text);margin-top:4px}
+.status{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-left:0;border-radius:4px;padding:14px 16px;font-size:15px;color:var(--muted)}
+.status b{color:var(--text);font-weight:600}
+.status .led{flex:0 0 10px;height:10px;margin-top:7px;background:#FFD28A;box-shadow:0 0 0 3px rgba(255,210,138,.18)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.feat .card{padding:18px}
+.feat h3{font-size:16px;font-family:var(--pixel);font-weight:600;letter-spacing:.06em;color:var(--accent)}
+.bays{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
+.bays li{display:flex;gap:12px;align-items:baseline;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;font-size:15px}
+.bays span{font-family:var(--pixel);font-size:13px;color:var(--soft);flex:0 0 46px}
+.shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 14px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
+.shot{flex:0 0 clamp(280px,78vw,520px);margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+.shot img{width:100%;height:auto;border-radius:18px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#F1ECE1}
+.shot figcaption{font-size:14px;color:var(--muted);text-align:center}
+.build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.stat b{display:block;font-family:var(--display);font-size:24px}
+.stat span{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--soft)}
+.rule{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
+.rule div{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.rule b{display:block;font-family:var(--pixel);font-size:15px;letter-spacing:.04em;color:var(--accent);margin-bottom:4px}
+.rule p{font-size:15px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap">
+<a class="back" href="index.html#muchineko"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<a class="brand" href="index.html#muchineko" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+</div>
+</header>
+
+<div class="stage" id="stage">
+<canvas class="scene" id="scene" role="img" aria-label="Piksel sanat orman: çiçek açmış ağacın altında uyuklayan ve kelebek kovalayan kediler."></canvas>
+<span class="hint" aria-hidden="true">KEDİLERE DOKUN</span>
+<div class="stage-ui"><button type="button" class="pill" id="snd" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path id="snd-w" d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span id="snd-lbl">Ambiyansı aç</span></button></div>
+</div>
+
+<main class="wrap">
+<section class="intro" aria-labelledby="baslik">
+<div class="title-row">
+<div class="mark" aria-hidden="true"><svg viewBox="0 0 10 10" shape-rendering="crispEdges"><rect x="1" y="4" width="8" height="5" fill="#F3ECDD"/><rect x="1" y="2" width="2" height="2" fill="#F3ECDD"/><rect x="7" y="2" width="2" height="2" fill="#F3ECDD"/><rect x="5" y="4" width="4" height="3" fill="#1A1A1A"/><rect x="7" y="2" width="2" height="2" fill="#1A1A1A"/><rect x="2" y="5" width="1" height="1" fill="#1A1A1A"/><rect x="6" y="5" width="1" height="1" fill="#F3ECDD"/><rect x="0" y="5" width="1" height="2" fill="#F3ECDD"/></svg></div>
+<div><p class="eyebrow">OYUN · iPHONE · YATAY</p><h1 id="baslik">Muchineko</h1><p class="sub">むちねこ · Küçük bir çatı macerası</p></div>
+</div>
+<p class="lead">Krem kâğıt ve mürekkepten çizilmiş bir şehrin çatılarında kedin kendi koşar; sen yalnızca zıplatırsın. Asıl mesele ne kadar tok olduğun: yediğin mama sıçrayışını değiştirir, rotayı ona göre okursun.</p>
+<div class="status" role="note"><span class="led" aria-hidden="true"></span><p><b>Şu an iç TestFlight'ta.</b> Henüz App Store'da değil; yayımlandığında indirme bağlantısı burada olacak.</p></div>
+<div class="facts" aria-label="Oyun bilgileri"><span class="chip">iPhone · iOS 18+</span><span class="chip">Yatay oynanır</span><span class="chip">8 mahalle</span><span class="chip">Çevrimdışı oynanır</span></div>
+</section>
+
+<section class="section" aria-labelledby="nasil">
+<div class="section-head"><p class="eyebrow">01 · NASIL OYNANIR</p></div>
+<h2 id="nasil">Dokun, zıpla, tokluğunu ayarla</h2>
+<div class="stack">
+<p class="muted">Dokunarak zıplarsın; basılı tutarsan daha yükseğe çıkarsın, erken bırakırsan sıçrayış kısalır. Yoldaki mama tokluğu artırır, kedi otu azaltır. Tokluk göstergesi hangi yolun açık olduğunu söyler:</p>
+<div class="rule">
+<div><b>40'ın ALTI · HAFİF</b><p>Çamaşır iplerine inebilirsin; ipler yalnız hafif kediyi taşır.</p></div>
+<div><b>40–70 · FORMDA</b><p>En güçlü zıplayış. Uzun boşlukları bu aralıkta geçersin.</p></div>
+<div><b>70'İN ÜSTÜ · TOMBUL</b><p>Tentelere düşünce sekip göğe yükselirsin.</p></div>
+</div>
+<p class="muted">Düşersen son güvenli çatıdan devam edersin. Her rota bir yol arkadaşıyla geçer: Mochi ya da gri çizgili Sumi. Koşu bitince kedinle selamlaşır, bağınızı büyütür, çatına kalıcı bir ayrıntı eklersin.</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="mahalleler">
+<div class="section-head"><p class="eyebrow">02 · SEKİZ MAHALLE</p></div>
+<h2 id="mahalleler">Sessiz Çatılar'dan Fener Rıhtımı'na</h2>
+<ul class="bays">
+<li><span>01</span>Sessiz Çatılar</li>
+<li><span>02</span>Anten Sokağı</li>
+<li><span>03</span>Son Işık</li>
+<li><span>04</span>Çamaşır İpleri</li>
+<li><span>05</span>Kiremit Yokuşu</li>
+<li><span>06</span>Ay Işığı Pazarı</li>
+<li><span>07</span>Fırın Sokağı</li>
+<li><span>08</span>Fener Rıhtımı</li>
+</ul>
+</section>
+
+<section class="section" aria-labelledby="ekranlar">
+<div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
+<h2 id="ekranlar">Oyundan kareler</h2>
+<div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
+<figure class="shot"><img src="img/muchineko-ana.webp" width="1200" height="552" loading="lazy" alt="Muchineko ana ekranı: krem zemin üzerinde 'Bir lokma daha.' başlığı, Çatılara çık düğmesi ve çatıda oturan siyah beyaz kedi Mochi."><figcaption>Ana ekran</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-kosu.webp" width="1200" height="675" loading="lazy" alt="Koşu: mürekkep çizimi çatıların üstünde zıplayan kedi, solda tokluk göstergesi, havada mama taneleri."><figcaption>Sessiz Çatılar'da koşu</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-sonuc.webp" width="1200" height="675" loading="lazy" alt="Rota sonu: 'Afiyet olsun.' başlığı, Mochi ile bağ kartı, 11 mama ve 46 saniyelik sonuç, Çatına bir ayrıntı seç düğmesi."><figcaption>Rota sonu ve bağ</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-catilar.webp" width="1200" height="675" loading="lazy" alt="Bizim çatılar paneli: Güneş Bahçesi ve Fırının Sofrası adlı iki çatı kartı, tamamlanan rotaların bıraktığı izler."><figcaption>Çatını büyüt</figcaption></figure>
+</div>
+</section>
+
+<section class="section" aria-labelledby="yapim">
+<div class="section-head"><p class="eyebrow">04 · YAPIM NOTLARI</p></div>
+<h2 id="yapim">Nasıl yapıldı?</h2>
+<div class="stack">
+<p class="muted">SwiftUI ve SpriteKit ile yazılmış, Türkçe, yatay bir iPhone oyunu. Bütün çizimler krem kâğıt ve mürekkep diliyle, iki renk ağırlıklı yapıldı. Oyun tamamen çevrimdışı oynanıyor; ilerleme önce cihazdaki yerel kayda yazılıyor. Bulut yedeği, kullanım verisi ve hata paylaşımı ayrı ayrı ve isteğe bağlı. Büyük yazı ve Hareketi Azalt ayarlarına uyum ayrıca sınandı.</p>
+<div class="build">
+<div class="stat"><b>8</b><span>mahalle, her biri ayrı rota</span></div>
+<div class="stat"><b>2</b><span>yol arkadaşı: Mochi ve Sumi</span></div>
+<div class="stat"><b>0.23.1</b><span>son iç test sürümü</span></div>
+</div>
+<p class="note">Geliştirici: Ali Emre Büyükkol.</p>
+</div>
+</section>
+</main>
+
+<footer class="foot">
+<div class="wrap"><span>© 2026 Ali Emre Büyükkol · Muchineko</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#muchineko">Ormana dön</a></span></div>
+</footer>
+<script src="engine.js"></script>
+<script>
+"use strict";
+(function () {
+  const cv = document.getElementById('scene');
+  if (!window.BuyukkolEngine || !cv.getContext) return;
+  const eng = new window.BuyukkolEngine();
+  const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
+  game.jump(5);
+  cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
+  if (window.IntersectionObserver) {
+    new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
+  }
+  let on = false;
+  const btn = document.getElementById('snd');
+  btn.addEventListener('click', () => {
+    on = !on;
+    const ok = game.setSound(on);
+    if (on && ok === false) { on = false; document.getElementById('snd-lbl').textContent = 'Ses bu tarayıcıda çalışmıyor'; return; }
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    document.getElementById('snd-lbl').textContent = on ? 'Sesi kapat' : 'Ambiyansı aç';
+    document.getElementById('snd-w').setAttribute('d', on ? 'M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10' : 'M12.5 6.5l4 5M16.5 6.5l-4 5');
+  });
+})();
+</script>
+</body>
+</html>
