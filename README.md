@@ -18,6 +18,8 @@ docs/                  Yayınlanan site (GitHub Pages bu klasörden yayınlayabi
   index.html           Orman (ana sayfa)
   hakkimda.html        Hakkımda
   cozycamp.html        Cozy Camp proje sayfası
+  sucustu.html         SUÇÜSTÜ! Deniz Devriyesi proje sayfası
+  img/                 Proje ekran görüntüleri (webp)
   engine.js            Orman motoru (üretilir, elle düzenleme)
   site.css             Alt sayfaların ortak stili
 tasarim/               Claude Design tuvalindeki kaynak dosyalar
@@ -35,7 +37,7 @@ Motor ve sahne `tasarim/Main.dc.html` içinde. Değişiklikten sonra siteyi yeni
 python3 build_standalone.py
 ```
 
-`docs/hakkimda.html`, `docs/cozycamp.html` ve `docs/site.css` elle yazılmış sayfalar; doğrudan düzenlenir.
+`docs/hakkimda.html`, `docs/cozycamp.html`, `docs/sucustu.html` ve `docs/site.css` elle yazılmış sayfalar; doğrudan düzenlenir.
 
 ## Yerelde açmak
 
@@ -56,7 +58,8 @@ cd docs && python3 -m http.server 8000
 
 Sitede amber renkli, kesik çizgili alanlar doldurulmayı bekleyen yer tutuculardır:
 
-- Muchineko, Suçüstü ve Pati Kulaç için açıklama ve proje sayfaları
+- Muchineko ve Pati Kulaç için açıklama ve proje sayfaları
+- Suçüstü App Store'da yayımlanınca sayfadaki TestFlight notunun yerine mağaza bağlantısı
 - Cozy Camp ekran görüntüleri ve "Neden yaptım?" metni
 - Gerçek e-posta adresi ve sosyal medya bağlantıları (şu an `merhaba@buyukkol.com` ve `#`)
 

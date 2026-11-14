@@ -174,7 +174,7 @@ class Component extends DCLogic {
   zones = [
     { type: 'about', name: 'Kulübe', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', eyebrow: 'HAKKIMDA', say: 'Hoş geldin! Ormanda dört proje saklı.' },
     { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', say: 'Otur, bir çay iç. Acele yok.' },
-    { type: 'project', name: 'Suçüstü', kind: '', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
+    { type: 'project', name: 'Suçüstü', kind: 'OYUN', href: 'sucustu.html', desc: 'Denizde dikkat oyunu: kabarcığın ya da çöpün sahibini iki saniyede bul.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
     { type: 'project', name: 'Pati Kulaç', kind: '', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
     { type: 'project', name: 'Muchineko', kind: '', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
     { type: 'contact', name: 'Posta kutusu', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', eyebrow: 'İLETİŞİM', say: 'Mektubunu bekliyorum.' }
@@ -186,7 +186,7 @@ class Component extends DCLogic {
         onZone: (i) => {
           if (i === this.state.zone) return;
           const fresh = this.zones[i].type === 'project' && this.state.seen.indexOf(i) < 0;
-          if (fresh && !this.state.intro && navigator.vibrate) { try { navigator.vibrate(12); } catch (e) { /* titreşim desteklenmiyor */ } }
+          if (fresh && !this.state.intro && navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) { try { navigator.vibrate(12); } catch (e) { /* titreşim desteklenmiyor */ } }
           const seen = fresh ? this.state.seen.concat([i]) : this.state.seen;
           this.setState({ zone: i, seen: seen });
           if (fresh) { this.saveSeen(seen); if (seen.length === 4 && this.game) this.game.celebrate(); }

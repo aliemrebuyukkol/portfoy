@@ -164,7 +164,7 @@ const Engine = window.BuyukkolEngine;
     onZone: (i) => {{
       if (i === st.zone) return;
       const fresh = zones[i].type === 'project' && st.seen.indexOf(i) < 0;
-      if (fresh && !st.intro && navigator.vibrate) {{ try {{ navigator.vibrate(12); }} catch (e) {{ /* desteklenmiyor */ }} }}
+      if (fresh && !st.intro && navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) {{ try {{ navigator.vibrate(12); }} catch (e) {{ /* desteklenmiyor */ }} }}
       st.zone = i;
       if (fresh) {{ st.seen = st.seen.concat([i]); saveSeen(st.seen); if (st.seen.length === 4) game.celebrate(); }}
       render();

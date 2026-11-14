@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>SUÇÜSTÜ! Deniz Devriyesi — Ali Emre Büyükkol</title>
+<meta name="description" content="SUÇÜSTÜ! Deniz Devriyesi: kabarcığı gör, çöpü atanı bul. Her gerçek ihlali yakalamak için iki saniyen var. iPhone için gözlem ve dikkat oyunu.">
+<meta property="og:title" content="SUÇÜSTÜ! Deniz Devriyesi">
+<meta property="og:description" content="Kabarcığı gör, çöpü atanı bul. İki saniyen var.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='7' y='2' width='2' height='8' fill='%23E5533A'/%3E%3Crect x='7' y='12' width='2' height='2' fill='%23E5533A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{--accent:#C99BFF}
+.stage{position:relative;height:clamp(300px,58vh,560px);overflow:hidden;overflow:clip;background:#141A30}
+.scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
+.stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
+.stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
+.pill{min-height:44px;padding:0 14px;border:0;border-radius:3px;background:rgba(14,16,30,.84);color:var(--text);font-family:var(--body);font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pill:hover{background:rgba(14,16,30,.96)}
+.hint{position:absolute;left:calc(16px + env(safe-area-inset-left));bottom:30px;z-index:2;font-family:var(--pixel);font-size:13px;letter-spacing:.08em;color:#E4DDEC;text-shadow:0 1px 0 rgba(14,16,30,.9)}
+@media (max-width:420px){.hint{display:none}}
+.intro{display:flex;flex-direction:column;gap:18px;padding-top:8px}
+.title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{width:64px;height:64px;border-radius:14px;background:#1E2442;box-shadow:inset 0 0 0 1px var(--line2);display:grid;place-items:center;flex:0 0 64px}
+.mark svg{width:40px;height:40px}
+h1{color:var(--accent)}
+.sub{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,24px);color:var(--text);margin-top:4px}
+.status{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-left:0;border-radius:4px;padding:14px 16px;font-size:15px;color:var(--muted)}
+.status b{color:var(--text);font-weight:600}
+.status .led{flex:0 0 10px;height:10px;margin-top:7px;background:#FFD28A;box-shadow:0 0 0 3px rgba(255,210,138,.18)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.feat .card{padding:18px}
+.feat h3{font-size:16px;font-family:var(--pixel);font-weight:600;letter-spacing:.06em;color:var(--accent)}
+.bays{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
+.bays li{display:flex;gap:12px;align-items:baseline;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;font-size:15px}
+.bays span{font-family:var(--pixel);font-size:13px;color:var(--soft);flex:0 0 46px}
+.shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 14px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
+.shot{flex:0 0 clamp(190px,46vw,240px);margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+.shot img{width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#F4EFE6}
+.shot figcaption{font-size:14px;color:var(--muted);text-align:center}
+.build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.stat b{display:block;font-family:var(--display);font-size:24px}
+.stat span{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--soft)}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap">
+<a class="back" href="index.html#sucustu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<a class="brand" href="index.html#sucustu" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+</div>
+</header>
+
+<div class="stage" id="stage">
+<canvas class="scene" id="scene" role="img" aria-label="Piksel sanat dans pisti: dansçılar çöp atıyor, biri suçüstü yakalıyor, sonra dans ederek süpürüyorlar."></canvas>
+<span class="hint" aria-hidden="true">PİSTE DOKUN</span>
+<div class="stage-ui"><button type="button" class="pill" id="snd" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path id="snd-w" d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span id="snd-lbl">Ritmi aç</span></button></div>
+</div>
+
+<main class="wrap">
+<section class="intro" aria-labelledby="baslik">
+<div class="title-row">
+<div class="mark" aria-hidden="true"><svg viewBox="0 0 10 10" shape-rendering="crispEdges"><rect x="1" y="6" width="8" height="3" fill="#2A8C98"/><rect x="1" y="6" width="8" height="1" fill="#55B6C2"/><rect x="4" y="3" width="2" height="3" fill="#E39A4A"/><rect x="4" y="2" width="2" height="1" fill="#F1C8A0"/><rect x="6" y="3" width="1" height="1" fill="#FFFFFF"/><rect x="7" y="2" width="1" height="1" fill="#FFFFFF"/><rect x="8" y="0" width="1" height="1" fill="#FFFFFF"/><rect x="1" y="1" width="1" height="3" fill="#E5533A"/></svg></div>
+<div><p class="eyebrow">OYUN · iPHONE</p><h1 id="baslik">SUÇÜSTÜ!</h1><p class="sub">Deniz Devriyesi · Denizde dikkat oyunu</p></div>
+</div>
+<p class="lead">Kabarcığı gör, çöpü atanı bul. Kalabalık bir koyda yüzücüler ve kayıklar hareket ederken neyin masum, neyin gerçek ihlal olduğunu ayırt et; gaz kabarcıklarının ya da suya atılan çöpün sahibine iki saniye içinde dokun.</p>
+<div class="status" role="note"><span class="led" aria-hidden="true"></span><p><b>Şu an TestFlight'ta test ediliyor.</b> App Store yayını hazırlanıyor; yayımlandığında indirme bağlantısı burada olacak.</p></div>
+<div class="facts" aria-label="Oyun bilgileri"><span class="chip">iPhone · iOS 17+</span><span class="chip">30 bölüm, 6 koy</span><span class="chip">Çevrimdışı oynanır</span><span class="chip">Reklam ve satın alma yok</span></div>
+</section>
+
+<section class="section" aria-labelledby="nasil">
+<div class="section-head"><p class="eyebrow">01 · NASIL OYNANIR</p></div>
+<h2 id="nasil">İki saniye, tek dokunuş</h2>
+<div class="feat">
+<div class="card"><h3>GERÇEK İPUCUNU YAKALA</h3><p>Gaz kabarcıklarının kaynağını izle ya da çöpü kimin attığını bul. Nefes kabarcıkları, oyuncaklar, kürek köpüğü ve eski atıklar dikkatini dağıtmaya çalışır.</p></div>
+<div class="card"><h3>DİKKATLİ OL, ACELECİ OLMA</h3><p>Beş gerçek ihlal kaçarsa bölüm biter. Masum birine dokunmak puanını düşürür ve kısa bir kilit getirir; boş suya dokunmak cezasızdır.</p></div>
+<div class="card"><h3>NEYİ KAÇIRDIM?</h3><p>Kaçırdığın anı sonuç ekranında yeniden izle: durdur, ileri geri sar, yarım hızda bak, ilk kanıta atla.</p></div>
+<div class="card"><h3>SAHİLİ GELİŞTİR</h3><p>Bölümleri ilk kez bitirdikçe sahil gelişir, kozmetik setler açılır. Kozmetikler oyun avantajı vermez.</p></div>
+<div class="card"><h3>GÜNLÜK VE SONSUZ DEVRİYE</h3><p>10. bölümden sonra herkesin aynı parkuru oynadığı 60 saniyelik günlük devriye, 30. bölümden sonra sonsuz devriye açılır.</p></div>
+<div class="card"><h3>HERKES İÇİN</h3><p>Sessizde de oynanır. Efektler, titreşim, hareket ve kontrast ayarlardan düzenlenebilir.</p></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="koylar">
+<div class="section-head"><p class="eyebrow">02 · ALTI KOY</p></div>
+<h2 id="koylar">Sakin Koy'dan Son Devriye'ye</h2>
+<ul class="bays">
+<li><span>1–5</span>Sakin Koy</li>
+<li><span>6–10</span>Kalabalık Plaj</li>
+<li><span>11–15</span>Akıntılı Deniz</li>
+<li><span>16–20</span>Tekne Şenliği</li>
+<li><span>21–25</span>Mavi Labirent</li>
+<li><span>26–30</span>Son Devriye</li>
+</ul>
+</section>
+
+<section class="section" aria-labelledby="ekranlar">
+<div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
+<h2 id="ekranlar">Oyundan kareler</h2>
+<div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
+<figure class="shot"><img src="img/sucustu-menu.webp" width="660" height="1434" loading="lazy" alt="SUÇÜSTÜ! ana menüsü: 'İpucunu gör. Sahibini bul.' başlığı, 2 sn karar süresi, 5 kaçırma hakkı, 30 bölüm ve Devriyeye başla düğmesi."><figcaption>Ana menü</figcaption></figure>
+<figure class="shot"><img src="img/sucustu-brifing.webp" width="660" height="1434" loading="lazy" alt="Bölüm 01 İlk Kabarcık brifingi: Sahil Radyosu karşılama mesajı, imza karşılaşması, yıldız ve ustalık hedefleri."><figcaption>Bölüm brifingi</figcaption></figure>
+<figure class="shot"><img src="img/sucustu-oyun.webp" width="660" height="1434" loading="lazy" alt="Oynanış: turkuaz denizde kuş bakışı yüzücüler ve kanolar; bir yüzücünün yanında yeşil gaz kabarcıkları."><figcaption>Oynanış: kabarcıkların sahibi kim?</figcaption></figure>
+</div>
+</section>
+
+<section class="section" aria-labelledby="yapim">
+<div class="section-head"><p class="eyebrow">04 · YAPIM NOTLARI</p></div>
+<h2 id="yapim">Nasıl yapıldı?</h2>
+<div class="stack">
+<p class="muted">Swift 6, SwiftUI ve SpriteKit ile yazılmış dikey bir iPhone oyunu. Otuz bölüm tek bir JSON dosyasından yükleniyor; bir "adalet filtresi" her gerçek ihlalin görünür bir kanıtla başlamasını ve ekranda kalmasını garanti ediyor. Zorluk iki saniyeyi kısaltarak değil; kalabalık, yön değişimi, masum hareketler ve eşzamanlı olaylarla artıyor. Sesler kayıt değil, programla üretiliyor.</p>
+<div class="build">
+<div class="stat"><b>30</b><span>bölüm, 6 koy</span></div>
+<div class="stat"><b>2,0 sn</b><span>her ihlal için karar süresi</span></div>
+<div class="stat"><b>129 + 8</b><span>birim/sahne ve arayüz testi</span></div>
+</div>
+<p class="note">Oyuncak görünümlü yüzücülerin ışık ve gölge yaklaşımı, MIT lisanslı Pixel Plays kaynaklarından uyarlandı. Geliştirici: Ali Emre Büyükkol.</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="destek">
+<div class="section-head"><p class="eyebrow">05 · DESTEK</p></div>
+<h2 id="destek">Yardım ve gizlilik</h2>
+<div class="stack">
+<p class="muted">İlerlemen, ayarların ve yerel rekorların cihazında kalır, geliştiriciye gönderilmez. Game Center'ı kullanmayı seçersen skorların Apple ile paylaşılır.</p>
+<div class="row">
+<a class="btn ghost" href="https://nazartesi.com/sucustu/privacy">Gizlilik politikası</a>
+<a class="btn ghost" href="https://nazartesi.com/sucustu/support">Destek</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="foot">
+<div class="wrap"><span>© 2026 Ali Emre Büyükkol · SUÇÜSTÜ!</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#sucustu">Ormana dön</a></span></div>
+</footer>
+
+<script src="engine.js"></script>
+<script>
+"use strict";
+(function () {
+  const cv = document.getElementById('scene');
+  if (!window.BuyukkolEngine || !cv.getContext) return;
+  const eng = new window.BuyukkolEngine();
+  const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
+  game.jump(2);
+  cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
+  if (window.IntersectionObserver) {
+    new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
+  }
+  let on = false;
+  const btn = document.getElementById('snd');
+  btn.addEventListener('click', () => {
+    on = !on;
+    const ok = game.setSound(on);
+    if (on && ok === false) { on = false; document.getElementById('snd-lbl').textContent = 'Ses bu tarayıcıda çalışmıyor'; return; }
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    document.getElementById('snd-lbl').textContent = on ? 'Sesi kapat' : 'Ritmi aç';
+    document.getElementById('snd-w').setAttribute('d', on ? 'M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10' : 'M12.5 6.5l4 5M16.5 6.5l-4 5');
+  });
+})();
+</script>
+</body>
+</html>
