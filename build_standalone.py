@@ -11,6 +11,7 @@ start = script.index('  /* ================= Ambiyans sesi')
 end = script.rstrip().rindex('}')  # class Component kapanışı
 engine = script[start:end]
 zones = re.search(r'  zones = \[(.*?)\n  \];', script, re.S).group(1)
+PROJECTS = zones.count("type: 'project'")
 
 ICON_ON = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'
 ICON_OFF = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'
@@ -20,7 +21,7 @@ FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox=
 
 chips = ''.join(
     f'<button type="button" class="chip" data-zone="{i}" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button>'
-    for i in range(1, 5))
+    for i in range(1, PROJECTS + 1))
 
 html = f'''<!DOCTYPE html>
 <html lang="tr">
@@ -82,15 +83,15 @@ html = f'''<!DOCTYPE html>
 <p class="card-vibe" id="c-vibe"></p>
 <div id="c-project" style="display:flex;flex-direction:column;gap:inherit">
 <p class="card-desc" id="c-desc"></p>
-<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta" id="c-cta">Projeye git{ARROW_UP}</a></div>
+<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta" id="c-cta">Projeye git{ARROW_UP}</a><span class="cta cta-soon" id="c-soon" hidden>Yakında</span><button type="button" class="cta cta-ghost" id="c-next"><span id="c-next-lbl"></span>{ARROW_R}</button></div>
 </div>
 <div id="c-about" hidden style="flex-direction:column;gap:inherit">
-<p class="card-desc"><span class="ph">[2–3 cümle: kimsin, ne üretiyorsun, neyi seviyorsun]</span></p>
+<p class="card-desc">Uygulamalar, oyunlar ve küçük dijital dünyalar tasarlayıp geliştiriyorum. Ormanda yürü, her durakta biri seni bekliyor.</p>
 <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="hakkimda.html" class="cta">Beni tanı</a><button type="button" class="cta" id="go-first" style="background:transparent;color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)">İlk projeye yürü{ARROW_R}</button></div>
 </div>
 <div id="c-contact" hidden style="flex-direction:column;gap:inherit">
-<div class="links"><a href="mailto:merhaba@buyukkol.com">merhaba@buyukkol.com</a><a href="#">itch.io</a><a href="#">Instagram</a><a href="#">GitHub</a></div>
-<a href="mailto:merhaba@buyukkol.com" class="cta" style="align-self:flex-start">Mektup yaz</a>
+<div class="links"><a href="mailto:aliemrebuyukkol@gmail.com">aliemrebuyukkol@gmail.com</a><a href="https://github.com/aliemrebuyukkol" target="_blank" rel="noopener">GitHub</a></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a href="mailto:aliemrebuyukkol@gmail.com" class="cta">Mektup yaz</a><button type="button" class="cta cta-ghost" id="go-home">Başa dön</button></div>
 </div>
 </section>
 
@@ -113,9 +114,10 @@ const Engine = window.BuyukkolEngine;
 (function () {{
   const zones = [{zones}
   ];
-  const IDS = ['kulube', 'cozy-camp', 'sucustu', 'pati-kulac', 'muchineko', 'posta'];
-  const loadSeen = () => {{ try {{ const v = JSON.parse(localStorage.getItem('buyukkol.seen') || '[]'); return Array.isArray(v) ? v.filter((n) => n >= 1 && n <= 4) : []; }} catch (e) {{ return []; }} }};
-  const saveSeen = (v) => {{ try {{ localStorage.setItem('buyukkol.seen', JSON.stringify(v)); }} catch (e) {{ /* depolama yoksa sessizce geç */ }} }};
+  const IDS = ['kulube', 'cozy-camp', 'sucustu', 'hosgeldiniz-efendim', 'pati-kulac', 'muchineko', 'posta'];
+  const LAST = IDS.length - 1, NPROJ = {PROJECTS};
+  const loadSeen = () => {{ try {{ const v = JSON.parse(localStorage.getItem('buyukkol.seen.v2') || '[]'); return Array.isArray(v) ? v.filter((n) => Number.isInteger(n) && n >= 1 && n <= NPROJ) : []; }} catch (e) {{ return []; }} }};
+  const saveSeen = (v) => {{ try {{ localStorage.setItem('buyukkol.seen.v2', JSON.stringify(v)); }} catch (e) {{ /* depolama yoksa sessizce geç */ }} }};
   const st = {{ zone: 0, sound: false, intro: true, seen: loadSeen() }};
   const $ = (id) => document.getElementById(id);
   const chipEls = Array.from(document.querySelectorAll('.chip'));
@@ -138,10 +140,13 @@ const Engine = window.BuyukkolEngine;
     let pi = 0;
     zones.forEach((q, i) => {{ if (q.type === 'project' && i <= z) pi++; }});
     $('c-dot').style.background = p.color;
-    $('c-eyebrow').textContent = p.type === 'project' ? 'PROJE ' + pi + ' / 4' + (p.kind ? ' · ' + p.kind : '') : p.eyebrow;
+    $('c-eyebrow').textContent = p.type === 'project' ? 'PROJE ' + pi + ' / ' + NPROJ + (p.kind ? ' · ' + p.kind : '') : p.eyebrow;
     $('c-name').textContent = p.name; $('c-name').style.color = p.color;
     $('c-vibe').textContent = p.vibe;
-    $('c-cta').href = p.href || '#';
+    $('c-cta').href = p.href || '#'; $('c-cta').hidden = !p.href; $('c-soon').hidden = !!p.href;
+    if (p.ext) {{ $('c-cta').target = '_blank'; $('c-cta').rel = 'noopener'; }} else {{ $('c-cta').removeAttribute('target'); $('c-cta').removeAttribute('rel'); }}
+    const nz = zones[z + 1];
+    $('c-next').hidden = !nz; $('c-next-lbl').textContent = nz ? 'Sonraki: ' + (nz.type === 'contact' ? 'İletişim' : nz.name) : '';
     const d = $('c-desc'); d.textContent = '';
     if (p.desc) d.textContent = p.desc;
     else {{ const ph = document.createElement('span'); ph.className = 'ph'; ph.textContent = '[Tek cümlelik proje açıklaması]'; d.appendChild(ph); }}
@@ -155,7 +160,7 @@ const Engine = window.BuyukkolEngine;
       b.querySelector('.seen').hidden = st.seen.indexOf(i) < 0;
     }});
     const found = st.seen.length;
-    $('hint').textContent = (found === 4 ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/4 · ') + '← → İLE YÜRÜ';
+    $('hint').textContent = (found === NPROJ ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/' + NPROJ + ' · ') + '← → İLE YÜRÜ';
     $('bubble').textContent = p.say;
   }};
 
@@ -166,7 +171,7 @@ const Engine = window.BuyukkolEngine;
       const fresh = zones[i].type === 'project' && st.seen.indexOf(i) < 0;
       if (fresh && !st.intro && navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) {{ try {{ navigator.vibrate(12); }} catch (e) {{ /* desteklenmiyor */ }} }}
       st.zone = i;
-      if (fresh) {{ st.seen = st.seen.concat([i]); saveSeen(st.seen); if (st.seen.length === 4) game.celebrate(); }}
+      if (fresh) {{ st.seen = st.seen.concat([i]); saveSeen(st.seen); if (st.seen.length === NPROJ) game.celebrate(); }}
       render();
       const on = document.querySelector('.chip.on');
       const box = $('chips');
@@ -176,14 +181,16 @@ const Engine = window.BuyukkolEngine;
     card: () => $('card')
   }}, eng.buildAudio());
 
-  const go = (i) => game.go(Math.max(0, Math.min(5, i)));
+  const go = (i) => game.go(Math.max(0, Math.min(LAST, i)));
   const enter = (sound) => {{ st.intro = false; st.sound = sound; render(); if (sound) game.setSound(true); game.begin(); $('scene').focus({{ preventScroll: true }}); }};
   $('enter-sound').addEventListener('click', () => enter(true));
   $('enter-quiet').addEventListener('click', () => enter(false));
   $('snd').addEventListener('click', () => {{ st.sound = !st.sound; render(); game.setSound(st.sound); }});
   $('go-about').addEventListener('click', () => go(0));
   $('logo').addEventListener('click', (e) => {{ e.preventDefault(); go(0); }});
-  $('go-contact').addEventListener('click', () => go(5));
+  $('go-contact').addEventListener('click', () => go(LAST));
+  $('go-home').addEventListener('click', () => go(0));
+  $('c-next').addEventListener('click', () => go(st.zone + 1));
   $('go-first').addEventListener('click', () => go(1));
   $('prev').addEventListener('click', () => go(st.zone - 1));
   $('next').addEventListener('click', () => go(st.zone + 1));
@@ -205,7 +212,7 @@ const Engine = window.BuyukkolEngine;
     if (st.intro) return;
     if (isL(e.key)) {{ game.hold(-1); e.preventDefault(); }}
     else if (isR(e.key)) {{ game.hold(1); e.preventDefault(); }}
-    else if (e.key >= '1' && e.key <= '4') go(+e.key);
+    else if (e.key >= '1' && e.key <= String(NPROJ)) go(+e.key);
   }});
   cv.addEventListener('keyup', (e) => {{ if (isL(e.key) || isR(e.key)) game.hold(0); }});
   cv.addEventListener('blur', () => game.hold(0));

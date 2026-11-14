@@ -31,7 +31,9 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 .hud-btn:focus-visible,.chip:focus-visible,.cta:focus-visible,.logo:focus-visible{outline:2px solid #FFD28A;outline-offset:3px}
 .cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:0;border-radius:3px;background:#F3ECDD;color:#141A30;font-family:Inter,sans-serif;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer}
 .cta:hover{background:#FFFFFF;color:#141A30}
+.cta-ghost{background:transparent;color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)}.cta-ghost:hover{background:rgba(243,236,221,.08);color:#FFFFFF}
 .ph{color:#FFD28A;border-bottom:1px dashed rgba(255,210,138,.55)}
+.cta-soon{background:transparent;color:#C9C3D9;box-shadow:inset 0 0 0 1px rgba(243,236,221,.22);cursor:default}
 .card{position:absolute;left:calc(clamp(12px,3vw,32px) + env(safe-area-inset-left));bottom:96px;width:min(420px,calc(100% - 24px));padding:22px 24px;border-radius:4px;background:rgba(14,16,30,.86);box-shadow:0 0 0 1px rgba(243,236,221,.08);display:flex;flex-direction:column;gap:10px}
 .card h2{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.4vw,40px);letter-spacing:-.02em;line-height:1}
 .card-vibe{margin:0;font-size:15px;line-height:1.5;color:#D9D2C2}
@@ -58,6 +60,7 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 @media (hover:none) and (pointer:coarse){.keys{display:none}.touch{display:inline}}
 @media (prefers-reduced-motion: reduce){.bubble{transition:none}}
 @media (max-width:640px){.lbl{display:none}.tagline{display:none}}
+@media (max-aspect-ratio: 1/1){.tagline{display:none}}
 @media (max-aspect-ratio: 1/1), (max-height: 520px){
   .root{--dock:calc(68px + env(safe-area-inset-bottom))}
   .dock{height:var(--dock);padding-top:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom));background:#0F1322;box-shadow:0 -1px 0 rgba(243,236,221,.1), 0 -6px 0 rgba(15,19,34,.35)}
@@ -127,11 +130,13 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <sc-if value="{{ hasDesc }}" hint-placeholder-val="{{ false }}"><p class="card-desc">{{ pDesc }}</p></sc-if>
 <sc-if value="{{ noDesc }}" hint-placeholder-val="{{ true }}"><p class="card-desc"><span class="ph">[Tek cümlelik proje açıklaması]</span></p></sc-if>
 <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap">
-<a href="{{ pHref }}" class="cta">Projeye git<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></a>
+<sc-if value="{{ hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ pHref }}" target="{{ pTarget }}" rel="{{ pRel }}" class="cta">Projeye git<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></a></sc-if>
+<sc-if value="{{ noHref }}" hint-placeholder-val="{{ false }}"><span class="cta cta-soon">Yakında</span></sc-if>
+<button type="button" class="cta cta-ghost" onClick="{{ goNext }}">{{ nextLabel }}<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></button>
 </div>
 </sc-if>
 <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
-<p class="card-desc"><span class="ph">[2–3 cümle: kimsin, ne üretiyorsun, neyi seviyorsun]</span></p>
+<p class="card-desc">Uygulamalar, oyunlar ve küçük dijital dünyalar tasarlayıp geliştiriyorum. Ormanda yürü, her durakta biri seni bekliyor.</p>
 <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap">
 <a href="hakkimda.html" class="cta">Beni tanı</a>
 <button type="button" class="cta" style="background: transparent; color: #F3ECDD; box-shadow: inset 0 0 0 1px rgba(243,236,221,.4)" onClick="{{ goFirst }}">İlk projeye yürü<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></button>
@@ -139,12 +144,10 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 </sc-if>
 <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
 <div class="links">
-<a href="mailto:merhaba@buyukkol.com">merhaba@buyukkol.com</a>
-<a href="#">itch.io</a>
-<a href="#">Instagram</a>
-<a href="#">GitHub</a>
+<a href="mailto:aliemrebuyukkol@gmail.com">aliemrebuyukkol@gmail.com</a>
+<a href="https://github.com/aliemrebuyukkol" target="_blank" rel="noopener">GitHub</a>
 </div>
-<a href="mailto:merhaba@buyukkol.com" class="cta" style="align-self: flex-start">Mektup yaz</a>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><a href="mailto:aliemrebuyukkol@gmail.com" class="cta">Mektup yaz</a><button type="button" class="cta cta-ghost" onClick="{{ goHome }}">Başa dön</button></div>
 </sc-if>
 </section>
 
@@ -166,17 +169,18 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   state = { zone: 0, sound: false, intro: true, seen: this.loadSeen() };
-  loadSeen() { try { const v = JSON.parse(window.localStorage.getItem('buyukkol.seen') || '[]'); return Array.isArray(v) ? v.filter((n) => n >= 1 && n <= 4) : []; } catch (e) { return []; } }
-  saveSeen(seen) { try { window.localStorage.setItem('buyukkol.seen', JSON.stringify(seen)); } catch (e) { /* depolama yoksa sessizce geç */ } }
+  loadSeen() { try { const v = JSON.parse(window.localStorage.getItem('buyukkol.seen.v2') || '[]'); return Array.isArray(v) ? v.filter((n) => Number.isInteger(n) && n >= 1 && n <= 5) : []; } catch (e) { return []; } }
+  saveSeen(seen) { try { window.localStorage.setItem('buyukkol.seen.v2', JSON.stringify(seen)); } catch (e) { /* depolama yoksa sessizce geç */ } }
   game = null;
   bubbleEl = null;
 
   zones = [
-    { type: 'about', name: 'Kulübe', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', eyebrow: 'HAKKIMDA', say: 'Hoş geldin! Ormanda dört proje saklı.' },
+    { type: 'about', name: 'Kulübe', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', eyebrow: 'HAKKIMDA', say: 'Hoş geldin! Ormanda beş proje saklı.' },
     { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', say: 'Otur, bir çay iç. Acele yok.' },
     { type: 'project', name: 'Suçüstü', kind: 'OYUN', href: 'sucustu.html', desc: 'Denizde dikkat oyunu: kabarcığın ya da çöpün sahibini iki saniyede bul.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
-    { type: 'project', name: 'Pati Kulaç', kind: '', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
-    { type: 'project', name: 'Muchineko', kind: '', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
+    { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', href: 'https://nazartesi.com/hosgeldinizefendim/', ext: true, color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', say: 'Hoş geldiniz efendim! Çayınız taze.' },
+    { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', soon: true, desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
+    { type: 'project', name: 'Muchineko', kind: 'OYUN', soon: true, desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
     { type: 'contact', name: 'Posta kutusu', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', eyebrow: 'İLETİŞİM', say: 'Mektubunu bekliyorum.' }
   ];
 
@@ -189,7 +193,7 @@ class Component extends DCLogic {
           if (fresh && !this.state.intro && navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) { try { navigator.vibrate(12); } catch (e) { /* titreşim desteklenmiyor */ } }
           const seen = fresh ? this.state.seen.concat([i]) : this.state.seen;
           this.setState({ zone: i, seen: seen });
-          if (fresh) { this.saveSeen(seen); if (seen.length === 4 && this.game) this.game.celebrate(); }
+          if (fresh) { this.saveSeen(seen); if (seen.length === this.projCount() && this.game) this.game.celebrate(); }
           setTimeout(() => {
             const on = this.chipsEl && this.chipsEl.querySelector('.chip.on');
             const box = this.chipsEl;
@@ -217,7 +221,7 @@ class Component extends DCLogic {
     if (!p || !this.game || p.id !== e.pointerId) return;
     const dx = e.clientX - p.x, dy = e.clientY - p.y, dt = Date.now() - p.t;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3 && dt < 700) {
-      this.game.go(Math.max(0, Math.min(5, this.state.zone + (dx < 0 ? 1 : -1))));
+      this.game.go(Math.max(0, Math.min(this.zones.length - 1, this.state.zone + (dx < 0 ? 1 : -1))));
     } else if (Math.abs(dx) < 12 && Math.abs(dy) < 12) {
       this.game.tap(e.clientX, e.clientY, e.currentTarget.getBoundingClientRect());
     }
@@ -230,7 +234,7 @@ class Component extends DCLogic {
     const k = e.key;
     if (k === 'ArrowLeft' || k === 'a' || k === 'A') { this.game.hold(-1); e.preventDefault(); }
     else if (k === 'ArrowRight' || k === 'd' || k === 'D') { this.game.hold(1); e.preventDefault(); }
-    else if (k >= '1' && k <= '4') { this.game.go(Number(k)); }
+    else if (k >= '1' && k <= String(this.projCount())) { this.game.go(Number(k)); }
   };
   onKeyUp = (e) => {
     if (!this.game) return;
@@ -239,9 +243,11 @@ class Component extends DCLogic {
   };
   onBlur = () => { if (this.game) this.game.hold(0); };
   prev = () => { if (this.game) this.game.go(Math.max(0, this.state.zone - 1)); };
-  next = () => { if (this.game) this.game.go(Math.min(5, this.state.zone + 1)); };
+  next = () => { if (this.game) this.game.go(Math.min(this.zones.length - 1, this.state.zone + 1)); };
+  projCount() { return this.zones.filter((q) => q.type === 'project').length; }
   goAbout = () => { if (this.game) this.game.go(0); };
-  goContact = () => { if (this.game) this.game.go(5); };
+  goContact = () => { if (this.game) this.game.go(this.zones.length - 1); };
+  goHome = () => { if (this.game) this.game.go(0); };
   goFirst = () => { if (this.game) this.game.go(1); };
   setBubble = (el) => { this.bubbleEl = el; };
   toggleSound = () => {
@@ -280,19 +286,21 @@ class Component extends DCLogic {
       rootCls: this.state.intro ? 'root is-intro' : 'root',
       soundLabel: this.state.sound ? 'Sesi kapat' : 'Ambiyansı aç',
       soundPressed: this.state.sound ? 'true' : 'false',
-      pName: p.name, pVibe: p.vibe, pColor: p.color, pHref: p.href || '#', pDesc: p.desc || '', hasDesc: !!p.desc, noDesc: !p.desc,
-      pEyebrow: p.type === 'project' ? 'PROJE ' + pi + ' / 4' + (p.kind ? ' · ' + p.kind : '') : p.eyebrow,
+      pName: p.name, pVibe: p.vibe, pColor: p.color, pHref: p.href || '#', hasHref: !!p.href, noHref: !p.href, pDesc: p.desc || '', hasDesc: !!p.desc, noDesc: !p.desc,
+      pEyebrow: p.type === 'project' ? 'PROJE ' + pi + ' / ' + this.projCount() + (p.kind ? ' · ' + p.kind : '') : p.eyebrow,
       isProject: p.type === 'project', isAbout: p.type === 'about', isContact: p.type === 'contact',
       bubbleText: p.say,
-      hintText: (found === 4 ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/4 · ') + '← → İLE YÜRÜ',
+      hintText: (found === this.projCount() ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/' + this.projCount() + ' · ') + '← → İLE YÜRÜ',
+      nextLabel: (() => { const n = this.zones[z + 1]; return n ? 'Sonraki: ' + (n.type === 'contact' ? 'İletişim' : n.name) : ''; })(),
+      goNext: this.next, goHome: this.goHome, pTarget: p.ext ? '_blank' : '_self', pRel: p.ext ? 'noopener' : '',
       chips: chips
     };
   }
 
   /* ================= Ambiyans sesi (Web Audio, sentez) ================= */
   buildAudio() {
-    let ac = null, master = null, timer = 0, B = null, noise = null, mix = [0, 0, 0, 0];
-    let nPop = 0, nChime = 0, nBeat = 0, beatN = 0;
+    let ac = null, master = null, timer = 0, B = null, noise = null, mix = [0, 0, 0, 0, 0];
+    let nPop = 0, nChime = 0, nBeat = 0, beatN = 0, nClink = 0;
     const PENTA = [523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66];
     const BASS = [55, 55, 65.41, 49];
     const env = (g, t0, a, peak, d) => { g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(peak, t0 + a); g.gain.exponentialRampToValueAtTime(0.0001, t0 + a + d); };
@@ -321,6 +329,11 @@ class Component extends DCLogic {
       while (nPop < ahead) { if (mix[0] > 0.02) burst(B.pop, nPop, 'highpass', 1600 + Math.random() * 1800, 0.15 + Math.random() * 0.45, 0.015 + Math.random() * 0.03); nPop += 0.04 + Math.random() * 0.28; }
       if (nChime < now) nChime = now + 0.1;
       while (nChime < ahead) { if (mix[1] > 0.02) tone(B.chime, nChime, 'sine', PENTA[Math.floor(Math.random() * PENTA.length)], 0, 0.22, 2.4); nChime += 0.6 + Math.random() * 1.6; }
+      if (nClink < now) nClink = now + 0.1;
+      while (nClink < ahead) {
+        if (mix[4] > 0.02) { const f = 2300 + Math.random() * 900; tone(B.tea, nClink, 'triangle', f, 0, 0.12, 0.09); if (Math.random() < 0.5) tone(B.tea, nClink + 0.07, 'triangle', f * 1.12, 0, 0.08, 0.07); }
+        nClink += 0.5 + Math.random() * 1.4;
+      }
       if (nBeat < now) nBeat = now + 0.05;
       while (nBeat < ahead) {
         if (mix[3] > 0.02) {
@@ -338,7 +351,7 @@ class Component extends DCLogic {
       master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
       noise = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
       const d = noise.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-      B = { wind: bed('lowpass', 380), fire: bed('bandpass', 700), water: bed('lowpass', 520), pop: bus(), chime: bus(), beat: bus() };
+      B = { wind: bed('lowpass', 380), fire: bed('bandpass', 700), water: bed('lowpass', 520), murmur: bed('bandpass', 320), pop: bus(), chime: bus(), beat: bus(), tea: bus() };
       const dl = ac.createDelay(1); dl.delayTime.value = 0.33;
       const fb = ac.createGain(); fb.gain.value = 0.35;
       B.chime.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(master);
@@ -349,7 +362,7 @@ class Component extends DCLogic {
       if (!ac) return;
       const n = ac.currentTime, set = (g, v) => g.gain.setTargetAtTime(v, n, 0.4);
       set(B.wind, 0.035); set(B.fire, mix[0] * 0.05); set(B.pop, mix[0] * 0.35);
-      set(B.chime, mix[1] * 0.3); set(B.water, mix[2] * 0.16); set(B.beat, mix[3] * 0.32);
+      set(B.chime, mix[1] * 0.3); set(B.water, mix[2] * 0.16); set(B.beat, mix[3] * 0.32); set(B.tea, mix[4] * 0.35); set(B.murmur, mix[4] * 0.05);
     };
     return {
       setOn: (on) => {
@@ -371,10 +384,10 @@ class Component extends DCLogic {
     const wrapOf = () => cv.parentElement || cv;
     const mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
     const reduce = !!(mq && mq.matches);
-    const TAU = Math.PI * 2, WH = 180, WW = 1460, HZ = 74;
+    const TAU = Math.PI * 2, WH = 180, WW = 1760, HZ = 74;
     let S = 4, VW = 320, VH = 180, OY = 0;
     let t = 0, lastT = 0, raf = 0, alive = true, visible = true, tickAcc = 1, mixAcc = 0;
-    let camX = 0, sky = null, hills = null, bg = null, stars = [];
+    let camX = 0, camShift = 0, sky = null, hills = null, bg = null, stars = [];
     let trees = [], tufts = [], parts = [], extraG = [];
     let zoneNow = -1;
     const windOn = !reduce;
@@ -404,9 +417,10 @@ class Component extends DCLogic {
       { cx: 96, stop: 112, say: [86, 100] },
       { cx: 246, stop: 216, say: [226, 121] },
       { cx: 552, stop: 522, say: [552, 97] },
-      { cx: 846, stop: 816, say: [784, 74] },
-      { cx: 1150, stop: 1120, say: [1116, 127] },
-      { cx: 1395, stop: 1376, say: [1395, 119] }
+      { cx: 846, stop: 828, say: [852, 116] },
+      { cx: 1146, stop: 1116, say: [1084, 74] },
+      { cx: 1450, stop: 1420, say: [1416, 127] },
+      { cx: 1695, stop: 1676, say: [1695, 119] }
     ];
     let begun = false, stillT = 0, oddFrame = false;
     const coarse = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
@@ -576,36 +590,40 @@ class Component extends DCLogic {
         trees.push(r < 0.35 ? makePine(x, y, sc, 0.22) : makeLeafy(x, y, sc, r < 0.55 ? 'birch' : 'oak', 0.22));
       }
       trees.push(makePine(305, 118, 0.95, 0));
-      trees.push(makeLeafy(1146, 128, 1.15, 'blossom', 0));
-      trees.push(makeLeafy(940, 116, 0.9, 'birch', 0));
+      trees.push(makeLeafy(1446, 128, 1.15, 'blossom', 0));
+      trees.push(makeLeafy(1240, 116, 0.9, 'birch', 0));
       trees.push(makePine(404, 126, 1.0, 0));
-      trees.push(makeLeafy(990, 122, 1.0, 'oak', 0));
+      trees.push(makeLeafy(1290, 122, 1.0, 'oak', 0));
+      trees.push(makeLeafy(992, 124, 0.95, 'oak', 0));
+      trees.push(makeLeafy(978, 150, 1.0, 'bush', 0));
+      trees.push(makePine(1006, 196, 1.3, 0));
       trees.push(makeLeafy(706, 124, 0.95, 'oak', 0));
-      trees.push(makeLeafy(1282, 118, 1.0, 'oak', 0));
-      trees.push(makePine(1430, 120, 1.0, 0));
+      trees.push(makeLeafy(1582, 118, 1.0, 'oak', 0));
+      trees.push(makePine(1730, 120, 1.0, 0));
       trees.push(makeLeafy(40, 120, 0.95, 'oak', 0));
-      [[150, 146, 1.0], [688, 150, 1.1], [1004, 150, 1.0], [1300, 150, 1.0], [372, 150, 0.9], [1446, 152, 1.0]].forEach((b) => trees.push(makeLeafy(b[0], b[1], b[2], 'bush', 0)));
+      [[150, 146, 1.0], [688, 150, 1.1], [1304, 150, 1.0], [1600, 150, 1.0], [372, 150, 0.9], [1746, 152, 1.0]].forEach((b) => trees.push(makeLeafy(b[0], b[1], b[2], 'bush', 0)));
       trees.push(makeLeafy(410, 198, 1.45, 'oak', 0));
       trees.push(makePine(700, 194, 1.3, 0));
-      trees.push(makeLeafy(1006, 198, 1.5, 'oak', 0));
+      trees.push(makeLeafy(1306, 198, 1.5, 'oak', 0));
       trees.push(makePine(20, 194, 1.25, 0));
-      trees.push(makeLeafy(1318, 198, 1.4, 'oak', 0));
+      trees.push(makeLeafy(1618, 198, 1.4, 'oak', 0));
       tufts = [];
       for (let i = 0; i < 260; i++) {
         const x = rand() * WW, y = HZ + 12 + rand() * (WH - HZ - 12);
         if (Math.abs(y - pathY(x)) < 7) continue;
-        if (((x - 846) / 80) ** 2 + ((y - 122) / 23) ** 2 < 1) continue;
+        if (((x - 1146) / 80) ** 2 + ((y - 122) / 23) ** 2 < 1) continue;
         if (x > 470 && x < 638 && y > 106 && y < 146) continue;
         if (((x - 246) / 50) ** 2 + ((y - 136) / 15) ** 2 < 1) continue;
         if (x > 72 && x < 112 && y > 110 && y < 132) continue;
-        if (x > 1352 && x < 1416 && y > 126 && y < 150) continue;
+        if (x > 1652 && x < 1716 && y > 126 && y < 150) continue;
+        if (x > 792 && x < 916 && y > 108 && y < 150) continue;
         const nb = 3 + Math.floor(rand() * 3), blades = [];
         for (let j = 0; j < nb; j++) blades.push({ x: j - (nb >> 1), h: 2 + Math.floor(rand() * 3), col: P.tuft[Math.floor(rand() * 3)], flex: 0.7 + rand() * 0.6 });
         tufts.push({ x: Math.round(x), baseY: Math.round(y), blades: blades, amp: 0 });
       }
     };
 
-    const POND = { cx: 846, cy: 122, rx: 72, ry: 18 };
+    const POND = { cx: 1146, cy: 122, rx: 72, ry: 18 };
     const FLOOR = { x0: 477, x1: 627, y0: 110, y1: 140, cols: 10, rows: 5 };
 
     const buildBg = () => {
@@ -645,7 +663,7 @@ class Component extends DCLogic {
         else if (e <= 1.1) put(x, y, (x + y) % 3 === 0 ? st1 : st0);
       }
       const lily = rgb('#3F7A3A'), lilyD = rgb('#2C5A2A');
-      [[808, 114], [826, 131], [880, 112], [870, 133]].forEach((l) => {
+      [[1108, 114], [1126, 131], [1180, 112], [1170, 133]].forEach((l) => {
         for (let dy = -1; dy <= 1; dy++) for (let dx = -3; dx <= 3; dx++) if (Math.abs(dx) + Math.abs(dy) * 2 <= 3 && !(dx === 1 && dy === -1)) put(l[0] + dx, l[1] + dy, dy === 1 ? lilyD : lily);
       });
       const fl = rgb('#1C1626'), flE = rgb('#0E0B14'), flL = rgb('#2C2340');
@@ -722,12 +740,12 @@ class Component extends DCLogic {
       R(x0 + 3, y1, 8, 1, '#5A5458');
     };
     const drawMailbox = () => {
-      R(1358, 134, 1, 14, '#5A3F2A'); R(1350, 134, 14, 4, '#B89A6A'); R(1364, 135, 1, 2, '#B89A6A'); R(1351, 135, 10, 1, '#8A6E46');
-      R(1394, 136, 2, 10, '#5A3F2A');
-      R(1390, 130, 10, 6, '#C9473F'); R(1391, 129, 8, 1, '#E05A4E'); R(1392, 132, 6, 1, '#5A1E1A'); R(1390, 135, 10, 1, '#8E2E28');
-      if (Math.sin(t * 0.8) > 0.3) { R(1400, 125, 1, 6, '#3B2A1C'); R(1401, 125, 3, 2, '#FFE14F'); }
-      else { R(1400, 131, 1, 1, '#3B2A1C'); R(1401, 131, 3, 1, '#FFE14F'); }
-      R(1414, 124, 1, 24, '#2E2E3A'); R(1412, 122, 5, 2, '#2E2E3A'); R(1413, 124, 3, 2, '#FFE2A0');
+      R(1658, 134, 1, 14, '#5A3F2A'); R(1650, 134, 14, 4, '#B89A6A'); R(1664, 135, 1, 2, '#B89A6A'); R(1651, 135, 10, 1, '#8A6E46');
+      R(1694, 136, 2, 10, '#5A3F2A');
+      R(1690, 130, 10, 6, '#C9473F'); R(1691, 129, 8, 1, '#E05A4E'); R(1692, 132, 6, 1, '#5A1E1A'); R(1690, 135, 10, 1, '#8E2E28');
+      if (Math.sin(t * 0.8) > 0.3) { R(1700, 125, 1, 6, '#3B2A1C'); R(1701, 125, 3, 2, '#FFE14F'); }
+      else { R(1700, 131, 1, 1, '#3B2A1C'); R(1701, 131, 3, 1, '#FFE14F'); }
+      R(1714, 124, 1, 24, '#2E2E3A'); R(1712, 122, 5, 2, '#2E2E3A'); R(1713, 124, 3, 2, '#FFE2A0');
     };
 
     /* ---------- CozyCamp ---------- */
@@ -829,11 +847,11 @@ class Component extends DCLogic {
 
     /* ---------- Muchineko ---------- */
     const neko = {
-      sitters: [{ x: 1116, y: 142, pal: CATS.orange, ph: 0.3 }, { x: 1164, y: 144, pal: CATS.white, ph: 2.1 }, { x: 1198, y: 140, pal: CATS.black, ph: 4.0 }],
-      sleeper: { x: 1224, y: 133, pal: CATS.gray },
-      walker: { x: 1078, y: 147, dir: 1, pal: CATS.cream, pause: 0 },
-      kitten: { x: 1084, y: 132, pal: CATS.orange, jumpT: 0, next: 2 },
-      fly: { x: 1084, y: 120 },
+      sitters: [{ x: 1416, y: 142, pal: CATS.orange, ph: 0.3 }, { x: 1464, y: 144, pal: CATS.white, ph: 2.1 }, { x: 1498, y: 140, pal: CATS.black, ph: 4.0 }],
+      sleeper: { x: 1524, y: 133, pal: CATS.gray },
+      walker: { x: 1378, y: 147, dir: 1, pal: CATS.cream, pause: 0 },
+      kitten: { x: 1384, y: 132, pal: CATS.orange, jumpT: 0, next: 2 },
+      fly: { x: 1384, y: 120 },
       petalT: 0, zT: 0
     };
     const drawCatSit = (c) => {
@@ -861,7 +879,7 @@ class Component extends DCLogic {
       R(f.x - 1, f.y - (up ? 1 : 0), 1, 1, '#FFE07A'); R(f.x + 1, f.y - (up ? 1 : 0), 1, 1, '#F6A6D8');
     };
     const drawLantern = () => {
-      const x = 1196, y = 128;
+      const x = 1496, y = 128;
       R(x, y - 18, 1, 18, '#3B291C'); R(x, y - 18, 6, 1, '#3B291C'); R(x + 5, y - 17, 1, 2, '#2A2A30');
       R(x + 4, y - 15, 3, 4, '#E0694E'); R(x + 5, y - 14, 1, 2, '#FFD39A'); R(x + 4, y - 15, 3, 1, '#7A2E28'); R(x + 4, y - 12, 3, 1, '#7A2E28');
     };
@@ -872,8 +890,8 @@ class Component extends DCLogic {
       { ph: 2.2, sp: 0.36, rx: 38, ry: 7, pal: CATS.white, rip: 0 },
       { ph: 4.1, sp: 0.24, rx: 58, ry: 12, pal: CATS.gray, rip: 0 }
     ];
-    const guard = { x: 784, y: 104, pal: CATS.black, bang: 0, next: 5 };
-    const dockCat = { x: 912, y: 121, pal: CATS.cream, ph: 1.2 };
+    const guard = { x: 1084, y: 104, pal: CATS.black, bang: 0, next: 5 };
+    const dockCat = { x: 1212, y: 121, pal: CATS.cream, ph: 1.2 };
     const reeds = [];
     for (let i = 0; i < 26; i++) {
       const a = Math.PI * (0.55 + rand() * 0.9) + (i % 2 ? Math.PI * 0.85 : 0);
@@ -889,11 +907,11 @@ class Component extends DCLogic {
       R(x + 5, y - 1 - Math.round(Math.max(0, -st) * 2), 1, 1, s.pal.w);
     };
     const drawDock = () => {
-      R(892, 117, 40, 4, '#8A6A44');
-      for (let x = 896; x < 932; x += 4) R(x, 117, 1, 4, '#6E5234');
-      R(892, 121, 40, 1, '#4E3A24');
-      [894, 906, 918, 929].forEach((x) => R(x, 122, 1, 3, '#3E2E1E'));
-      R(924, 114, 5, 1, '#E8E2D6'); R(923, 115, 1, 2, '#D94848'); R(929, 115, 1, 2, '#D94848'); R(924, 117, 5, 1, '#E8E2D6'); R(925, 115, 3, 2, '#2A6584');
+      R(1192, 117, 40, 4, '#8A6A44');
+      for (let x = 1196; x < 1232; x += 4) R(x, 117, 1, 4, '#6E5234');
+      R(1192, 121, 40, 1, '#4E3A24');
+      [1194, 1206, 1218, 1229].forEach((x) => R(x, 122, 1, 3, '#3E2E1E'));
+      R(1224, 114, 5, 1, '#E8E2D6'); R(1223, 115, 1, 2, '#D94848'); R(1229, 115, 1, 2, '#D94848'); R(1224, 117, 5, 1, '#E8E2D6'); R(1225, 115, 3, 2, '#2A6584');
     };
     const drawGuard = () => {
       const x = guard.x, y = guard.y;
@@ -907,6 +925,71 @@ class Component extends DCLogic {
       const amp = 1.5 * (breeze(r.x) + gustAt(r.x));
       for (let j = 0; j < r.h; j++) R(r.x + Math.round(amp * Math.pow(j / r.h, 1.5)), r.y - j, 1, 1, '#4E7A3A');
       R(r.x + Math.round(amp), r.y - r.h - 1, 1, 2, '#6B4A2E');
+    };
+
+    /* ---------- Hoşgeldiniz Efendim: çay ocağı, semaver, çaycı, eski televizyon ---------- */
+    const kahve = { steamT: 0, clinkT: 0, chan: 0, chanT: 0, burst: 0, frame: [] };
+    const cayci = { x: 826, y: 146, hx: 826, dir: 1, mode: 'go', target: 878, waitT: 0, skin: '#E7B48A', hair: '#2A1E18', shirt: '#F3EEE6', pants: '#2C3E66', style: 0, ph: 0, throwT: 0, bang: 0 };
+    const sitters = [
+      { x: 856, y: 141, dir: -1, skin: '#E2B08A', cap: '#5A5A66', coat: '#6E5A44', pants: '#3A3A44', cane: true, sipT: 1.2 },
+      { x: 892, y: 133, dir: 1, skin: '#C98E62', cap: '#2A1E18', coat: '#3D4C78', pants: '#2E2B38', cane: false, sipT: 2.6 }
+    ];
+    const TV_PAL = ['#E86FA0', '#7FD39A', '#7FC3DD', '#FFE14F', '#C99BFF', '#F6B26B', '#F3ECDD'];
+    const newFrame = () => { kahve.frame = []; for (let i = 0; i < 12; i++) kahve.frame.push(TV_PAL[Math.floor(fx() * TV_PAL.length)]); };
+    newFrame();
+    const drawKiosk = () => {
+      const x0 = 798, y1 = 132;
+      R(x0, y1 - 14, 26, 14, '#7E5A38'); R(x0, y1 - 14, 26, 1, '#9C7448'); R(x0 + 25, y1 - 14, 1, 14, '#5A3F2A');
+      for (let r = 0; r < 14; r += 3) R(x0, y1 - 13 + r, 26, 1, '#6B4A2E');
+      R(x0 - 1, y1 - 7, 28, 2, '#B89A6A'); R(x0 - 1, y1 - 5, 28, 1, '#8A6E46');
+      for (let i = 0; i < 30; i++) R(x0 - 2 + i, y1 - 19 + (i % 2), 1, 4, Math.floor(i / 3) % 2 ? '#F3EEE6' : '#C9473F');
+      R(x0 - 2, y1 - 15, 30, 1, '#7A2E28');
+      R(x0 - 2, y1 - 19, 1, 19, '#4A3220'); R(x0 + 27, y1 - 19, 1, 19, '#4A3220');
+      const sx = x0 + 7, sy = y1 - 8;
+      R(sx, sy - 9, 5, 7, '#C9A24A'); R(sx + 4, sy - 9, 1, 7, '#9C7A32'); R(sx + 1, sy - 11, 3, 2, '#DDB85A'); R(sx + 2, sy - 13, 1, 2, '#7A6A5A');
+      R(sx + 5, sy - 5, 2, 1, '#9C7A32'); R(sx - 1, sy - 2, 7, 1, '#7A5A2A'); R(sx + 1, sy - 6, 3, 1, '#FFE38A');
+      R(x0 + 16, y1 - 9, 1, 2, '#C0392B'); R(x0 + 18, y1 - 9, 1, 2, '#C0392B'); R(x0 + 20, y1 - 9, 1, 2, '#C0392B'); R(x0 + 16, y1 - 10, 5, 1, '#F3EEE6');
+    };
+    const drawTable = (x, y) => {
+      R(x - 5, y - 6, 11, 2, '#8A6A44'); R(x - 5, y - 4, 11, 1, '#5E472C'); R(x - 4, y - 3, 1, 3, '#4E3A24'); R(x + 4, y - 3, 1, 3, '#4E3A24');
+      R(x - 2, y - 8, 1, 2, '#C0392B'); R(x - 2, y - 8, 1, 1, '#E86A5A'); R(x + 2, y - 8, 1, 2, '#C0392B'); R(x + 2, y - 8, 1, 1, '#E86A5A');
+      R(x - 1, y - 7, 1, 1, '#F3EEE6'); R(x + 3, y - 7, 1, 1, '#F3EEE6');
+    };
+    const drawSitter = (p) => {
+      const x = Math.round(p.x), y = Math.round(p.y), d = p.dir, sip = p.sipT < 0.6;
+      R(x - 2, y - 2, 4, 2, '#5E472C');
+      R(x - 2, y - 4, 5, 2, p.pants); R(x + (d > 0 ? 2 : -3), y - 3, 1, 3, p.pants);
+      R(x - 2, y - 8, 4, 4, p.coat);
+      R(x - 1, y - 11, 3, 3, p.skin); R(x - 2, y - 12, 5, 1, p.cap); R(x - 1, y - 13, 3, 1, p.cap);
+      R(x + (d > 0 ? 1 : -1), y - 10, 1, 1, '#1A1418');
+      if (sip) { R(x + 2 * d, y - 9, 1, 2, p.coat); R(x + 2 * d, y - 10, 1, 1, '#C0392B'); }
+      else { R(x + 2 * d, y - 7, 1, 2, p.coat); R(x + 2 * d, y - 5, 1, 1, p.skin); }
+      if (p.cane) { R(x - 3 * d, y - 9, 1, 9, '#6B4A2E'); R(x - 3 * d - d, y - 9, 1, 1, '#6B4A2E'); }
+    };
+    const drawCayci = () => {
+      drawPerson(cayci);
+      const x = Math.round(cayci.x), y = Math.round(cayci.y);
+      R(x - 2, y - 6, 4, 3, '#FFFFFF');
+      const tx = x + 3 * cayci.dir;
+      R(tx - 2, y - 9, 5, 1, '#C9CED8'); R(tx - 1, y - 11, 1, 2, '#C0392B'); R(tx + 1, y - 11, 1, 2, '#C0392B'); R(tx, y - 12, 1, 1, '#C9CED8');
+      R(tx, y - 8, 1, 1, cayci.skin);
+    };
+    const drawTV = () => {
+      const x0 = 900, y1 = 124;
+      R(x0 - 1, y1 - 4, 14, 4, '#6B4A2E'); R(x0 - 1, y1 - 4, 14, 1, '#8A6A44');
+      R(x0, y1 - 15, 12, 11, '#3A3A44'); R(x0, y1 - 15, 12, 1, '#4E4E5A'); R(x0 + 11, y1 - 15, 1, 11, '#26262E');
+      for (let i = 0; i < 12; i++) R(x0 + 1 + (i % 4) * 2, y1 - 14 + Math.floor(i / 4) * 2, 2, 2, kahve.burst > 0 && fx() < 0.5 ? (fx() < 0.5 ? '#FFFFFF' : '#8A8494') : kahve.frame[i]);
+      R(x0 + 10, y1 - 13, 1, 1, '#C9473F'); R(x0 + 10, y1 - 10, 1, 1, '#8A8494');
+      R(x0 + 3, y1 - 18, 1, 3, '#8A8494'); R(x0 + 7, y1 - 19, 1, 4, '#8A8494');
+    };
+    const drawLights = () => {
+      const ax = 797, ay = 112, bx = 910, by = 104;
+      R(bx, by, 1, 44, '#3B291C');
+      for (let i = 0; i <= 56; i++) {
+        const u = i / 56, x = ax + (bx - ax) * u, y = ay + (by - ay) * u + Math.sin(Math.PI * u) * 7;
+        R(x, y, 1, 1, '#2A2230');
+        if (i % 5 === 2) R(x, y + 1, 1, 1, ['#FFD66B', '#FFB45A', '#FFE9B0'][Math.floor(i / 5) % 3]);
+      }
     };
 
     /* ---------- Suçüstü ---------- */
@@ -1086,7 +1169,12 @@ class Component extends DCLogic {
       player.fk += ((player.moving || player.hold ? 0 : 1) - player.fk) * Math.min(1, dt * 1.2);
       let focus = player.x + player.dir * Math.min(24, player.v * 0.25);
       if (zoneNow >= 0) { const d = ZONES[zoneNow].cx - player.x; if (Math.abs(d) < 110) focus += d * clamp(0.75 - VW / 1200, 0.3, 0.7) * player.fk; }
-      const camT = clamp(focus - VW * 0.5, 0, Math.max(0, WW - VW));
+      const cardEl = hooks.card && hooks.card(), cwr = wrapOf().clientWidth || VW * S, chr = wrapOf().clientHeight || VH * S;
+      // Kart solda-altta duruyorsa sahneyi kartın sağındaki boşluğa ortala.
+      const side = cardEl && cardEl.offsetWidth && cardEl.offsetTop > chr * 0.3 && cardEl.offsetWidth < cwr * 0.55;
+      const shT = side ? (cardEl.offsetLeft + cardEl.offsetWidth) / (2 * S) : 0;
+      camShift += (shT - camShift) * Math.min(1, dt * 3);
+      const camT = clamp(focus - VW * 0.5 - camShift, -camShift, Math.max(0, WW - VW));
       camX += (camT - camX) * Math.min(1, dt * 2.6);
 
       // kulübe bacası
@@ -1113,6 +1201,19 @@ class Component extends DCLogic {
         celebT -= dt;
         if (fx() < dt * 8) parts.push({ k: 'shoot', x: camX + VW * (0.35 + fx() * 0.75), y: 2 + fx() * 30, vx: -60 - fx() * 40, vy: 22 + fx() * 12, life: 1.1, max: 1.1 });
       }
+      if (cayci.mode === 'go') {
+        const ddx = cayci.target - cayci.x;
+        if (Math.abs(ddx) < 1) { cayci.mode = 'wait'; cayci.waitT = 1.6 + fx() * 1.4; }
+        else { cayci.x += Math.sign(ddx) * Math.min(Math.abs(ddx), 16 * dt); cayci.dir = ddx > 0 ? 1 : -1; }
+      } else {
+        cayci.waitT -= dt;
+        if (cayci.waitT < 0) { cayci.mode = 'go'; cayci.target = cayci.target > 850 ? 826 : (fx() < 0.5 ? 868 : 884); }
+      }
+      for (const p of sitters) { p.sipT -= dt; if (p.sipT < 0) p.sipT = 3 + fx() * 3; }
+      kahve.steamT -= dt;
+      if (kahve.steamT < 0) { kahve.steamT = 0.3; parts.push({ k: 'steam', x: 807 + fx() * 2, y: 110, vx: fx() * 2 - 1 + gustAt(807) * 4, vy: -6, life: 1.6, max: 1.6 }); }
+      kahve.chanT -= dt; if (kahve.burst > 0) kahve.burst -= dt;
+      if (kahve.chanT < 0) { kahve.chanT = 0.45; if (fx() < 0.35) newFrame(); else kahve.frame[Math.floor(fx() * 12)] = TV_PAL[Math.floor(fx() * TV_PAL.length)]; }
       camp.sparkT -= dt; camp.smokeT -= dt; camp.steamT -= dt;
       if (camp.sparkT < 0) { camp.sparkT = 0.12 + fx() * 0.15; parts.push({ k: 'spark', x: camp.fx + fx() * 4 - 2, y: camp.fy - 7, vx: fx() * 6 - 3, vy: -14 - fx() * 12, life: 1 + fx() * 0.6, max: 1.4 }); }
       if (camp.smokeT < 0) { camp.smokeT = 0.35; parts.push({ k: 'smoke', x: camp.fx + fx() * 2 - 1, y: camp.fy - 10, vx: 1 + fx() * 2, vy: -6 - fx() * 2, life: 3.2, max: 3.2 }); }
@@ -1121,16 +1222,16 @@ class Component extends DCLogic {
       // muchineko
       const w = neko.walker;
       if (w.pause > 0) w.pause -= dt;
-      else { w.x += w.dir * 9 * dt; if (w.x > 1238 || w.x < 1068) { w.dir *= -1; w.pause = 1.5 + fx() * 2; } else if (fx() < dt * 0.15) w.pause = 1 + fx() * 2; }
-      neko.fly.x = 1090 + Math.sin(t * 0.9) * 14 + Math.sin(t * 2.3) * 3;
+      else { w.x += w.dir * 9 * dt; if (w.x > 1538 || w.x < 1368) { w.dir *= -1; w.pause = 1.5 + fx() * 2; } else if (fx() < dt * 0.15) w.pause = 1 + fx() * 2; }
+      neko.fly.x = 1390 + Math.sin(t * 0.9) * 14 + Math.sin(t * 2.3) * 3;
       neko.fly.y = 120 + Math.cos(t * 1.3) * 6;
       const kt = neko.kitten;
       kt.next -= dt; if (kt.jumpT > 0) kt.jumpT -= dt;
-      if (kt.next < 0) { kt.jumpT = 0.5; kt.next = 2.5 + fx() * 2.5; kt.x = clamp(kt.x + (neko.fly.x > kt.x ? 4 : -4), 1074, 1104); }
+      if (kt.next < 0) { kt.jumpT = 0.5; kt.next = 2.5 + fx() * 2.5; kt.x = clamp(kt.x + (neko.fly.x > kt.x ? 4 : -4), 1374, 1404); }
       neko.petalT -= dt;
       if (neko.petalT < 0 && !reduce) {
         neko.petalT = 0.1;
-        parts.push({ k: 'petal', x: 1146 + (fx() - 0.5) * 50, y: 92 + fx() * 20, vx: 3, vy: 7 + fx() * 5, gy: 132 + fx() * 24, ph: fx() * TAU, c: fx() < 0.5 ? '#F7B8D2' : '#FCD2E4', big: fx() < 0.3, life: 9, max: 9 });
+        parts.push({ k: 'petal', x: 1446 + (fx() - 0.5) * 50, y: 92 + fx() * 20, vx: 3, vy: 7 + fx() * 5, gy: 132 + fx() * 24, ph: fx() * TAU, c: fx() < 0.5 ? '#F7B8D2' : '#FCD2E4', big: fx() < 0.3, life: 9, max: 9 });
       }
       neko.zT -= dt;
       if (neko.zT < 0) { neko.zT = 1.6; parts.push({ k: 'z', x: neko.sleeper.x - 3, y: neko.sleeper.y - 9, vx: 1.5, vy: -4, life: 2.2, max: 2.2 }); }
@@ -1231,11 +1332,12 @@ class Component extends DCLogic {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.drawImage(sky, 0, 0);
       for (const s of stars) if (Math.sin(t * 2 + s.ph * 5) > 0.75) R(s.x, s.y, 1, 1, '#FFFFFF');
-      ctx.drawImage(hills, -Math.round(cx * 0.35), OY + HZ - 34);
+      ctx.drawImage(hills, -Math.round(Math.max(0, cx) * 0.35), OY + HZ - 34);
       ctx.setTransform(1, 0, 0, 1, -cx, OY);
-      ctx.drawImage(bg, cx, 0, VW, WH, cx, 0, VW, WH);
+      ctx.drawImage(bg, Math.max(0, cx), 0, VW, WH, Math.max(0, cx), 0, VW, WH);
+      if (cx < 0) { ctx.save(); ctx.scale(-1, 1); ctx.drawImage(bg, 0, 0, -cx, WH, 0, 0, -cx, WH); ctx.restore(); }
 
-      if (visX(846, 90)) {
+      if (visX(1146, 90)) {
         for (let i = 0; i < 18; i++) {
           const sx = POND.cx - POND.rx + ((i * 37 + t * (5 + (i % 3) * 2)) % (POND.rx * 2));
           const sy = POND.cy - POND.ry + 3 + ((i * 7) % (POND.ry * 2 - 6));
@@ -1250,7 +1352,7 @@ class Component extends DCLogic {
       for (const it of trees) add(it.baseY, it.cx, (it.R || it.Ht * 0.3) + 10, () => drawTree(it));
       for (const g of tufts) add(g.baseY, g.x, 6, () => drawTuft(g));
       add(128, 92, 24, drawCabin);
-      add(146, 1395, 50, drawMailbox);
+      add(146, 1695, 50, drawMailbox);
       add(126, 192, 20, () => ctx.drawImage(tentSprite, 176, 106));
       add(camp.fy, camp.fx, 20, drawFire);
       add(139, 226, 10, () => drawMonkSit(226, 139));
@@ -1263,10 +1365,17 @@ class Component extends DCLogic {
       add(neko.walker.y, neko.walker.x, 10, () => drawWalker(neko.walker));
       add(neko.kitten.y, neko.kitten.x, 10, () => drawKitten(neko.kitten));
       add(neko.fly.y + 14, neko.fly.x, 4, drawFly);
-      add(128, 1198, 10, drawLantern);
+      add(128, 1498, 10, drawLantern);
       swim.forEach((s) => { const p = swimPos(s); add(p.y, p.x, 10, () => drawSwimmer(s)); });
       add(guard.y, guard.x, 10, drawGuard);
-      add(122, 912, 30, drawDock);
+      add(122, 1212, 30, drawDock);
+      add(104, 850, 70, drawLights);
+      add(132, 812, 20, drawKiosk);
+      add(124, 906, 12, drawTV);
+      add(141, 862, 8, () => drawTable(862, 141));
+      add(133, 898, 8, () => drawTable(898, 133));
+      sitters.forEach((p) => add(p.y + 0.5, p.x, 8, () => drawSitter(p)));
+      add(cayci.y, cayci.x, 10, drawCayci);
       add(dockCat.y, dockCat.x, 10, () => drawCatSit(dockCat));
       reeds.forEach((r) => add(r.y, r.x, 4, () => drawReed(r)));
       add(110, 552, 100, drawTruss);
@@ -1289,16 +1398,22 @@ class Component extends DCLogic {
 
       ctx.globalCompositeOperation = 'lighter';
       glow(99, 120, 18, '255,190,100', 0.26);
-      glow(1414, 125, 30, '255,220,150', 0.28);
+      glow(1714, 125, 30, '255,220,150', 0.28);
       const fl = camp.flick[3];
       glow(camp.fx, camp.fy - 4, 52 + fl, '255,140,60', 0.3);
       glow(camp.fx, camp.fy - 4, 14, '255,210,120', 0.35);
       glow(192, 122, 12, '255,170,90', 0.18);
       glow(Math.round(islandX() - 2), 28, 16, '255,170,90', 0.22);
       if (visX(246, 160)) for (const q of camp.flies) if (Math.sin(t * 2 + q.ph * 3) > 0.2) glow(q.x0 + Math.sin(t * q.sp + q.ph) * 10, q.y0 + Math.cos(t * q.sp * 1.3 + q.ph) * 5, 4, '240,240,140', 0.35);
-      glow(1201, 115, 28, '255,130,170', 0.24);
-      glow(1146, 112, 70, '255,150,200', 0.07);
-      glow(846, 122, 84, '80,170,230', 0.1);
+      glow(1501, 115, 28, '255,130,170', 0.24);
+      glow(1446, 112, 70, '255,150,200', 0.07);
+      glow(1146, 122, 84, '80,170,230', 0.1);
+      if (visX(850, 120)) {
+        glow(852, 118, 64, '255,180,100', 0.17);
+        const tvc = rgb(kahve.frame[5] || '#F3ECDD');
+        glow(906, 116, 26 + (kahve.burst > 0 ? 6 : 0), tvc.join(','), 0.22);
+        glow(810, 120, 16, '255,200,120', 0.22);
+      }
       const bf = (t * 2) % 1, pulse = 0.1 + (1 - bf) * 0.08;
       glow(552, 125, 100, '190,110,255', pulse);
       if (visX(552, 130)) {
@@ -1325,7 +1440,7 @@ class Component extends DCLogic {
       mixAcc += dt;
       if (mixAcc > 0.25) {
         mixAcc = 0;
-        audio.setMix([ZONES[1], ZONES[4], ZONES[3], ZONES[2]].map((z) => { const m = clamp(1 - Math.abs(player.x - z.cx) / 210, 0, 1); return m * m * (3 - 2 * m); }));
+        audio.setMix([ZONES[1], ZONES[5], ZONES[4], ZONES[2], ZONES[3]].map((z) => { const m = clamp(1 - Math.abs(player.x - z.cx) / 210, 0, 1); return m * m * (3 - 2 * m); }));
       }
       oddFrame = !oddFrame;
       if (!coarse || oddFrame) draw();
@@ -1335,13 +1450,16 @@ class Component extends DCLogic {
         stillT = begun && !player.moving && Math.abs(player.x - z.cx) < 80 ? stillT + dt : 0;
         const top = (wrapOf().clientHeight || VH * S) - VH * S;
         const bw = el.offsetWidth || 160, cw0 = wrapOf().clientWidth || VW * S;
-        const sx = Math.round(clamp((z.say[0] - camX) * S, bw / 2 + 8, Math.max(bw / 2 + 8, cw0 - bw / 2 - 8)));
+        let sx = Math.round(clamp((z.say[0] - camX) * S, bw / 2 + 8, Math.max(bw / 2 + 8, cw0 - bw / 2 - 8)));
         let sy = Math.round((z.say[1] + OY) * S + top);
         const card = hooks.card && hooks.card();
         if (card && card.offsetHeight) {
           const minY = card.offsetTop + card.offsetHeight + 12 + (el.offsetHeight || 40);
           const overlapX = sx + bw / 2 > card.offsetLeft && sx - bw / 2 < card.offsetLeft + card.offsetWidth;
-          if (overlapX && sy < minY) sy = minY;
+          const cardTop = card.offsetTop < (wrapOf().clientHeight || VH * S) * 0.3;
+          const overlapY = sy > card.offsetTop && sy - (el.offsetHeight || 40) < card.offsetTop + card.offsetHeight;
+          if (cardTop) { if (overlapX && sy < minY) sy = minY; }
+          else if (overlapX && overlapY) sx = Math.round(Math.min(card.offsetLeft + card.offsetWidth + bw / 2 + 12, cw0 - bw / 2 - 8));
         }
         el.style.transform = 'translate(' + sx + 'px,' + sy + 'px) translate(-50%,-100%)';
         el.style.opacity = stillT > 0.35 ? '1' : '0';
@@ -1393,9 +1511,12 @@ class Component extends DCLogic {
       tap: (cx0, cy0, rect, stay) => {
         const wx = camX + (cx0 - rect.left) / S, wy = (cy0 - rect.top) / S - OY;
         begun = true; if (!stay) walkTo(wx);
-        if (wx > 1386 && wx < 1404 && wy > 124 && wy < 146) for (let i = 0; i < 3; i++) parts.push({ k: 'letter', x: 1394 + i * 3, y: 126, vx: fx() * 10 - 5, vy: -12 - fx() * 8, life: 1.6, max: 1.6 });
+        if (wx > 1686 && wx < 1704 && wy > 124 && wy < 146) for (let i = 0; i < 3; i++) parts.push({ k: 'letter', x: 1694 + i * 3, y: 126, vx: fx() * 10 - 5, vy: -12 - fx() * 8, life: 1.6, max: 1.6 });
         if (wx > 80 && wx < 106 && wy > 104 && wy < 128) parts.push({ k: 'heart', x: 92, y: 98, vx: 0, vy: -6, life: 1.4, max: 1.4 });
         if (Math.hypot(wx - camp.fx, wy - camp.fy) < 14) for (let i = 0; i < 24; i++) parts.push({ k: 'spark', x: camp.fx, y: camp.fy - 6, vx: fx() * 30 - 15, vy: -20 - fx() * 25, g: 30, life: 1.2, max: 1.2 });
+        if (wx > 898 && wx < 914 && wy > 106 && wy < 124) { kahve.burst = 0.6; newFrame(); }
+        if (wx > 803 && wx < 815 && wy > 108 && wy < 126) for (let i = 0; i < 10; i++) parts.push({ k: 'steam', x: 808, y: 110, vx: fx() * 10 - 5, vy: -10 - fx() * 8, life: 1.2, max: 1.2 });
+        for (const p of sitters.concat([cayci])) if (Math.hypot(wx - p.x, wy - (p.y - 6)) < 7) parts.push({ k: 'heart', x: p.x, y: p.y - 16, vx: 0, vy: -6, life: 1.4, max: 1.4 });
         const cats = neko.sitters.concat([neko.sleeper, neko.walker, neko.kitten, dockCat, guard, fox, rabbit, { x: owl.x, y: owl.y - 4 }]);
         for (const c of cats) if (Math.hypot(wx - c.x, wy - (c.y - 5)) < 9) parts.push({ k: 'heart', x: c.x, y: c.y - 14, vx: 0, vy: -6, life: 1.4, max: 1.4 });
         if (((wx - POND.cx) / POND.rx) ** 2 + ((wy - POND.cy) / POND.ry) ** 2 < 1) {

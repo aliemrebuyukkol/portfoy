@@ -7,6 +7,7 @@ Ali Emre Büyükkol'un portföy sitesi. Ziyaretçi, piksel sanat bir ormanda fen
 | Kulübe | Hakkımda |
 | Cozy Camp | Kamp ateşi, keşiş, tilki, tavşan, baykuş, gökte süzülen ada |
 | Suçüstü | Dans pisti: dansçılar çöp atıyor, sonra dans ederek süpürüyor |
+| Hoşgeldiniz Efendim | Çay ocağı: semaver, tepsiyle dolaşan çaycı, eski televizyon (canlı siteye gider) |
 | Pati Kulaç | Gölette kulaç atan kediler, cankurtaran kedi |
 | Muchineko | Çiçekli ağacın altında kediler |
 | Posta kutusu | İletişim |
@@ -58,10 +59,10 @@ cd docs && python3 -m http.server 8000
 
 Sitede amber renkli, kesik çizgili alanlar doldurulmayı bekleyen yer tutuculardır:
 
-- Muchineko ve Pati Kulaç için açıklama ve proje sayfaları
+- Muchineko ve Pati Kulaç için proje sayfaları (ikisi de iç testte; şimdilik kartta "Yakında" yazıyor)
 - Suçüstü App Store'da yayımlanınca sayfadaki TestFlight notunun yerine mağaza bağlantısı
 - Cozy Camp ekran görüntüleri ve "Neden yaptım?" metni
-- Gerçek e-posta adresi ve sosyal medya bağlantıları (şu an `merhaba@buyukkol.com` ve `#`)
+- Nazartesi kartındaki tek cümle ve araç listesindeki diğer araçlar (Hakkımda sayfası)
 
 ## Notlar
 
