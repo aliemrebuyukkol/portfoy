@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>Cozy Camp: Günlük ve Kamp — Ali Emre Büyükkol</title>
+<meta name="description" content="Cozy Camp: günlük, odak sayacı ve gökyüzünde küçük bir kamp. Birkaç satır yaz, ateşin canlansın. iPhone için App Store'da.">
+<meta property="og:title" content="Cozy Camp: Günlük ve Kamp">
+<meta property="og:description" content="Yaz, odaklan, kampını büyüt.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='7' y='4' width='2' height='3' fill='%23FFE38A'/%3E%3Crect x='6' y='7' width='4' height='3' fill='%23FFA53A'/%3E%3Crect x='5' y='10' width='6' height='2' fill='%23F0612B'/%3E%3Crect x='4' y='12' width='8' height='2' fill='%236A4630'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{--accent:#F6B26B}
+.stage{position:relative;height:clamp(300px,58vh,560px);overflow:hidden;overflow:clip;background:#141A30}
+.scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
+.stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
+.stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
+.pill{min-height:44px;padding:0 14px;border:0;border-radius:3px;background:rgba(14,16,30,.84);color:var(--text);font-family:var(--body);font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pill:hover{background:rgba(14,16,30,.96)}
+.hint{position:absolute;left:calc(16px + env(safe-area-inset-left));bottom:30px;z-index:2;font-family:var(--pixel);font-size:13px;letter-spacing:.08em;color:#E4DDEC;text-shadow:0 1px 0 rgba(14,16,30,.9)}
+@media (max-width:420px){.hint{display:none}}
+.intro{display:flex;flex-direction:column;gap:18px;padding-top:8px}
+.title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{width:64px;height:64px;border-radius:14px;background:#1E2442;box-shadow:inset 0 0 0 1px var(--line2);display:grid;place-items:center;flex:0 0 64px}
+.mark svg{width:40px;height:40px}
+h1{color:var(--accent)}
+.sub{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,24px);color:var(--text);margin-top:4px}
+.store{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 20px;border-radius:6px;background:var(--text);color:var(--bg);text-decoration:none;font-weight:600;font-size:16px}
+.store small{display:block;font-size:11px;font-weight:500;opacity:.75;line-height:1}
+.store span{display:flex;flex-direction:column;line-height:1.15}
+.store:hover{background:#fff;color:var(--bg)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.feat .card{flex-direction:row;align-items:flex-start;gap:14px;padding:18px}
+.feat .ico{width:36px;height:36px;flex:0 0 36px;margin-top:2px}
+.feat h3{font-size:17px;font-family:var(--pixel);font-weight:600;letter-spacing:.06em;color:var(--accent)}
+.feat p{margin-top:4px}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.plan{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:16px 12px;text-align:center}
+.plan b{display:block;font-family:var(--display);font-size:clamp(18px,3.6vw,24px);margin-top:4px}
+.plan span{font-size:13px;color:var(--muted)}
+.plan.best{border-color:rgba(246,178,107,.55)}
+.checks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px 18px}
+.checks li{display:flex;gap:10px;font-size:15px;color:var(--muted)}
+.checks li:before{content:"";flex:0 0 8px;height:8px;margin-top:8px;background:var(--accent)}
+.shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 12px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
+.phone{flex:0 0 clamp(170px,42vw,220px);aspect-ratio:9/19.5;border-radius:24px;background:#1B2240;box-shadow:inset 0 0 0 6px #0E1222,inset 0 0 0 7px var(--line2);display:grid;place-items:center;padding:20px;text-align:center;scroll-snap-align:start;font-size:14px}
+.note{font-size:13px;color:var(--soft)}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap">
+<a class="back" href="index.html#cozy-camp"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<a class="brand" href="index.html#cozy-camp" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+</div>
+</header>
+
+<div class="stage" id="stage">
+<canvas class="scene" id="scene" role="img" aria-label="Piksel sanat kamp ateşi sahnesi: ateşin başında bağdaş kurmuş bir keşiş, çadır, tüten çaydanlık ve ateş böcekleri."></canvas>
+<span class="hint" aria-hidden="true">ATEŞE DOKUN</span>
+<div class="stage-ui"><button type="button" class="pill" id="snd" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path id="snd-w" d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span id="snd-lbl">Ateşin sesini aç</span></button></div>
+</div>
+
+<main class="wrap">
+<section class="intro" aria-labelledby="baslik">
+<div class="title-row">
+<div class="mark" aria-hidden="true"><svg viewBox="0 0 10 10" shape-rendering="crispEdges"><rect x="4" y="1" width="2" height="2" fill="#FFE38A"/><rect x="3" y="3" width="4" height="2" fill="#FFA53A"/><rect x="2" y="5" width="6" height="2" fill="#F0612B"/><rect x="1" y="7" width="8" height="1" fill="#6A4630"/><rect x="2" y="8" width="6" height="1" fill="#3E2818"/></svg></div>
+<div><p class="eyebrow">UYGULAMA · APP STORE'DA</p><h1 id="baslik">Cozy Camp</h1><p class="sub">Yaz, odaklan, kampını büyüt.</p></div>
+</div>
+<p class="lead">Birkaç satır yaz, ateşin canlansın. Cozy Camp; bir günlüğü, bir odak sayacını ve gökyüzünde süzülen küçük bir kampı bir araya getiriyor. Yazdığın her gün ateşin parlıyor, adana bir anı geliyor, hayvan dostlar kampına katılıyor.</p>
+<div class="row">
+<a class="store" href="https://apps.apple.com/tr/app/cozy-camp-journal-focus/id6826295096"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v8M6 10h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><small>Ücretsiz indir</small>App Store</span></a>
+</div>
+<div class="facts" aria-label="Uygulama bilgileri"><span class="chip">iPhone · iOS 17+</span><span class="chip">Türkçe dahil 33 dil</span><span class="chip">Ücretsiz · uygulama içi satın alma</span><span class="chip">9+</span></div>
+</section>
+
+<section class="section" aria-labelledby="neler">
+<div class="section-head"><p class="eyebrow">01 · KAMPTA NE VAR</p></div>
+<h2 id="neler">Sana ait bir köşe</h2>
+<div class="feat">
+<div class="card"><svg class="ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="1" width="6" height="8" fill="#E8E2D2"/><rect x="2" y="1" width="1" height="8" fill="#B9A177"/><rect x="4" y="3" width="3" height="1" fill="#8A8494"/><rect x="4" y="5" width="3" height="1" fill="#8A8494"/></svg><div><h3>GÜNLÜK</h3><p>Tek bir cümle bile yeter. Takılınca yol gösteren sorular var; yazdıkların yalnızca telefonunda kalır.</p></div></div>
+<div class="card"><svg class="ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="1" width="2" height="2" fill="#C99BFF"/><rect x="3" y="3" width="4" height="2" fill="#7FD0EE"/><rect x="2" y="5" width="6" height="2" fill="#F5A8CB"/><rect x="1" y="7" width="8" height="2" fill="#6A4630"/></svg><div><h3>AURA</h3><p>En fazla üç duygu seç; ateşin o renklere bürünsün. Haftanın renk haritası kendiliğinden oluşur.</p></div></div>
+<div class="card"><svg class="ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="2" width="2" height="2" fill="#E39A4A"/><rect x="5" y="2" width="2" height="2" fill="#E39A4A"/><rect x="1" y="4" width="6" height="3" fill="#E39A4A"/><rect x="2" y="5" width="1" height="1" fill="#2A2A1E"/><rect x="5" y="5" width="1" height="1" fill="#2A2A1E"/><rect x="2" y="7" width="4" height="1" fill="#F6E7CF"/><rect x="7" y="5" width="2" height="2" fill="#E39A4A"/><rect x="8" y="6" width="1" height="1" fill="#F6E7CF"/></svg><div><h3>DOSTLAR</h3><p>Tilki, tavşan, baykuş… Kampına katılan dostlara selam verebilir, oynayabilir, yiyecek bırakabilirsin.</p></div></div>
+<div class="card"><svg class="ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="3" width="6" height="2" fill="#5E9142"/><rect x="3" y="2" width="2" height="1" fill="#426D3E"/><rect x="1" y="5" width="8" height="1" fill="#7A6248"/><rect x="2" y="6" width="6" height="1" fill="#665140"/><rect x="3" y="7" width="4" height="1" fill="#4E3D2F"/><rect x="4" y="8" width="2" height="1" fill="#4E3D2F"/></svg><div><h3>ADALAR</h3><p>Her adanın kendi şekli, bitkileri, canlıları ve sesleri var. Yedi yazı gününde bir ada tamamlanır, yenisi ortaya çıkar.</p></div></div>
+<div class="card"><svg class="ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="1" width="4" height="1" fill="#E8E2D2"/><rect x="2" y="2" width="6" height="6" fill="#E8E2D2"/><rect x="3" y="8" width="4" height="1" fill="#E8E2D2"/><rect x="4" y="3" width="1" height="3" fill="#2A2230"/><rect x="5" y="5" width="2" height="1" fill="#2A2230"/></svg><div><h3>MOLA</h3><p>Doğa sesleri ve nefes egzersiziyle çalışan bir odak sayacı. Her 5 dakikalık odak sana odun kazandırır.</p></div></div>
+<div class="card"><svg class="ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="1" width="2" height="2" fill="#FFE38A"/><rect x="3" y="3" width="4" height="2" fill="#FFA53A"/><rect x="2" y="5" width="6" height="1" fill="#F0612B"/><rect x="1" y="6" width="8" height="1" fill="#6A4630"/><rect x="0" y="8" width="4" height="1" fill="#8A6A44"/><rect x="6" y="8" width="4" height="1" fill="#8A6A44"/></svg><div><h3>ODUN VE ATEŞLER</h3><p>Yazarak, odaklanarak ve görevleri bitirerek odun topla; yeni ateşler yak, kampını süsle.</p></div></div>
+<div class="card"><svg class="ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="1" width="8" height="8" fill="#1E2442"/><rect x="1" y="1" width="8" height="1" fill="#46506E"/><rect x="1" y="8" width="8" height="1" fill="#46506E"/><rect x="1" y="1" width="1" height="8" fill="#46506E"/><rect x="8" y="1" width="1" height="8" fill="#46506E"/><rect x="4" y="3" width="2" height="2" fill="#FFA53A"/><rect x="3" y="5" width="4" height="2" fill="#F0612B"/></svg><div><h3>WIDGET'LAR</h3><p>Kampını ve ateşini ana ekranına ekle; uygulamayı açmadan da bir bakışta gör.</p></div></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="kampplus">
+<div class="section-head"><p class="eyebrow">02 · KAMP+</p></div>
+<h2 id="kampplus">Ücretsiz, istersen daha fazlası</h2>
+<div class="stack">
+<p class="muted">Ücretsiz sürümde günde bir yazı hakkın var; isteğe bağlı kısa ödüllü reklamlarla bu hak günde üçe kadar çıkabiliyor. Kamp+ isteğe bağlı bir abonelik:</p>
+<ul class="checks"><li>Sınırsız yazı</li><li>%50 daha fazla odun</li><li>20 ada arasından seçim</li><li>Özel ateşler ve süslemeler</li><li>Daha derin aura deneyimi</li><li>Reklamsız kullanım</li></ul>
+<div class="plans" aria-label="Kamp+ fiyatları">
+<div class="plan"><span>Haftalık</span><b>₺29,99</b></div>
+<div class="plan"><span>Aylık</span><b>₺79,99</b></div>
+<div class="plan best"><span>Yıllık</span><b>₺549,99</b></div>
+</div>
+<p class="note">Fiyatlar App Store Türkiye listesinden alındı ve değişebilir. Abonelikler, dönem bitmeden en az 24 saat önce iptal edilmezse otomatik yenilenir; Apple hesabı ayarlarından yönetilir.</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="ekranlar">
+<div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
+<h2 id="ekranlar">Uygulamadan kareler</h2>
+<div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
+<div class="phone"><span class="ph">[Ekran görüntüsü 1]</span></div>
+<div class="phone"><span class="ph">[Ekran görüntüsü 2]</span></div>
+<div class="phone"><span class="ph">[Ekran görüntüsü 3]</span></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="hikaye">
+<div class="section-head"><p class="eyebrow">04 · HİKÂYESİ</p></div>
+<h2 id="hikaye">Neden yaptım?</h2>
+<div class="stack">
+<p><span class="ph">[2–3 cümle: Cozy Camp hangi ihtiyaçtan doğdu?]</span></p>
+<p class="muted">Geliştirici: Ali Emre Büyükkol</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="destek">
+<div class="section-head"><p class="eyebrow">05 · DESTEK</p></div>
+<h2 id="destek">Yardım ve gizlilik</h2>
+<div class="stack">
+<p class="muted">Günlüğüne yazdıkların yalnızca cihazında kalır. Uygulamanın topladığı diğer veriler ve reklamlar hakkındaki ayrıntılar gizlilik politikasında.</p>
+<div class="row">
+<a class="btn ghost" href="https://aliemrebuyukkol.github.io/cozy-camp/privacy/">Gizlilik politikası</a>
+<a class="btn ghost" href="https://aliemrebuyukkol.github.io/cozy-camp/support/">Destek</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="foot">
+<div class="wrap"><span>© 2026 Ali Emre Büyükkol · Cozy Camp</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#cozy-camp">Ormana dön</a></span></div>
+</footer>
+
+<script src="engine.js"></script>
+<script>
+"use strict";
+(function () {
+  const cv = document.getElementById('scene');
+  if (!window.BuyukkolEngine || !cv.getContext) return;
+  const eng = new window.BuyukkolEngine();
+  const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
+  game.jump(1);
+  cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
+  if (window.IntersectionObserver) {
+    new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
+  }
+  let on = false;
+  const btn = document.getElementById('snd');
+  btn.addEventListener('click', () => {
+    on = !on;
+    const ok = game.setSound(on);
+    if (on && ok === false) { on = false; document.getElementById('snd-lbl').textContent = 'Ses bu tarayıcıda çalışmıyor'; return; }
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    document.getElementById('snd-lbl').textContent = on ? 'Sesi kapat' : 'Ateşin sesini aç';
+    document.getElementById('snd-w').setAttribute('d', on ? 'M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10' : 'M12.5 6.5l4 5M16.5 6.5l-4 5');
+  });
+})();
+</script>
+</body>
+</html>

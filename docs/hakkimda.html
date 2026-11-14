@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>Hakkımda — Ali Emre Büyükkol</title>
+<meta name="description" content="Ali Emre Büyükkol: uygulamalar ve küçük dijital dünyalar tasarlayıp geliştiriyor. Fikir, tasarım ve kod aynı masada.">
+<meta property="og:title" content="Hakkımda — Ali Emre Büyükkol">
+<meta property="og:type" content="profile">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='5' y='2' width='6' height='2' fill='%2369964B'/%3E%3Crect x='3' y='4' width='10' height='5' fill='%23426D3E'/%3E%3Crect x='7' y='9' width='2' height='4' fill='%235A3F2A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{--accent:#E9C98A}
+.hero{position:relative;padding:clamp(40px,8vw,72px) 0 0;display:grid;grid-template-columns:1fr;gap:28px;align-items:end}
+@media (min-width:640px){.hero{grid-template-columns:1fr auto}}
+.hero-text{display:flex;flex-direction:column;gap:18px;order:2}
+@media (min-width:640px){.hero-text{order:1}}
+.avatar{order:1;position:relative;width:clamp(120px,24vw,168px);aspect-ratio:12/16;justify-self:start}
+@media (min-width:640px){.avatar{order:2;justify-self:end}}
+.avatar svg{width:100%;height:100%;position:relative}
+.avatar:before{content:"";position:absolute;left:52%;top:42%;width:150%;aspect-ratio:1;transform:translate(-30%,-50%);background:radial-gradient(closest-side,rgba(255,200,110,.32),rgba(255,200,110,0));pointer-events:none}
+.stars{position:absolute;inset:0;z-index:-1;background-image:radial-gradient(1px 1px at 12% 18%,#E9E6FF 99%,transparent),radial-gradient(1px 1px at 72% 12%,#8D93C6 99%,transparent),radial-gradient(1px 1px at 88% 40%,#E9E6FF 99%,transparent),radial-gradient(1px 1px at 35% 8%,#8D93C6 99%,transparent),radial-gradient(1px 1px at 55% 30%,#E9E6FF 99%,transparent);opacity:.7}
+.principles{counter-reset:p}
+.principles .card h3:before{counter-increment:p;content:"0" counter(p);display:block;font-family:var(--pixel);font-size:14px;color:var(--accent);margin-bottom:6px;letter-spacing:.1em}
+.work-name{font-family:var(--display);font-weight:500;font-size:19px;text-decoration:none}
+.work-meta{font-size:15px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap">
+<a class="back" href="index.html#kulube"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<a class="brand" href="index.html#kulube" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+</div>
+</header>
+
+<main class="wrap" id="icerik">
+<section class="hero" aria-labelledby="baslik">
+<div class="stars" aria-hidden="true"></div>
+<div class="hero-text">
+<p class="eyebrow">HAKKIMDA</p>
+<h1 id="baslik">Merhaba, ben Ali Emre Büyükkol.</h1>
+<p class="lead">Uygulamalar ve küçük dijital dünyalar tasarlayıp geliştiriyorum. Fikri, tasarımı ve kodu aynı masada düşünmeyi seviyorum; ortaya çıkan şeyin hem güzel görünmesini hem de sağlam çalışmasını isterim.</p>
+<p class="muted">Yaptığım işlerin çoğunda ortak bir his var: sakinlik. Bir kamp ateşi, tembel kediler, siyah-beyaz bir defter… İnsanı yormayan, köşelerinde küçük sürprizler saklayan şeyler.</p>
+</div>
+<div class="avatar" aria-hidden="true">
+<svg viewBox="0 0 12 16" shape-rendering="crispEdges">
+<rect x="4" y="14" width="1" height="2" fill="#2A2230"/><rect x="6" y="14" width="1" height="2" fill="#2A2230"/>
+<rect x="3" y="7" width="5" height="7" fill="#3D4C78"/><rect x="3" y="7" width="1" height="7" fill="#2B3658"/>
+<rect x="3" y="4" width="5" height="3" fill="#3D4C78"/><rect x="4" y="3" width="3" height="1" fill="#3D4C78"/>
+<rect x="5" y="5" width="2" height="2" fill="#E9C3A0"/><rect x="6" y="5" width="1" height="1" fill="#2A1E18"/>
+<rect x="7" y="9" width="1" height="1" fill="#E9C3A0"/>
+<rect x="8" y="8" width="1" height="1" fill="#3B3026"/><rect x="8" y="9" width="2" height="2" fill="#FFD66B"/><rect x="8" y="11" width="2" height="1" fill="#5A4A3A"/>
+</svg>
+</div>
+</section>
+
+<section class="section" aria-labelledby="nasil">
+<div class="section-head"><p class="eyebrow">01 · NASIL ÇALIŞIRIM</p></div>
+<h2 id="nasil">Dört küçük kural</h2>
+<div class="cards principles">
+<div class="card"><h3>Önce doğruluk</h3><p>Bir şey çalışmıyorsa çalışmıyor derim. Test etmediğim bir şeye "bitti" demem.</p></div>
+<div class="card"><h3>Tasarım ve kod birlikte</h3><p>Güzel görünüp kötü yazılmış bir ürün de, temiz kodlu ama kullanması zor bir ürün de yarım kalmış sayılır.</p></div>
+<div class="card"><h3>Öğren, sonra kendin ol</h3><p>İyi örnekleri incelerim, güçlü yanlarını alırım; ama ortaya çıkan işin kendi karakteri olsun isterim.</p></div>
+<div class="card"><h3>Kenar durumlar da ürün</h3><p>Boş ekran, yavaş bağlantı, hata anı… Kimseyi ne yapacağını bilmeden bırakmamak için.</p></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="isler">
+<div class="section-head"><p class="eyebrow">02 · ORMANDAKİ İŞLER</p></div>
+<h2 id="isler">Projeler</h2>
+<ul class="list">
+<li><span class="dot" style="background:#F6B26B" aria-hidden="true"></span><div><a class="work-name" href="cozycamp.html">Cozy Camp</a><span class="tag">APP STORE</span><p class="work-meta">Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.</p></div></li>
+<li><span class="dot" style="background:#C99BFF" aria-hidden="true"></span><div><span class="work-name">Suçüstü</span><p class="work-meta"><span class="ph">[Kısa açıklama]</span></p></div></li>
+<li><span class="dot" style="background:#7FD0EE" aria-hidden="true"></span><div><span class="work-name">Pati Kulaç</span><p class="work-meta"><span class="ph">[Kısa açıklama]</span></p></div></li>
+<li><span class="dot" style="background:#F5A8CB" aria-hidden="true"></span><div><span class="work-name">Muchineko</span><p class="work-meta"><span class="ph">[Kısa açıklama]</span></p></div></li>
+</ul>
+</section>
+
+<section class="section" aria-labelledby="atolye">
+<div class="section-head"><p class="eyebrow">03 · ATÖLYEDEN</p></div>
+<h2 id="atolye">Üzerinde çalıştığım başka şeyler</h2>
+<div class="cards">
+<div class="card"><h3>Nazartesi</h3><p>React Native ile geliştirdiğim bir uygulama. <span class="ph">[Ne işe yaradığını bir cümleyle yaz]</span></p></div>
+<div class="card"><h3>Şükür Çarkı</h3><p>Çarkı çevir, gelen konuya dair bir şükür yaz, o anki duygunu seç. Küçük bir minnettarlık alışkanlığı.</p></div>
+<div class="card"><h3>Sakin bir öğrenme uygulaması</h3><p>Çocuklar için siyah-beyaz, ebeveyn kontrollü, renk karmaşasından uzak bir uygulama fikri: sayılar, harfler, hayvanlar.</p></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="araclar">
+<div class="section-head"><p class="eyebrow">04 · ARAÇLAR</p></div>
+<h2 id="araclar">Kullandıklarım</h2>
+<div class="chips"><span class="chip">React Native</span><span class="chip">Claude Code</span><span class="chip"><span class="ph">[Diğer araçların]</span></span></div>
+</section>
+
+<section class="section" aria-labelledby="iletisim">
+<div class="section-head"><p class="eyebrow">05 · İLETİŞİM</p></div>
+<h2 id="iletisim">Bir fikrin mi var?</h2>
+<div class="stack">
+<p class="muted">Bir proje, bir iş birliği ya da sadece merhaba demek için yazabilirsin.</p>
+<p><a href="mailto:merhaba@buyukkol.com" style="font-family:var(--display);font-size:22px;font-weight:500">merhaba@buyukkol.com</a></p>
+<div class="row"><a class="btn" href="mailto:merhaba@buyukkol.com">Mektup yaz</a><a class="btn ghost" href="index.html#kulube">Ormanda dolaş</a></div>
+</div>
+</section>
+</main>
+
+<footer class="foot">
+<div class="wrap"><span>© 2026 Ali Emre Büyükkol · buyukkol.com</span><a href="index.html#kulube">Ormana dön</a></div>
+</footer>
+</body>
+</html>

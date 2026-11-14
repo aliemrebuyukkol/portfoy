@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>Ali Emre Büyükkol — Portföy ormanı</title>
+<meta name="description" content="Ali Emre Büyükkol'un portföyü: piksel bir ormanda yürü; Cozy Camp, Muchineko, Pati Kulaç ve Suçüstü projelerini keşfet.">
+<meta property="og:title" content="Büyükkol — Portföy ormanı">
+<meta property="og:description" content="Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='5' y='2' width='6' height='2' fill='%2369964B'/%3E%3Crect x='3' y='4' width='10' height='5' fill='%23426D3E'/%3E%3Crect x='4' y='5' width='3' height='2' fill='%2369964B'/%3E%3Crect x='7' y='9' width='2' height='4' fill='%235A3F2A'/%3E%3Crect x='11' y='11' width='2' height='2' fill='%23F6B26B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#141A30;overflow:hidden;overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+a{color:#F3ECDD}a:hover{color:#FFD28A}
+.root{position:relative;width:100%;height:100vh;height:100dvh;min-height:320px;overflow:hidden;overflow:clip;background:#141A30;font-family:Inter,system-ui,sans-serif;color:#F3ECDD;--dock:0px}
+.stage{position:absolute;left:0;right:0;top:0;bottom:var(--dock);overflow:hidden;overflow:clip}
+.scene{position:absolute;left:0;bottom:0;display:block;image-rendering:pixelated;cursor:pointer;touch-action:none;outline:none;-webkit-user-select:none;user-select:none}
+.scene:focus-visible{box-shadow:inset 0 0 0 3px #FFD28A}
+.top{position:absolute;top:0;left:0;right:0;padding:calc(14px + env(safe-area-inset-top)) calc(clamp(12px,3vw,32px) + env(safe-area-inset-right)) 0 calc(clamp(12px,3vw,32px) + env(safe-area-inset-left));display:flex;justify-content:space-between;align-items:flex-start;gap:10px;pointer-events:none}
+.top>*{pointer-events:auto}
+.logo{font-family:'Pixelify Sans',monospace;font-weight:600;font-size:26px;letter-spacing:.06em;color:#F3ECDD;text-decoration:none;text-shadow:0 2px 0 rgba(14,16,30,.6);line-height:44px}
+.hud-btn{min-height:44px;min-width:44px;padding:0 14px;border:0;border-radius:3px;background:rgba(14,16,30,.82);color:#F3ECDD;font-family:Inter,sans-serif;font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.hud-btn:hover{background:rgba(14,16,30,.95);color:#FFFFFF}
+.chip{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid rgba(243,236,221,.18);background:rgba(14,16,30,.78);color:#D9D2C2;font-family:Inter,sans-serif;font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex:0 0 auto;scroll-snap-align:center}
+.chip:hover{color:#FFFFFF;border-color:rgba(243,236,221,.45)}
+.chip.on{background:#F3ECDD;color:#141A30;border-color:#F3ECDD}
+.hud-btn:focus-visible,.chip:focus-visible,.cta:focus-visible,.logo:focus-visible{outline:2px solid #FFD28A;outline-offset:3px}
+.cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:0;border-radius:3px;background:#F3ECDD;color:#141A30;font-family:Inter,sans-serif;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer}
+.cta:hover{background:#FFFFFF;color:#141A30}
+.ph{color:#FFD28A;border-bottom:1px dashed rgba(255,210,138,.55)}
+.card{position:absolute;left:calc(clamp(12px,3vw,32px) + env(safe-area-inset-left));bottom:96px;width:min(420px,calc(100% - 24px));padding:22px 24px;border-radius:4px;background:rgba(14,16,30,.86);box-shadow:0 0 0 1px rgba(243,236,221,.08);display:flex;flex-direction:column;gap:10px}
+.card h2{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.4vw,40px);letter-spacing:-.02em;line-height:1}
+.card-vibe{margin:0;font-size:15px;line-height:1.5;color:#D9D2C2}
+.card-desc{margin:0;font-size:15px;line-height:1.5}
+.links{display:flex;gap:6px 18px;flex-wrap:wrap;font-size:15px}
+.links a{min-height:44px;display:inline-flex;align-items:center}
+.dock{position:absolute;left:0;right:0;bottom:0;padding:16px calc(clamp(12px,3vw,32px) + env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) calc(clamp(12px,3vw,32px) + env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dock-row{display:flex;gap:8px;align-items:center;min-width:0;max-width:100%}
+.chips{position:relative;display:flex;gap:8px;overflow-x:auto;min-width:0;padding:2px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.hint{font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.06em;color:#C9C3D9;background:rgba(14,16,30,.7);padding:8px 12px;border-radius:3px;white-space:nowrap}
+.bubble{position:absolute;left:0;top:0;max-width:220px;padding:10px 12px;border-radius:3px;background:#F3ECDD;color:#141A30;font-family:'Pixelify Sans',monospace;font-size:15px;line-height:1.3;opacity:0;pointer-events:none;transition:opacity .25s ease;box-shadow:0 3px 0 rgba(14,16,30,.35);width:max-content}
+.bubble:after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-6px;border:6px solid transparent;border-top-color:#F3ECDD;border-bottom:0}
+.intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,3vh,22px);padding:calc(24px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));text-align:center;background:rgba(14,16,30,.55)}
+.intro h1{margin:0;font-family:'Pixelify Sans',monospace;font-weight:600;font-size:clamp(44px,min(12vw,16vh),128px);letter-spacing:.04em;line-height:.9;color:#F3ECDD;text-shadow:0 6px 0 rgba(14,16,30,.55)}
+.intro-btn{min-height:52px;padding:0 26px;border:0;border-radius:3px;font-family:Inter,sans-serif;font-weight:600;font-size:16px;cursor:pointer}
+.intro-p{background:#F6B26B;color:#141A30}.intro-p:hover{background:#FFC98C}
+.intro-g{background:rgba(14,16,30,.75);color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)}.intro-g:hover{box-shadow:inset 0 0 0 1px #F3ECDD}
+.intro-btn:focus-visible{outline:2px solid #FFD28A;outline-offset:3px}
+.keys{display:inline}.touch{display:none}
+.seen{font-size:12px;color:#7FD39A}
+.root.is-intro{--dock:0px !important}
+.chip.on .seen{color:#2E7A46}
+@media (hover:none) and (pointer:coarse){.keys{display:none}.touch{display:inline}}
+@media (prefers-reduced-motion: reduce){.bubble{transition:none}}
+@media (max-width:640px){.lbl{display:none}.tagline{display:none}}
+@media (max-aspect-ratio: 1/1), (max-height: 520px){
+  .root{--dock:calc(68px + env(safe-area-inset-bottom))}
+  .dock{height:var(--dock);padding-top:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom));background:#0F1322;box-shadow:0 -1px 0 rgba(243,236,221,.1), 0 -6px 0 rgba(15,19,34,.35)}
+  .dock-row{flex:1 1 auto}
+  .hint{display:none}
+}
+@media (max-aspect-ratio: 1/1){
+  .card{top:calc(70px + env(safe-area-inset-top));bottom:auto;left:12px;right:12px;width:auto;padding:16px 18px;gap:8px}
+  .card h2{font-size:28px}
+  .card-vibe,.card-desc{font-size:14px}
+  .logo{font-size:22px}
+}
+@media (max-aspect-ratio: 1/1) and (max-height: 700px){.card-vibe{display:none}}
+@media (max-height: 520px){
+  .top{padding-top:calc(8px + env(safe-area-inset-top))}
+  .tagline{display:none}
+  .card{top:calc(60px + env(safe-area-inset-top));bottom:auto;width:min(340px,calc(100% - 24px));padding:12px 14px;gap:6px}
+  .card h2{font-size:22px}
+  .card-vibe,.card-desc{display:none}
+  .logo{font-size:20px}
+  .bubble{font-size:13px;max-width:170px;padding:7px 9px}
+}
+@media (max-width:420px){.navbtn{display:none}.bubble{font-size:14px;max-width:180px}}
+
+[hidden]{display:none !important}
+.chip-dot{width:8px;height:8px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="root is-intro" id="root">
+<div class="stage">
+<canvas class="scene" id="scene" tabindex="0" role="img" aria-label="Piksel sanat bir orman: girişte bir kulübe, kamp ateşinin başında bir keşiş, çiçekli ağacın altında kediler, gölette yüzen kediler, dans pistinde hem çöp atıp hem süpüren dansçılar ve en sonda bir posta kutusu. Ok tuşlarıyla ya da kaydırarak yürüyebilirsin."></canvas>
+</div>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+
+<section class="intro" id="intro" aria-label="Başlangıç">
+<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:15px;letter-spacing:.14em;color:#F6B26B">BİR PORTFÖY ORMANI</p>
+<h1>BÜYÜKKOL</h1>
+<p style="margin:0;max-width:34ch;font-size:clamp(16px,1.6vw,19px);line-height:1.5;color:#E4DDEC">Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+<button type="button" class="intro-btn intro-p" id="enter-sound">Sesle gir</button>
+<button type="button" class="intro-btn intro-g" id="enter-quiet">Sessiz gir</button>
+</div>
+<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.08em;color:#B9B3CC"><span class="keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–4 İLE PROJEYE ATLA</span><span class="touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
+<noscript><p style="color:#FFD28A">Orman JavaScript ile çalışıyor. Lütfen JavaScript'i aç.</p></noscript>
+</section>
+
+<div id="hud" hidden>
+<header class="top">
+<div style="display:flex;flex-direction:column">
+<a href="#" class="logo" id="logo">BÜYÜKKOL</a>
+<span class="tagline" style="font-size:14px;color:#D9D2E6;text-shadow:0 1px 0 rgba(14,16,30,.8)">Ormanda dolaş, her köşede başka bir proje var.</span>
+</div>
+<div style="display:flex;gap:8px">
+<button type="button" class="hud-btn" id="snd" aria-pressed="false" aria-label="Ambiyansı aç"><span id="snd-on" hidden><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span id="snd-off" style="display:inline-flex"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="lbl" id="snd-lbl">Ambiyansı aç</span></button>
+<button type="button" class="hud-btn" id="go-about" aria-label="Hakkımda"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 15.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="lbl">Hakkımda</span></button>
+<button type="button" class="hud-btn" id="go-contact" aria-label="İletişim"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="m2.5 5 6.5 5 6.5-5" stroke="currentColor" stroke-width="1.6"/></svg><span class="lbl">İletişim</span></button>
+</div>
+</header>
+
+<section class="card" id="card" aria-live="polite">
+<div style="display:flex;align-items:center;gap:10px">
+<span aria-hidden="true" id="c-dot" style="width:10px;height:10px"></span>
+<span id="c-eyebrow" style="font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.12em;color:#C9C3D9"></span>
+</div>
+<h2 id="c-name"></h2>
+<p class="card-vibe" id="c-vibe"></p>
+<div id="c-project" style="display:flex;flex-direction:column;gap:inherit">
+<p class="card-desc" id="c-desc"></p>
+<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta" id="c-cta">Projeye git<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></a></div>
+</div>
+<div id="c-about" hidden style="flex-direction:column;gap:inherit">
+<p class="card-desc"><span class="ph">[2–3 cümle: kimsin, ne üretiyorsun, neyi seviyorsun]</span></p>
+<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="hakkimda.html" class="cta">Beni tanı</a><button type="button" class="cta" id="go-first" style="background:transparent;color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)">İlk projeye yürü<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button></div>
+</div>
+<div id="c-contact" hidden style="flex-direction:column;gap:inherit">
+<div class="links"><a href="mailto:merhaba@buyukkol.com">merhaba@buyukkol.com</a><a href="#">itch.io</a><a href="#">Instagram</a><a href="#">GitHub</a></div>
+<a href="mailto:merhaba@buyukkol.com" class="cta" style="align-self:flex-start">Mektup yaz</a>
+</div>
+</section>
+
+<nav class="dock" aria-label="Projeler">
+<div class="dock-row">
+<button type="button" class="hud-btn navbtn" id="prev" aria-label="Önceki durak"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button>
+<div class="chips" id="chips"><button type="button" class="chip" data-zone="1" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="2" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="3" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="4" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button></div>
+<button type="button" class="hud-btn navbtn" id="next" aria-label="Sonraki durak"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button>
+</div>
+<span class="hint" id="hint"></span>
+</nav>
+</div>
+</div>
+
+<script src="engine.js"></script>
+<script>
+"use strict";
+const Engine = window.BuyukkolEngine;
+
+(function () {
+  const zones = [
+    { type: 'about', name: 'Kulübe', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', eyebrow: 'HAKKIMDA', say: 'Hoş geldin! Ormanda dört proje saklı.' },
+    { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', say: 'Otur, bir çay iç. Acele yok.' },
+    { type: 'project', name: 'Suçüstü', kind: '', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
+    { type: 'project', name: 'Pati Kulaç', kind: '', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
+    { type: 'project', name: 'Muchineko', kind: '', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
+    { type: 'contact', name: 'Posta kutusu', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', eyebrow: 'İLETİŞİM', say: 'Mektubunu bekliyorum.' }
+  ];
+  const IDS = ['kulube', 'cozy-camp', 'sucustu', 'pati-kulac', 'muchineko', 'posta'];
+  const loadSeen = () => { try { const v = JSON.parse(localStorage.getItem('buyukkol.seen') || '[]'); return Array.isArray(v) ? v.filter((n) => n >= 1 && n <= 4) : []; } catch (e) { return []; } };
+  const saveSeen = (v) => { try { localStorage.setItem('buyukkol.seen', JSON.stringify(v)); } catch (e) { /* depolama yoksa sessizce geç */ } };
+  const st = { zone: 0, sound: false, intro: true, seen: loadSeen() };
+  const $ = (id) => document.getElementById(id);
+  const chipEls = Array.from(document.querySelectorAll('.chip'));
+  chipEls.forEach((b) => {
+    const z = zones[+b.dataset.zone];
+    b.querySelector('.chip-name').textContent = z.name;
+    b.querySelector('.chip-dot').style.background = z.color;
+  });
+
+  const render = () => {
+    const z = st.zone, p = zones[z];
+    $('root').className = st.intro ? 'root is-intro' : 'root';
+    $('intro').hidden = !st.intro;
+    $('hud').hidden = st.intro;
+    $('snd').setAttribute('aria-pressed', st.sound ? 'true' : 'false');
+    const sl = st.sound ? 'Sesi kapat' : 'Ambiyansı aç';
+    $('snd').setAttribute('aria-label', sl); $('snd-lbl').textContent = sl;
+    $('snd-on').hidden = !st.sound; $('snd-on').style.display = st.sound ? 'inline-flex' : '';
+    $('snd-off').hidden = st.sound; $('snd-off').style.display = st.sound ? '' : 'inline-flex';
+    let pi = 0;
+    zones.forEach((q, i) => { if (q.type === 'project' && i <= z) pi++; });
+    $('c-dot').style.background = p.color;
+    $('c-eyebrow').textContent = p.type === 'project' ? 'PROJE ' + pi + ' / 4' + (p.kind ? ' · ' + p.kind : '') : p.eyebrow;
+    $('c-name').textContent = p.name; $('c-name').style.color = p.color;
+    $('c-vibe').textContent = p.vibe;
+    $('c-cta').href = p.href || '#';
+    const d = $('c-desc'); d.textContent = '';
+    if (p.desc) d.textContent = p.desc;
+    else { const ph = document.createElement('span'); ph.className = 'ph'; ph.textContent = '[Tek cümlelik proje açıklaması]'; d.appendChild(ph); }
+    [['c-project', 'project'], ['c-about', 'about'], ['c-contact', 'contact']].forEach(([id, type]) => {
+      const on = p.type === type; $(id).hidden = !on; $(id).style.display = on ? 'flex' : '';
+    });
+    chipEls.forEach((b) => {
+      const i = +b.dataset.zone, on = i === z;
+      b.className = 'chip' + (on ? ' on' : '');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.querySelector('.seen').hidden = st.seen.indexOf(i) < 0;
+    });
+    const found = st.seen.length;
+    $('hint').textContent = (found === 4 ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/4 · ') + '← → İLE YÜRÜ';
+    $('bubble').textContent = p.say;
+  };
+
+  const eng = new Engine();
+  const game = eng.buildGame($('scene'), {
+    onZone: (i) => {
+      if (i === st.zone) return;
+      const fresh = zones[i].type === 'project' && st.seen.indexOf(i) < 0;
+      if (fresh && !st.intro && navigator.vibrate) { try { navigator.vibrate(12); } catch (e) { /* desteklenmiyor */ } }
+      st.zone = i;
+      if (fresh) { st.seen = st.seen.concat([i]); saveSeen(st.seen); if (st.seen.length === 4) game.celebrate(); }
+      render();
+      const on = document.querySelector('.chip.on');
+      const box = $('chips');
+      if (on && box.scrollTo) box.scrollTo({ left: Math.max(0, on.offsetLeft - (box.clientWidth - on.offsetWidth) / 2), behavior: 'smooth' });
+    },
+    bubble: () => $('bubble'),
+    card: () => $('card')
+  }, eng.buildAudio());
+
+  const go = (i) => game.go(Math.max(0, Math.min(5, i)));
+  const enter = (sound) => { st.intro = false; st.sound = sound; render(); if (sound) game.setSound(true); game.begin(); $('scene').focus({ preventScroll: true }); };
+  $('enter-sound').addEventListener('click', () => enter(true));
+  $('enter-quiet').addEventListener('click', () => enter(false));
+  $('snd').addEventListener('click', () => { st.sound = !st.sound; render(); game.setSound(st.sound); });
+  $('go-about').addEventListener('click', () => go(0));
+  $('logo').addEventListener('click', (e) => { e.preventDefault(); go(0); });
+  $('go-contact').addEventListener('click', () => go(5));
+  $('go-first').addEventListener('click', () => go(1));
+  $('prev').addEventListener('click', () => go(st.zone - 1));
+  $('next').addEventListener('click', () => go(st.zone + 1));
+  chipEls.forEach((b) => b.addEventListener('click', () => go(+b.dataset.zone)));
+
+  const cv = $('scene');
+  let ptr = null;
+  cv.addEventListener('pointerdown', (e) => { ptr = { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId }; if (e.pointerType === 'mouse') cv.focus({ preventScroll: true }); });
+  cv.addEventListener('pointerup', (e) => {
+    const p = ptr; ptr = null;
+    if (!p || p.id !== e.pointerId || st.intro) return;
+    const dx = e.clientX - p.x, dy = e.clientY - p.y, dt = Date.now() - p.t;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3 && dt < 700) go(st.zone + (dx < 0 ? 1 : -1));
+    else if (Math.abs(dx) < 12 && Math.abs(dy) < 12) game.tap(e.clientX, e.clientY, cv.getBoundingClientRect());
+  });
+  cv.addEventListener('pointercancel', () => { ptr = null; });
+  const isL = (k) => k === 'ArrowLeft' || k === 'a' || k === 'A', isR = (k) => k === 'ArrowRight' || k === 'd' || k === 'D';
+  cv.addEventListener('keydown', (e) => {
+    if (st.intro) return;
+    if (isL(e.key)) { game.hold(-1); e.preventDefault(); }
+    else if (isR(e.key)) { game.hold(1); e.preventDefault(); }
+    else if (e.key >= '1' && e.key <= '4') go(+e.key);
+  });
+  cv.addEventListener('keyup', (e) => { if (isL(e.key) || isR(e.key)) game.hold(0); });
+  cv.addEventListener('blur', () => game.hold(0));
+  render();
+  // Bir proje sayfasından dönüş: index.html#cozy-camp gibi bir adresle gelindiyse girişi atla, o durakta başla.
+  const startAt = IDS.indexOf((location.hash || '').slice(1));
+  if (startAt >= 0) { st.intro = false; render(); game.jump(startAt); }
+  window.addEventListener('hashchange', () => {
+    const i = IDS.indexOf((location.hash || '').slice(1));
+    if (i < 0) return;
+    if (st.intro) { st.intro = false; render(); game.jump(i); } else go(i);
+  });
+})();
+</script>
+</body>
+</html>

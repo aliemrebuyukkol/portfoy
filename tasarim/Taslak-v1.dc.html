@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Taslak 1 — klasik portföy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#12160F}
+*{box-sizing:border-box}
+a{color:#EDE6D3}a:hover{color:#E8B04B}
+.nav-a{color:#C9C3AE;text-decoration:none;font-size:15px;padding:12px 6px;display:inline-flex;align-items:center;min-height:44px}
+.nav-a:hover{color:#EDE6D3}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:2px;font-family:Inter,sans-serif;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:0}
+.btn-p{background:#E8B04B;color:#12160F}.btn-p:hover{background:#F2C46B;color:#12160F}
+.btn-g{background:transparent;color:#EDE6D3;box-shadow:inset 0 0 0 1px rgba(237,230,211,.35)}.btn-g:hover{box-shadow:inset 0 0 0 1px #EDE6D3;color:#EDE6D3}
+.ctl{min-height:44px;padding:0 16px;border:0;border-radius:2px;background:rgba(18,22,15,.84);color:#EDE6D3;font-family:Inter,sans-serif;font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ctl:hover{background:rgba(18,22,15,.96)}
+.pill{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(237,230,211,.22);background:transparent;color:#C9C3AE;font-family:Inter,sans-serif;font-weight:500;font-size:14px;cursor:pointer}
+.pill:hover{color:#EDE6D3;border-color:rgba(237,230,211,.5)}
+.pill.on{background:#EDE6D3;color:#12160F;border-color:#EDE6D3}
+.ctl:focus-visible,.btn:focus-visible,.pill:focus-visible,.card:focus-visible,.nav-a:focus-visible,.lnk:focus-visible{outline:2px solid #E8B04B;outline-offset:3px}
+.card{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:#EDE6D3}
+.card:hover{color:#EDE6D3}
+.thumb{aspect-ratio:4/3;border-radius:2px;background-color:#1A2016;background-image:linear-gradient(45deg,#1F2619 25%,transparent 25%,transparent 75%,#1F2619 75%),linear-gradient(45deg,#1F2619 25%,transparent 25%,transparent 75%,#1F2619 75%);background-size:16px 16px;background-position:0 0,8px 8px;display:flex;align-items:center;justify-content:center;position:relative;transition:transform .25s ease, box-shadow .25s ease}
+.card:hover .thumb{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(232,176,75,.5)}
+.thumb-live{background:#1E2A1B;background-image:none}
+.ph{color:#E8B04B;border-bottom:1px dashed rgba(232,176,75,.55)}
+.grid-w{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:44px 28px}
+.lnk{color:#EDE6D3;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;gap:8px;font-size:16px}
+.lnk:hover{color:#E8B04B}
+@media (prefers-reduced-motion: reduce){.thumb{transition:none}}
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; color: #EDE6D3; background: #12160F; min-height: 100vh">
+
+<header style="max-width: 1280px; margin: 0 auto; padding: 20px clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<a href="#ust" class="nav-a" style="font-family: 'Pixelify Sans', monospace; font-weight: 600; font-size: 22px; color: #EDE6D3; letter-spacing: 0.04em">BÜYÜKKOL</a>
+<nav aria-label="Ana menü" style="display: flex; flex-wrap: wrap; gap: 20px">
+<a href="#isler" class="nav-a">İşler</a>
+<a href="#atolye" class="nav-a">Atölye</a>
+<a href="#hakkimda" class="nav-a">Hakkımda</a>
+<a href="#iletisim" class="nav-a">İletişim</a>
+</nav>
+</header>
+
+<section id="ust" style="max-width: 1280px; margin: 0 auto; padding: clamp(40px, 7vw, 96px) clamp(20px, 5vw, 64px) clamp(36px, 5vw, 64px); display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 15px; letter-spacing: 0.12em; color: #E8B04B">PİKSEL SANAT · ANİMASYON · OYUN</p>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(46px, 7.4vw, 108px); line-height: 0.96; letter-spacing: -0.035em; max-width: 13ch">Piksel piksel, nefes alan dünyalar.</h1>
+<p style="margin: 0; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #B9B39E; max-width: 46ch">Oyunlar için karakter, ortam ve animasyon üretiyorum. Aşağıdaki orman bu sitenin kendi kodu: sahneye dokun, bir esinti geçsin.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+<a href="#isler" class="btn btn-p">İşlere göz at<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></a>
+<a href="#iletisim" class="btn btn-g">Birlikte çalışalım</a>
+</div>
+</section>
+
+<section aria-label="Rüzgârlı piksel orman sahnesi" style="position: relative; overflow: hidden; display: flex; justify-content: center; background: #2E4A6B">
+<canvas ref="{{ setCanvas }}" onClick="{{ onScene }}" role="img" aria-label="Rüzgârda sallanan meşe, huş ve çam ağaçlarıyla piksel sanat orman açıklığı" style="display: block; image-rendering: pixelated; cursor: pointer; width: 100%; height: 560px"></canvas>
+<div style="position: absolute; right: 16px; bottom: 16px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end">
+<button type="button" class="ctl" onClick="{{ blow }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1.5 5.5h8a2 2 0 1 0-2-2M1.5 8.5h11a2 2 0 1 1-2 2M1.5 11.5h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg>Esinti gönder</button>
+<button type="button" class="ctl" onClick="{{ toggleWind }}" aria-pressed="{{ windPressed }}">{{ windLabel }}</button>
+</div>
+</section>
+
+<section id="isler" style="max-width: 1280px; margin: 0 auto; padding: clamp(72px, 9vw, 128px) clamp(20px, 5vw, 64px) 0; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 14px; letter-spacing: 0.12em; color: #E8B04B">01 — İŞLER</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(34px, 4.2vw, 56px); letter-spacing: -0.03em; line-height: 1">Seçili işler</h2>
+</div>
+<div role="group" aria-label="İşleri filtrele" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+<button type="button" class="{{ f.cls }}" aria-pressed="{{ f.pressed }}" onClick="{{ f.pick }}">{{ f.label }}</button>
+</sc-for>
+</div>
+</div>
+<div class="grid-w">
+<sc-for list="{{ works }}" as="w" hint-placeholder-count="6">
+<a class="card" href="{{ w.href }}">
+<div class="{{ w.thumbCls }}">
+<span style="position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 2px; background: rgba(18,22,15,.85); font-size: 12px; font-weight: 500; color: #D8D2BD">{{ w.label }}</span>
+<span style="font-family: 'Pixelify Sans', monospace; font-size: 14px; letter-spacing: 0.1em; color: #8E8A78">{{ w.thumbText }}</span>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px">
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 22px; letter-spacing: -0.01em"><span class="{{ w.titleCls }}">{{ w.title }}</span></h3>
+<span style="font-size: 14px; color: #A8A390; white-space: nowrap">{{ w.year }}</span>
+</div>
+<p style="margin: -6px 0 0; font-size: 15px; line-height: 1.5; color: #A8A390">{{ w.note }}</p>
+</a>
+</sc-for>
+</div>
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 48px 24px; border: 1px dashed rgba(237,230,211,.25); border-radius: 2px; text-align: center; color: #A8A390">Bu kategoride henüz iş yok. <button type="button" class="pill" onClick="{{ showAll }}" style="margin-left: 8px">Tümünü göster</button></div>
+</sc-if>
+</section>
+
+<section id="atolye" style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 11vw, 160px) clamp(20px, 5vw, 64px) 0; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 14px; letter-spacing: 0.12em; color: #E8B04B">02 — ATÖLYE</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(34px, 4.2vw, 56px); letter-spacing: -0.03em; line-height: 1.02">Bu orman nasıl sallanıyor?</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #B9B39E; max-width: 44ch">Bütün sprite’ı eğmek çimde işe yarar ama kalın bir ağacı lastik gibi gösterir. Burada gövde yerinde durur, yapraklar küme küme hareket eder.</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #A8A390">Yöntem, SpriteCook’un <a href="https://www.spritecook.ai/blog/pixel-art-trees-wind-animation" style="color: #EDE6D3">piksel ağaçlarda rüzgâr eğitiminden</a> uyarlandı.</p>
+</div>
+<ol style="flex: 999 1 520px; min-width: 0; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 40px 32px">
+<li style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid rgba(237,230,211,.16); padding-top: 20px"><span style="font-family: 'Pixelify Sans', monospace; font-size: 15px; color: #E8B04B">01</span><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 21px">Gövde sabit, yapraklar küme küme</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A8A390">Her ağaç gövde, koyu bir iç katman ve ayrı yaprak kümelerinden oluşuyor. Kümeler kıpırdadıkça aralardan iç gölge görünüyor.</p></li>
+<li style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid rgba(237,230,211,.16); padding-top: 20px"><span style="font-family: 'Pixelify Sans', monospace; font-size: 15px; color: #E8B04B">02</span><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 21px">Yalnızca tam piksel</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A8A390">Kümeler saniyede 10 kez poz değiştiriyor ve hiçbir zaman yarım piksele kaymıyor. Kenarlar her karede keskin kalıyor.</p></li>
+<li style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid rgba(237,230,211,.16); padding-top: 20px"><span style="font-family: 'Pixelify Sans', monospace; font-size: 15px; color: #E8B04B">03</span><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 21px">Yürüyen dalga</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A8A390">Her kümenin fazı sahnedeki konumuna bağlı, bu yüzden hareket ağaçtan ağaca akıyor. Merkezdeki kümeler kenardakilerin üçte biri kadar oynuyor.</p></li>
+<li style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid rgba(237,230,211,.16); padding-top: 20px"><span style="font-family: 'Pixelify Sans', monospace; font-size: 15px; color: #E8B04B">04</span><h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 21px">Esinti ve yay</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #A8A390">Farklı hız ve güçte esintiler sahneyi geçiyor. Ağaçlar sönümlü bir yayla eğilip geri oturuyor; çamlar kat kat bükülüyor.</p></li>
+</ol>
+</section>
+
+<section id="hakkimda" style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 11vw, 160px) clamp(20px, 5vw, 64px) 0; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 14px; letter-spacing: 0.12em; color: #E8B04B">03 — HAKKIMDA</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(34px, 4.2vw, 56px); letter-spacing: -0.03em; line-height: 1.02">Merhaba, ben <span class="ph">[Adın]</span> Büyükkol.</h2>
+</div>
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #D8D2BD; max-width: 52ch"><span class="ph">[2–3 cümle: ne üretiyorsun, kimlerle çalıştın, en çok neyi yapmayı seviyorsun.]</span></p>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0 32px">
+<div style="display: flex; flex-direction: column; border-top: 1px solid rgba(237,230,211,.16)">
+<p style="margin: 0; padding: 16px 0 8px; font-family: 'Pixelify Sans', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A8A390">NELER YAPIYORUM</p>
+<p style="margin: 0; padding: 10px 0; font-size: 16px; border-bottom: 1px solid rgba(237,230,211,.08)">Karakter ve sprite setleri</p>
+<p style="margin: 0; padding: 10px 0; font-size: 16px; border-bottom: 1px solid rgba(237,230,211,.08)">Tileset ve ortam tasarımı</p>
+<p style="margin: 0; padding: 10px 0; font-size: 16px; border-bottom: 1px solid rgba(237,230,211,.08)">Animasyon ve efektler</p>
+<p style="margin: 0; padding: 10px 0; font-size: 16px">Oyun içi arayüz</p>
+</div>
+<div style="display: flex; flex-direction: column; border-top: 1px solid rgba(237,230,211,.16)">
+<p style="margin: 0; padding: 16px 0 8px; font-family: 'Pixelify Sans', monospace; font-size: 13px; letter-spacing: 0.1em; color: #A8A390">ARAÇLAR</p>
+<p style="margin: 0; padding: 10px 0; font-size: 16px"><span class="ph">[Kullandığın araçlar — ör. Aseprite, Godot]</span></p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="iletisim" style="max-width: 1280px; margin: 0 auto; padding: clamp(96px, 11vw, 160px) clamp(20px, 5vw, 64px) clamp(72px, 8vw, 112px); display: flex; flex-direction: column; gap: 32px">
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 14px; letter-spacing: 0.12em; color: #E8B04B">04 — İLETİŞİM</p>
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(42px, 6.4vw, 92px); letter-spacing: -0.035em; line-height: 0.98; max-width: 14ch">Aklında kurulacak bir dünya mı var?</h2>
+<a href="mailto:merhaba@buyukkol.com" class="lnk" style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.6vw, 34px); font-weight: 500; border-bottom: 2px solid #E8B04B; align-self: flex-start; padding-bottom: 4px">merhaba@buyukkol.com<svg width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<nav aria-label="Sosyal bağlantılar" style="display: flex; flex-wrap: wrap; gap: 8px 28px">
+<a href="#" class="lnk">itch.io</a>
+<a href="#" class="lnk">ArtStation</a>
+<a href="#" class="lnk">Instagram</a>
+<a href="#" class="lnk">GitHub</a>
+</nav>
+</section>
+
+<footer style="border-top: 1px solid rgba(237,230,211,.12)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 28px clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: #A8A390">
+<span>© 2026 Büyükkol · buyukkol.com</span>
+<a href="#ust" class="lnk" style="font-size: 14px; color: #A8A390">Başa dön ↑</a>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3900}}'>
+class Component extends DCLogic {
+  state = { filter: 'all', wind: true };
+  eng = null;
+
+  filtersData = [
+    { id: 'all', label: 'Tümü' },
+    { id: 'karakter', label: 'Karakter' },
+    { id: 'ortam', label: 'Ortam' },
+    { id: 'animasyon', label: 'Animasyon' },
+    { id: 'oyun', label: 'Oyun' },
+    { id: 'teknik', label: 'Teknik sanat' }
+  ];
+
+  worksData = [
+    { id: 'w5', cat: 'teknik', label: 'Teknik sanat', title: 'Rüzgârda piksel orman', year: '2026', note: 'Bu sitenin giriş sahnesi. Kümelere bölünmüş ağaçlar, yürüyen dalga, esinti yayı; canvas üzerinde, saniyede 10 poz.', href: '#atolye', live: true },
+    { id: 'w1', cat: 'karakter', label: 'Karakter & sprite', title: '[Proje adı]', year: '[Yıl]', note: 'Karakter tasarımı, sprite sayfası ve animasyon döngüleri için yer.', href: '#' },
+    { id: 'w2', cat: 'ortam', label: 'Ortam & tileset', title: '[Proje adı]', year: '[Yıl]', note: 'Tileset, harita parçaları ya da arka plan çalışması için yer.', href: '#' },
+    { id: 'w3', cat: 'animasyon', label: 'Animasyon', title: '[Proje adı]', year: '[Yıl]', note: 'Döngü, efekt veya kısa sahne. Burada GIF ya da video çok iyi çalışır.', href: '#' },
+    { id: 'w4', cat: 'oyun', label: 'Oyun', title: '[Proje adı]', year: '[Yıl]', note: 'Oyun ya da game jam işi; oynanabilir bağlantısıyla.', href: '#' },
+    { id: 'w6', cat: 'ortam', label: 'Ortam & tileset', title: '[Proje adı]', year: '[Yıl]', note: 'İkinci ortam çalışması için yer.', href: '#' }
+  ];
+
+  setCanvas = (el) => {
+    if (el && !this.eng) {
+      this.eng = this.buildEngine(el);
+      const on = this.eng.isOn();
+      if (on !== this.state.wind) this.setState({ wind: on });
+    } else if (!el && this.eng) {
+      this.eng.stop();
+      this.eng = null;
+    }
+  };
+
+  componentWillUnmount() {
+    if (this.eng) { this.eng.stop(); this.eng = null; }
+  }
+
+  turnOn() {
+    if (!this.state.wind) this.setState({ wind: true });
+    if (this.eng) this.eng.setWind(true);
+  }
+
+  onScene = (e) => {
+    if (!this.eng) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    this.turnOn();
+    this.eng.gust((e.clientX - r.left) / this.eng.scale());
+  };
+
+  blow = () => {
+    if (!this.eng) return;
+    this.turnOn();
+    this.eng.gust(-30);
+  };
+
+  toggleWind = () => {
+    const on = !this.state.wind;
+    this.setState({ wind: on });
+    if (this.eng) this.eng.setWind(on);
+  };
+
+  showAll = () => this.setState({ filter: 'all' });
+
+  renderVals() {
+    const f = this.state.filter;
+    const filters = this.filtersData.map((x) => ({
+      label: x.label,
+      cls: 'pill' + (x.id === f ? ' on' : ''),
+      pressed: x.id === f ? 'true' : 'false',
+      pick: () => this.setState({ filter: x.id })
+    }));
+    const works = this.worksData
+      .filter((w) => f === 'all' || w.cat === f)
+      .map((w) => ({
+        title: w.title,
+        year: w.year,
+        note: w.note,
+        label: w.label,
+        href: w.href,
+        titleCls: w.title.charAt(0) === '[' ? 'ph' : '',
+        thumbCls: w.live ? 'thumb thumb-live' : 'thumb',
+        thumbText: w.live ? 'CANLI · YUKARIDA' : 'GÖRSEL / GIF'
+      }));
+    return {
+      setCanvas: this.setCanvas,
+      onScene: this.onScene,
+      blow: this.blow,
+      toggleWind: this.toggleWind,
+      showAll: this.showAll,
+      windLabel: this.state.wind ? 'Rüzgârı durdur' : 'Rüzgârı başlat',
+      windPressed: this.state.wind ? 'true' : 'false',
+      filters: filters,
+      works: works,
+      empty: works.length === 0
+    };
+  }
+
+  /* ---------- Piksel orman motoru ---------- */
+  buildEngine(cv) {
+    const ctx = cv.getContext('2d');
+    const wrap = cv.parentElement;
+    const mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    const E = { on: !(mq && mq.matches), visible: true, alive: true };
+    const TAU = Math.PI * 2;
+    const H = 140;
+    const HZ = Math.round(H * 0.4);
+    let W = 0, S = 4, bg = null, items = [], clouds = [], extra = [];
+    let raf = 0, lastT = 0, t = 0, tickAcc = 1;
+
+    const P = {
+      sky: ['#2E4A6B', '#4F7193', '#86A3B3', '#C7C2A2', '#EBCB8B'],
+      sun: '#FBEFC4', sunGlow: '#F1D79A',
+      hill: ['#6A8A7A', '#4E6E58'],
+      grass: ['#8DAF5A', '#76994A', '#5F8740'], speckL: '#A9C66A', speckD: '#4E7236',
+      dirt: ['#C29A66', '#A98257', '#86643F'],
+      oak: { c: ['#264A2E', '#3C6B37', '#5E9142', '#9DBF55'], outline: '#17301D' },
+      birch: { c: ['#4C7A2E', '#73A13C', '#A3C452', '#D4DE75'], outline: '#2B4A1C' },
+      bush: { c: ['#2C5530', '#447A3A', '#6C9D45', '#A6C65A'], outline: '#183220' },
+      pine: { c: ['#173A33', '#24564A', '#3A7560', '#5F9772'], outline: '#0F2622' },
+      bark: ['#2E2016', '#4E3725', '#73533A'],
+      birchBark: ['#C9C2B0', '#F0EBDD', '#2B2622'],
+      cloud: ['#F4EEDD', '#D9D3C0'],
+      tuft: ['#5A8A3C', '#7FAE4E', '#A4C760'],
+      haze: '#8AA59A'
+    };
+    const GUSTS = [
+      { s: 0.0, v: 55, k: 0.9, w: 70 }, { s: 3.2, v: 62, k: 0.5, w: 50 },
+      { s: 6.5, v: 50, k: 1.25, w: 110 }, { s: 10.0, v: 58, k: 0.7, w: 60 },
+      { s: 13.4, v: 65, k: 1.0, w: 90 }, { s: 16.8, v: 52, k: 0.6, w: 55 }
+    ];
+    const BAY = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
+    const bay = (x, y) => BAY[(y & 3) * 4 + (x & 3)];
+
+    const rng = (seed) => () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
+    const rgb = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+    const hx = (c) => '#' + c.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+    const mix = (a, b, f) => { const A = rgb(a), B = rgb(b); return hx(A.map((v, i) => v + (B[i] - v) * f)); };
+    const dim = (h, f) => hx(rgb(h).map((v) => v * f));
+    const hazePal = (pal, f) => f ? { c: pal.c.map((h) => mix(h, P.haze, f)), outline: mix(pal.outline, P.haze, f) } : pal;
+    const hazeArr = (arr, f) => f ? arr.map((h) => mix(h, P.haze, f)) : arr;
+    const mk = (w, h) => { const c = document.createElement('canvas'); c.width = Math.max(1, w); c.height = Math.max(1, h); return c; };
+
+    const pathX = (y) => { const f = (y - HZ) / (H - HZ); return W * 0.5 + Math.sin(f * 3.2 + 0.6) * W * 0.08 * f; };
+    const pathHW = (y) => { const f = (y - HZ) / (H - HZ); return 1 + f * 4 + f * f * 14; };
+
+    const breeze = (x) => E.on ? 0.3 + 0.1 * Math.sin(t * 0.6 + x * 0.013) : 0;
+    const gustAt = (x) => {
+      if (!E.on) return 0;
+      let g = 0;
+      for (const q of GUSTS) {
+        const local = (((t - q.s) % 20) + 20) % 20;
+        const d = (x - (local * q.v - 140)) / q.w;
+        if (d > -2 && d < 2) g += q.k * Math.exp(-d * d * 2.2);
+      }
+      for (const q of extra) {
+        const d = (x - (q.x0 + (t - q.t0) * q.v)) / q.w;
+        if (d > -2 && d < 2) g += q.k * Math.exp(-d * d * 2.2);
+      }
+      return g;
+    };
+    const dyn = (T, damp) => { const w = TAU / T; return { k: w * w, c: 2 * damp * w }; };
+
+    const paintMask = (mask, w, h, colorAt, outline) => {
+      const c = mk(w, h), g = c.getContext('2d');
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const i = y * w + x;
+        if (mask[i]) { g.fillStyle = colorAt(i); g.fillRect(x, y, 1, 1); }
+        else if (outline && ((x > 0 && mask[i - 1]) || (x < w - 1 && mask[i + 1]) || (y > 0 && mask[i - w]) || (y < h - 1 && mask[i + w]))) {
+          g.fillStyle = outline; g.fillRect(x, y, 1, 1);
+        }
+      }
+      return c;
+    };
+
+    const clumpSprite = (r, pal, rand) => {
+      const s = 2 * Math.ceil(r) + 5, cc = (s - 1) / 2, n = s * s;
+      const mask = new Uint8Array(n), sh = new Float32Array(n);
+      for (let y = 0; y < s; y++) for (let x = 0; x < s; x++) {
+        const dx = x - cc, dy = y - cc, dd = Math.sqrt(dx * dx + dy * dy * 1.15);
+        if (dd <= r + (rand() - 0.65) * 0.9) {
+          const i = y * s + x; mask[i] = 1;
+          sh[i] = (-dx * 0.75 - dy * 1.15) / r + (rand() - 0.5) * 0.4;
+        }
+      }
+      const pick = (v) => v > 0.8 ? pal.c[3] : v > 0.2 ? pal.c[2] : v > -0.5 ? pal.c[1] : pal.c[0];
+      return {
+        front: paintMask(mask, s, s, (i) => pick(sh[i]), pal.outline),
+        inside: paintMask(mask, s, s, (i) => dim(pick(sh[i]), 0.55), null),
+        half: cc
+      };
+    };
+
+    const tierSprite = (hw, th, pal, rand) => {
+      const w = 2 * Math.ceil(hw) + 5, h = Math.ceil(th) + 4, cc = (w - 1) / 2;
+      const mask = new Uint8Array(w * h), sh = new Float32Array(w * h);
+      for (let y = 1; y < h - 1; y++) {
+        const r = y - 1, rf = r / th, half = hw * Math.pow(Math.max(0, rf), 0.85) + 0.5;
+        for (let x = 0; x < w; x++) {
+          const dx = x - cc;
+          const notch = (Math.abs(dx) % 3 === 1) ? 1.2 : 0;
+          if (Math.abs(dx) <= half && r <= th - notch) {
+            const i = y * w + x; mask[i] = 1;
+            sh[i] = -dx / (hw + 1) + (0.5 - rf) * 0.8 + (rand() - 0.5) * 0.35;
+          }
+        }
+      }
+      const pick = (v) => v > 0.6 ? pal.c[3] : v > 0.05 ? pal.c[2] : v > -0.5 ? pal.c[1] : pal.c[0];
+      return { front: paintMask(mask, w, h, (i) => pick(sh[i]), pal.outline), half: cc };
+    };
+
+    const makeLeafy = (x, baseY, sc, rand, kind, haze) => {
+      const isBush = kind === 'bush', isBirch = kind === 'birch';
+      const pal = hazePal(isBirch ? P.birch : isBush ? P.bush : P.oak, haze);
+      const bark = hazeArr(isBirch ? P.birchBark : P.bark, haze);
+      const trunkH = isBush ? 0 : Math.round((isBirch ? 30 : 22) * sc);
+      const tw = isBush ? 0 : Math.max(2, Math.round((isBirch ? 2.4 : 4.6) * sc));
+      const R = (isBush ? 9 : isBirch ? 15 : 21) * sc;
+      const n = isBush ? 4 : isBirch ? 10 : 14;
+      const cx = Math.round(x);
+      const cy = Math.round(isBush ? baseY - R * 0.75 : baseY - trunkH - R * 0.55);
+      const rC = R * (isBush ? 0.55 : 0.4);
+      const topY = cy - R * 0.78, totalH = baseY - topY;
+      const clumps = [];
+      let tries = 0;
+      while (clumps.length < n && tries < 700) {
+        tries++;
+        const a = rand() * TAU, rr = clumps.length === 0 ? 0 : Math.sqrt(rand()) * (R - rC * 0.5);
+        const px = Math.cos(a) * rr, py = Math.sin(a) * rr * 0.78;
+        const mind = rC * (isBush ? 0.8 : 0.95);
+        if (clumps.some((c) => Math.hypot(c.dx - px, c.dy - py) < mind)) continue;
+        const r = rC * (0.85 + rand() * 0.3);
+        const dx = Math.round(px), dy = Math.round(py);
+        clumps.push({ dx: dx, dy: dy, sp: clumpSprite(r, pal, rand), w: 1 / 3 + (2 / 3) * Math.min(1, rr / R), hf: (baseY - (cy + dy)) / totalH, ox: 0, oy: 0 });
+      }
+      clumps.sort((a, b) => a.dy - b.dy);
+
+      const pad = Math.ceil(R) + 7;
+      const left = cx - pad, top = cy - pad;
+      const st = mk(pad * 2 + tw, baseY - top + 3), sg = st.getContext('2d');
+      for (const c of clumps) sg.drawImage(c.sp.inside, cx + c.dx - c.sp.half - left, cy + c.dy - c.sp.half - top);
+      if (!isBush) {
+        const x0 = cx - (tw >> 1);
+        for (let y = baseY; y >= cy; y--) {
+          for (let k = 0; k < tw; k++) {
+            let col;
+            if (isBirch) col = k === 0 ? bark[1] : bark[0];
+            else col = k === 0 ? bark[2] : k === tw - 1 ? bark[0] : bark[1];
+            sg.fillStyle = col; sg.fillRect(x0 + k - left, y - top, 1, 1);
+          }
+          if (isBirch && rand() < 0.22) { sg.fillStyle = bark[2]; sg.fillRect(x0 + Math.floor(rand() * tw) - left, y - top, 1, 1); }
+        }
+        sg.fillStyle = bark[0];
+        sg.fillRect(x0 - 1 - left, baseY - top, 1, 1);
+        sg.fillRect(x0 + tw - left, baseY - top, 1, 1);
+        if (!isBirch) {
+          sg.fillStyle = bark[1];
+          const by = cy + Math.round(R * 0.3), len = Math.round(R * 0.45);
+          for (let i = 1; i <= len; i++) {
+            sg.fillRect(x0 - i - left, by - Math.round(i * 0.8) - top, 1, 1);
+            sg.fillRect(x0 + tw - 1 + i - left, by - Math.round(i * 0.7) - 2 - top, 1, 1);
+          }
+        }
+      }
+      const pr = isBirch ? { push: 2.0, T: 1.8, d: 0.3 } : isBush ? { push: 1.4, T: 1.0, d: 0.35 } : { push: 2.2, T: 2.2, d: 0.35 };
+      const dd = dyn(pr.T, pr.d);
+      return { type: 'leafy', cx: cx, cy: cy, baseY: baseY, st: st, sx: left, sy: top, clumps: clumps, push: pr.push, k: dd.k, c: dd.c, lean: 0, vel: 0, shadowR: R * 0.95 };
+    };
+
+    const makePine = (x, baseY, sc, rand, haze) => {
+      const pal = hazePal(P.pine, haze), bark = hazeArr(P.bark, haze);
+      const Ht = Math.round(80 * sc), tw = Math.max(1, Math.round(3 * sc)), cx = Math.round(x);
+      const nT = Ht > 50 ? 8 : 6, start = Ht * 0.16, L = Ht - start, step = L / nT, th = step * 2.0;
+      const tiers = [];
+      for (let i = 0; i < nT; i++) {
+        const bottomY = baseY - start - i * step;
+        const topY = Math.round(bottomY - th);
+        const hw = 2 + Ht * 0.24 * (1 - i / nT);
+        tiers.push({ sp: tierSprite(hw, th, pal, rand), top: topY, hf: Math.min(1, (baseY - (topY + th * 0.5)) / Ht), w: 1 / 3 + (2 / 3) * (i / (nT - 1)), ox: 0, oy: 0 });
+      }
+      const dd = dyn(2.8, 0.22);
+      return { type: 'pine', cx: cx, baseY: baseY, Ht: Ht, tw: tw, bark: bark, tiers: tiers, trunkTop: Math.round(baseY - Ht * 0.85), push: 3.6, bend: 1, k: dd.k, c: dd.c, lean: 0, vel: 0, shadowR: Ht * 0.24 };
+    };
+
+    const makeTuft = (x, y, rand) => {
+      const blades = [];
+      const nb = 3 + Math.floor(rand() * 3);
+      for (let i = 0; i < nb; i++) blades.push({ x: i - (nb >> 1) + (rand() < 0.3 ? 1 : 0), h: 2 + Math.floor(rand() * 3), col: P.tuft[Math.floor(rand() * 3)], flex: 0.7 + rand() * 0.6 });
+      return { type: 'grass', x: Math.round(x), baseY: Math.round(y), blades: blades, amp: 0 };
+    };
+
+    const cloudSprite = (rand) => {
+      const w = 22 + Math.floor(rand() * 18), h = 10, mask = new Uint8Array(w * h);
+      const bumps = [];
+      for (let i = 0; i < 4; i++) bumps.push({ x: 4 + rand() * (w - 8), y: 6 - rand() * 2, r: 2.5 + rand() * 3 });
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        if (y > 7) continue;
+        if (bumps.some((b) => Math.hypot(x - b.x, (y - b.y) * 1.2) <= b.r)) mask[y * w + x] = 1;
+      }
+      return paintMask(mask, w, h, (i) => (Math.floor(i / w) >= 6 ? P.cloud[1] : P.cloud[0]), null);
+    };
+
+    const place = (rand) => {
+      items = [];
+      const ok = (x, y, rad) => Math.abs(x - pathX(y)) > pathHW(y) + rad;
+      for (let x = -6; x < W + 8; x += 14 + rand() * 16) {
+        const y = HZ + 3 + Math.round(rand() * 7);
+        if (!ok(x, y, 6)) continue;
+        const r = rand(), sc = 0.42 + rand() * 0.14;
+        if (r < 0.3) items.push(makePine(x, y, sc * 0.95, rand, 0.4));
+        else items.push(makeLeafy(x, y, sc, rand, r < 0.5 ? 'birch' : 'oak', 0.4));
+      }
+      for (let x = 30 + rand() * 30; x < W - 20; x += 58 + rand() * 50) {
+        const y = Math.round(H * 0.64 + rand() * 12);
+        if (!ok(x, y, 20)) continue;
+        const r = rand(), sc = 0.7 + rand() * 0.14;
+        if (r < 0.25) items.push(makePine(x, y, sc, rand, 0.12));
+        else if (r < 0.5) items.push(makeLeafy(x, y, sc, rand, 'birch', 0.12));
+        else if (r < 0.7) items.push(makeLeafy(x, y, sc * 1.2, rand, 'bush', 0.08));
+        else items.push(makeLeafy(x, y, sc, rand, 'oak', 0.12));
+      }
+      items.push(makeLeafy(Math.round(W * 0.07), H + 8, W < 240 ? 1.25 : 1.6, rand, 'oak', 0));
+      items.push(makePine(Math.round(W * 0.93), H + 6, W < 240 ? 1.1 : 1.35, rand, 0));
+      items.push(makeLeafy(Math.round(W * 0.24), H - 4, 1.1, rand, 'bush', 0));
+      items.push(makeLeafy(Math.round(W * 0.78), H - 2, 1.0, rand, 'bush', 0));
+      const nTufts = Math.round(W / 5);
+      for (let i = 0; i < nTufts; i++) {
+        const y = HZ + 10 + rand() * (H - HZ - 10), x = rand() * W;
+        if (!ok(x, y, 3)) continue;
+        items.push(makeTuft(x, y, rand));
+      }
+      items.sort((a, b) => a.baseY - b.baseY);
+      clouds = [];
+      for (let i = 0; i < Math.max(2, Math.round(W / 110)); i++) clouds.push({ sp: cloudSprite(rand), x: rand() * (W + 80), y: 6 + Math.floor(rand() * (HZ - 26)), v: 0.6 + rand() * 0.8 });
+    };
+
+    const buildBg = (rand) => {
+      const c = mk(W, H), g = c.getContext('2d'), img = g.createImageData(W, H), d = img.data;
+      const put = (x, y, col) => { if (x < 0 || y < 0 || x >= W || y >= H) return; const i = (y * W + x) * 4; d[i] = col[0]; d[i + 1] = col[1]; d[i + 2] = col[2]; d[i + 3] = 255; };
+      const sky = P.sky.map(rgb);
+      for (let y = 0; y < HZ; y++) {
+        const f = y / (HZ - 1) * (sky.length - 1), i0 = Math.min(Math.floor(f), sky.length - 2), fr = f - i0;
+        for (let x = 0; x < W; x++) put(x, y, fr > bay(x, y) ? sky[i0 + 1] : sky[i0]);
+      }
+      const sx = Math.round(W * 0.7), sy = HZ - 15, sun = rgb(P.sun), glow = rgb(P.sunGlow);
+      for (let dy = -11; dy <= 11; dy++) for (let dx = -11; dx <= 11; dx++) {
+        const dd = Math.hypot(dx, dy);
+        if (dd <= 6.5) put(sx + dx, sy + dy, sun);
+        else if (dd <= 10.5 && bay(sx + dx, sy + dy) < (10.5 - dd) / 4 * 0.7) put(sx + dx, sy + dy, glow);
+      }
+      const p1 = rand() * TAU, p2 = rand() * TAU, p3 = rand() * TAU, h1 = rgb(P.hill[0]), h2 = rgb(P.hill[1]);
+      for (let x = 0; x < W; x++) {
+        const r1 = Math.round(HZ - 8 - 3 * Math.sin(x * 0.03 + p1) - 2 * Math.sin(x * 0.071 + p2));
+        for (let y = r1; y < HZ; y++) put(x, y, h1);
+        const r2 = Math.round(HZ - 3 - 2 * Math.sin(x * 0.05 + p3) - Math.sin(x * 0.13 + p1));
+        for (let y = r2; y < HZ; y++) put(x, y, h2);
+      }
+      const gr = P.grass.map(rgb), sL = rgb(P.speckL), sD = rgb(P.speckD);
+      for (let y = HZ; y < H; y++) {
+        const band = (y - HZ) / (H - HZ) * 2, i0 = Math.min(Math.floor(band), 1), fr = band - i0;
+        for (let x = 0; x < W; x++) {
+          let col = fr > bay(x, y) ? gr[i0 + 1] : gr[i0];
+          const r = rand();
+          if (r < 0.035) col = sL; else if (r < 0.06) col = sD;
+          put(x, y, col);
+        }
+      }
+      const dt = P.dirt.map(rgb);
+      for (let y = HZ + 1; y < H; y++) {
+        const px = pathX(y), hw = pathHW(y);
+        for (let x = Math.floor(px - hw - 2); x <= Math.ceil(px + hw + 2); x++) {
+          const dist = Math.abs(x + 0.5 - px);
+          if (dist < hw - 0.5) {
+            let col = rand() < 0.14 ? dt[1] : dt[0];
+            if (dist >= hw - 1.3) col = x + 0.5 > px ? dt[2] : dt[1];
+            put(x, y, col);
+          } else if (dist < hw + 0.7 && rand() < 0.5) put(x, y, sD);
+        }
+      }
+      for (const it of items) {
+        if (it.type === 'grass') continue;
+        const rx = Math.max(2, it.shadowR), ry = Math.max(1.5, rx * 0.28), ox = Math.round(it.cx - rx * 0.25);
+        for (let dy = -Math.ceil(ry); dy <= Math.ceil(ry); dy++) for (let dx = -Math.ceil(rx); dx <= Math.ceil(rx); dx++) {
+          if ((dx * dx) / (rx * rx) + (dy * dy) / (ry * ry) > 1) continue;
+          const x = ox + dx, y = it.baseY + dy;
+          if (x < 0 || x >= W || y < HZ || y >= H) continue;
+          const i = (y * W + x) * 4;
+          d[i] = d[i] * 0.72; d[i + 1] = d[i + 1] * 0.72; d[i + 2] = d[i + 2] * 0.72;
+        }
+      }
+      g.putImageData(img, 0, 0);
+      return c;
+    };
+
+    const updatePoses = () => {
+      for (const it of items) {
+        if (it.type === 'leafy') {
+          for (const c of it.clumps) {
+            const wx = it.cx + c.dx;
+            const amp = it.push * c.w * (breeze(wx) + gustAt(wx));
+            const ph = (((t / 1.54 - wx / 69) % 1) + 1) % 1;
+            c.ox = Math.max(-4, Math.min(5, Math.round(amp * (0.5 - 0.5 * Math.cos(TAU * ph)) + it.lean * c.hf)));
+            c.oy = Math.round(-amp * 0.5 * Math.max(0, Math.sin(TAU * ph)));
+          }
+        } else if (it.type === 'pine') {
+          for (const tr of it.tiers) {
+            const wx = it.cx;
+            const amp = it.push * 0.35 * tr.w * (breeze(wx) + gustAt(wx));
+            const ph = (((t / 1.54 - wx / 69 - tr.hf * 0.15) % 1) + 1) % 1;
+            tr.ox = Math.round(amp * (0.5 - 0.5 * Math.cos(TAU * ph)) + it.lean * it.bend * Math.pow(tr.hf, 1.6));
+            tr.oy = Math.round(-amp * 0.3 * Math.max(0, Math.sin(TAU * ph)));
+          }
+        } else {
+          const ph = (((t / 1.54 - it.x / 69) % 1) + 1) % 1;
+          it.amp = 1.6 * (breeze(it.x) + gustAt(it.x)) * (0.5 - 0.5 * Math.cos(TAU * ph));
+        }
+      }
+    };
+
+    const springs = (dt) => {
+      let moving = false;
+      for (const it of items) {
+        if (it.type === 'grass') continue;
+        const target = it.push * gustAt(it.cx) * 1.2;
+        const acc = it.k * (target - it.lean) - it.c * it.vel;
+        it.vel += acc * dt; it.lean += it.vel * dt;
+        if (Math.abs(it.lean) > 0.05 || Math.abs(it.vel) > 0.05) moving = true;
+      }
+      return moving;
+    };
+
+    const draw = () => {
+      ctx.drawImage(bg, 0, 0);
+      for (const c of clouds) {
+        const span = W + 80;
+        const x = Math.round((((c.x + t * c.v) % span) + span) % span - 40);
+        ctx.drawImage(c.sp, x, c.y);
+      }
+      for (const it of items) {
+        if (it.type === 'leafy') {
+          ctx.drawImage(it.st, it.sx, it.sy);
+          for (const c of it.clumps) ctx.drawImage(c.sp.front, it.cx + c.dx - c.sp.half + c.ox, it.cy + c.dy - c.sp.half + c.oy);
+        } else if (it.type === 'pine') {
+          const x0 = it.cx - (it.tw >> 1);
+          for (let y = it.baseY; y >= it.trunkTop; y--) {
+            const f = (it.baseY - y) / it.Ht;
+            const off = Math.round(it.lean * it.bend * Math.pow(f, 1.6));
+            for (let k = 0; k < it.tw; k++) {
+              ctx.fillStyle = it.bark[k === 0 ? 2 : k === it.tw - 1 ? 0 : 1];
+              ctx.fillRect(x0 + k + off, y, 1, 1);
+            }
+          }
+          for (const tr of it.tiers) ctx.drawImage(tr.sp.front, it.cx + tr.ox - tr.sp.half, tr.top - 1 + tr.oy);
+        } else {
+          for (const b of it.blades) {
+            ctx.fillStyle = b.col;
+            for (let j = 0; j < b.h; j++) {
+              const shift = Math.round(it.amp * b.flex * Math.pow(j / b.h, 1.5));
+              ctx.fillRect(it.x + b.x + shift, it.baseY - j, 1, 1);
+            }
+          }
+        }
+      }
+    };
+
+    const frame = (now) => {
+      raf = 0;
+      if (!E.alive || !E.visible) return;
+      const dt = lastT ? Math.min(0.05, (now - lastT) / 1000) : 0.016;
+      lastT = now;
+      t += dt;
+      const moving = springs(dt);
+      tickAcc += dt;
+      if (tickAcc >= 0.1) {
+        tickAcc = tickAcc % 0.1;
+        extra = extra.filter((q) => q.x0 + (t - q.t0) * q.v < W + 220);
+        updatePoses();
+        draw();
+      }
+      if (E.on || moving) raf = requestAnimationFrame(frame);
+      else { updatePoses(); draw(); }
+    };
+    const start = () => { if (!raf && E.alive && E.visible) { lastT = 0; raf = requestAnimationFrame(frame); } };
+
+    const layout = () => {
+      const cw = wrap.clientWidth || 800;
+      const s = cw >= 1100 ? 4 : cw >= 640 ? 3 : 2;
+      const w = Math.ceil(cw / s);
+      if (w === W && s === S && bg) return;
+      S = s; W = w;
+      cv.width = W; cv.height = H;
+      cv.style.width = (W * S) + 'px';
+      cv.style.height = (H * S) + 'px';
+      cv.style.flex = '0 0 auto';
+      ctx.imageSmoothingEnabled = false;
+      const rand = rng(20261114);
+      place(rand);
+      bg = buildBg(rand);
+      updatePoses();
+      draw();
+      start();
+    };
+
+    let rt = 0;
+    const onResize = () => { clearTimeout(rt); rt = setTimeout(layout, 150); };
+    window.addEventListener('resize', onResize);
+    const onVis = () => { E.visible = !document.hidden; if (E.visible) start(); };
+    document.addEventListener('visibilitychange', onVis);
+    let io = null;
+    if (window.IntersectionObserver) {
+      io = new IntersectionObserver((ents) => { E.visible = ents[0].isIntersecting && !document.hidden; if (E.visible) start(); });
+      io.observe(cv);
+    }
+    layout();
+
+    return {
+      isOn: () => E.on,
+      scale: () => S,
+      setWind: (on) => { E.on = on; start(); },
+      gust: (x) => { extra.push({ t0: t, x0: x - 30, v: 75, k: 1.4, w: 55 }); E.on = true; start(); },
+      stop: () => {
+        E.alive = false;
+        if (raf) cancelAnimationFrame(raf);
+        window.removeEventListener('resize', onResize);
+        document.removeEventListener('visibilitychange', onVis);
+        if (io) io.disconnect();
+        clearTimeout(rt);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
