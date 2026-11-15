@@ -50,6 +50,9 @@ h1{color:var(--accent)}
 .shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 12px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
 .shot{flex:0 0 clamp(190px,46vw,240px);margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
 .shot img{width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#BFD9EE}
+.film{margin:0 0 22px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.film video{width:min(100%,300px);height:auto;aspect-ratio:540/1170;border-radius:26px;background:#2A5E8C;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2)}
+.film figcaption{font-size:14px;color:var(--muted);text-align:center}
 .shot figcaption{font-size:14px;color:var(--muted);text-align:center}
 .build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
 .stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
@@ -117,12 +120,16 @@ h1{color:var(--accent)}
 <section class="section" aria-labelledby="ekranlar">
 <div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
 <h2 id="ekranlar">Uygulamadan kareler</h2>
+<figure class="film"><video src="media/cozycamp-tanitim.mp4" poster="media/cozycamp-tanitim.webp" width="540" height="1170" muted loop playsinline controls preload="none" aria-label="Cozy Camp tanıtım videosu, 23 saniye: kamp, günlük yazma, dostlar, adalar ve mola ekranları."></video><figcaption>23 saniyelik tanıtım. Ses için videonun kontrollerini kullan.</figcaption></figure>
 <div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
-<figure class="shot"><img src="img/cozy-kamp.webp" width="600" height="1047" loading="lazy" alt="Kamp ekranı: gökyüzünde süzülen low-poly Göl Adası; çadır, kamp ateşi, iki gölet ve iskele. Üstte ada görevleri, 20 günlük seri ve odun sayısı."><figcaption>Kampın</figcaption></figure>
-<figure class="shot"><img src="img/cozy-gunluk.webp" width="600" height="1047" loading="lazy" alt="Günlük yazma ekranı: 'Bugün aklında ne kaldı?' sorusu, 'Bugün kendime küçük bir an ayırdım.' satırı, günün aurası seçenekleri ve Kaydet düğmesi."><figcaption>Bir satır yaz</figcaption></figure>
-<figure class="shot"><img src="img/cozy-mola.webp" width="600" height="1047" loading="lazy" alt="Mola ekranı: koyu yeşil zemin üzerinde 25:00 sayaç ve küçük kamp adası, altta 'Biraz yavaşla.' kartı ile süre seçenekleri."><figcaption>Mola</figcaption></figure>
-<figure class="shot"><img src="img/cozy-takimada.webp" width="600" height="1047" loading="lazy" alt="Takımada ekranı: 'Yaşadığın her ada, hatıralarıyla birlikte burada.' başlığı, Göl Adası kartı ve sırada bekleyen yeni ada."><figcaption>Takımada</figcaption></figure>
+<figure class="shot"><img src="img/cozy-kamp.webp" width="600" height="1304" loading="lazy" alt="Kamp ekranı: gökyüzünde süzülen low-poly Çam Koyu adası; deniz feneri, çadır ve ağaçlar. Üstte ada görevleri, 20 günlük seri ve odun sayısı, altta Bugün yaz düğmesi."><figcaption>Kampın</figcaption></figure>
+<figure class="shot"><img src="img/cozy-dostlar.webp" width="600" height="1304" loading="lazy" alt="Kamp Yaşamı ekranı: Sincap adlı dostun kartı, adada tavşan, ördek ve sincap; Selam ver, Sev, Oyna düğmeleri ve günün dileği."><figcaption>Dostlar</figcaption></figure>
+<figure class="shot"><img src="img/cozy-mola.webp" width="600" height="1304" loading="lazy" alt="Mola ekranı: deniz feneri olan küçük adanın üstünde 25:00 sayaç, Molaya başla düğmesi ve 10, 25, 45 dakikalık süre seçenekleri."><figcaption>Fenerin ışığında mola</figcaption></figure>
+<figure class="shot"><img src="img/cozy-takimada.webp" width="600" height="1304" loading="lazy" alt="Takımada ekranı: denizde birbirinden uzak küçük adalar ve aralarında giden bir tekne; altta Çam Koyu kartı ve sıradaki Kış Işıkları şenliği."><figcaption>Takımada</figcaption></figure>
+<figure class="shot"><img src="img/cozy-kartpostal.webp" width="600" height="1304" loading="lazy" alt="Kartpostal ekranı: Çam Koyu adasının çizimi, pul ve tarih; 7 yazılan gün, 0 dakika odak, 2 dost bilgisi ve Paylaş düğmesi."><figcaption>Ada kartpostalı</figcaption></figure>
+<figure class="shot"><img src="img/cozy-widget.webp" width="600" height="1304" loading="lazy" alt="Widget seçim ekranı: kampın ve gün sayısını gösteren küçük widget, kampın geniş widget ve dostlarla etkileşim widget örnekleri."><figcaption>Widgetlar</figcaption></figure>
 </div>
+<p class="note" style="margin-top:10px">Görüntüler ve video 1.2 "Kamp Yaşamı" sürümünden.</p>
 </section>
 
 <section class="section" aria-labelledby="hikaye">

@@ -86,7 +86,7 @@ html = f'''<!DOCTYPE html>
 <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta" id="c-cta">Projeye git{ARROW_UP}</a><span class="cta cta-soon" id="c-soon" hidden>Yakında</span><button type="button" class="cta cta-ghost" id="c-next"><span id="c-next-lbl"></span>{ARROW_R}</button></div>
 </div>
 <div id="c-about" hidden style="flex-direction:column;gap:inherit">
-<p class="card-desc">Uygulamalar, oyunlar ve küçük dijital dünyalar tasarlayıp geliştiriyorum. Ormanda yürü, her durakta biri seni bekliyor.</p>
+<p class="card-desc">Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.</p>
 <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="hakkimda.html" class="cta">Beni tanı</a><button type="button" class="cta" id="go-first" style="background:transparent;color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)">İlk projeye yürü{ARROW_R}</button></div>
 </div>
 <div id="c-contact" hidden style="flex-direction:column;gap:inherit">

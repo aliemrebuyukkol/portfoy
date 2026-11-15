@@ -19,9 +19,10 @@ docs/                  Yayınlanan site (GitHub Pages bu klasörden yayınlayabi
   index.html           Orman (ana sayfa)
   hakkimda.html        Hakkımda
   cozycamp.html        Cozy Camp proje sayfası
-  sucustu.html         SUÇÜSTÜ! Deniz Devriyesi proje sayfası
+  sucustu.html         SUÇÜSTÜ! proje sayfası (3D sürüm)
   hosgeldiniz.html     Hoşgeldiniz Efendim proje sayfası
   muchineko.html       Muchineko proje sayfası
+  media/               Cozy Camp tanıtım videosu
   img/                 Proje ekran görüntüleri (webp)
   engine.js            Orman motoru (üretilir, elle düzenleme)
   site.css             Alt sayfaların ortak stili
@@ -63,6 +64,7 @@ Sitede yer tutucu kalmadı. Açık işler:
 
 - Pati Kulaç proje sayfası (oyun erken prototip aşamasında, sanatı henüz taslak; kartta "Yakında" yazıyor)
 - Suçüstü App Store'da yayımlanınca sayfadaki TestFlight notunun yerine mağaza bağlantısı
+- Suçüstü 3D için kısa oynanış videosu (projede henüz kayıt yok)
 - Muchineko App Store'a çıkınca gizlilik ve destek bağlantıları
 - İstenirse proje sayfalarına kişisel "neden yaptım" notları
 

@@ -136,7 +136,7 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 </div>
 </sc-if>
 <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
-<p class="card-desc">Uygulamalar, oyunlar ve küçük dijital dünyalar tasarlayıp geliştiriyorum. Ormanda yürü, her durakta biri seni bekliyor.</p>
+<p class="card-desc">Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.</p>
 <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap">
 <a href="hakkimda.html" class="cta">Beni tanı</a>
 <button type="button" class="cta" style="background: transparent; color: #F3ECDD; box-shadow: inset 0 0 0 1px rgba(243,236,221,.4)" onClick="{{ goFirst }}">İlk projeye yürü<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></button>
@@ -177,7 +177,7 @@ class Component extends DCLogic {
   zones = [
     { type: 'about', name: 'Kulübe', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', eyebrow: 'HAKKIMDA', say: 'Hoş geldin! Ormanda beş proje saklı.' },
     { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', say: 'Otur, bir çay iç. Acele yok.' },
-    { type: 'project', name: 'Suçüstü', kind: 'OYUN', href: 'sucustu.html', desc: 'Denizde dikkat oyunu: kabarcığın ya da çöpün sahibini iki saniyede bul.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
+    { type: 'project', name: 'Suçüstü', kind: 'OYUN', href: 'sucustu.html', desc: 'Oyuncak görünümlü 3D bir sahilde dikkat oyunu: kanıt yer değiştirir ama sahibi değişmez. Gerçek faili bul.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
     { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', say: 'Hoş geldiniz efendim! Çayınız taze.' },
     { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
     { type: 'project', name: 'Muchineko', kind: 'OYUN', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
