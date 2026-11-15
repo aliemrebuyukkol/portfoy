@@ -30,10 +30,19 @@ html = f'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#141A30">
 <title>Ali Emre Büyükkol — Portföy ormanı</title>
-<meta name="description" content="Ali Emre Büyükkol'un portföyü: piksel bir ormanda yürü; Cozy Camp, Muchineko, Pati Kulaç ve Suçüstü projelerini keşfet.">
+<meta name="description" content="Ali Emre Büyükkol'un portföyü: piksel bir ormanda yürü; Cozy Camp, Suçüstü, Hoşgeldiniz Efendim, Pati Kulaç ve Muchineko projelerini keşfet.">
 <meta property="og:title" content="Büyükkol — Portföy ormanı">
 <meta property="og:description" content="Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://aliemrebuyukkol.github.io/portfoy/">
+<meta property="og:url" content="https://aliemrebuyukkol.github.io/portfoy/">
+<meta property="og:site_name" content="Büyükkol">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://aliemrebuyukkol.github.io/portfoy/img/og-orman.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Piksel bir ormanda kulübe, kamp ateşi ve fener taşıyan gezgin; Büyükkol portföy ormanı yazısı.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">

@@ -23,6 +23,8 @@ docs/                  Yayınlanan site (GitHub Pages bu klasörden yayınlayabi
   hosgeldiniz.html     Hoşgeldiniz Efendim proje sayfası
   muchineko.html       Muchineko proje sayfası
   media/               Cozy Camp tanıtım videosu
+  404.html             Kayıp patika sayfası (GitHub Pages kendiliğinden kullanır)
+  sitemap.xml, robots.txt  Arama motorları için
   img/                 Proje ekran görüntüleri (webp)
   engine.js            Orman motoru (üretilir, elle düzenleme)
   site.css             Alt sayfaların ortak stili
@@ -57,6 +59,17 @@ cd docs && python3 -m http.server 8000
 1. Depo ayarları > Pages > Source: `main` dalı, `/docs` klasörü.
 2. Alan adı alındığında: Pages > Custom domain alanına `buyukkol.com` yaz (GitHub `docs/CNAME` dosyasını kendisi ekler).
 3. Alan adı sağlayıcısında GitHub Pages'in DNS kayıtlarını tanımla ve "Enforce HTTPS"i aç.
+
+## Alan adına geçerken
+
+Paylaşım kartları (`og:image`), `canonical` bağlantıları, `sitemap.xml` ve `robots.txt` şimdilik `https://aliemrebuyukkol.github.io/portfoy/` adresini gösteriyor. buyukkol.com bağlandığında bu adresi tek seferde değiştir:
+
+```
+grep -rl "aliemrebuyukkol.github.io/portfoy" docs build_standalone.py | xargs sed -i '' 's#https://aliemrebuyukkol.github.io/portfoy/#https://buyukkol.com/#g'
+python3 build_standalone.py
+```
+
+`robots.txt` yalnız alan adının kökünde çalışır; github.io alt yolunda etkisizdir, buyukkol.com'da devreye girer. Paylaşım kartı görselleri `docs/img/og-*.jpg`; ormanın kendi sahnelerinden üretildi.
 
 ## Henüz eksik olanlar
 
