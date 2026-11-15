@@ -53,6 +53,9 @@ h1{color:var(--accent)}
 .shot{flex:0 0 clamp(190px,46vw,240px);margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
 .shot img{width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#F4EFE6}
 .shot figcaption{font-size:14px;color:var(--muted);text-align:center}
+.film{margin:0 0 22px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.film video{width:min(100%,320px);height:auto;aspect-ratio:528/642;border-radius:22px;background:#0E1222;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2)}
+.film figcaption{font-size:14px;color:var(--muted);text-align:center}
 .build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
 .stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
 .stat b{display:block;font-family:var(--display);font-size:24px}
@@ -118,13 +121,16 @@ h1{color:var(--accent)}
 <section class="section" aria-labelledby="ekranlar">
 <div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
 <h2 id="ekranlar">Oyundan kareler</h2>
+<figure class="film"><video src="media/sucustu-fizik.mp4" poster="media/sucustu-fizik.webp" width="528" height="642" muted loop playsinline controls preload="none" aria-label="Suçüstü 3D fizik sekansları: rüzgârla sürüklenen gaz bulutu ve atılan şişeyi başkasına taşıyan köpek."></video><figcaption>3D fizik motorundan iki sekans: rüzgârla sürüklenen gaz bulutu ve şişeyi başkasına taşıyan köpek.</figcaption></figure>
 <div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
 <figure class="shot"><img src="img/sucustu-oyun.webp" width="600" height="1304" loading="lazy" alt="Festival Meydanı bölümü: yeşil çimenlerin üstünde kuş bakışı oyuncak görünümlü kalabalık, ortada toprak yol ve ağaçlar."><figcaption>Festival Meydanı</figcaption></figure>
 <figure class="shot"><img src="img/sucustu-ana.webp" width="600" height="1304" loading="lazy" alt="Ana ekran: Güverte Gözcüsü rütbesi, Bölge 5 Fırtına Mevsimi'nden Rüzgâr Kıran bölümü, zorluk seçimi, Devriyeye çık düğmesi ve günlük görevler."><figcaption>Ana ekran</figcaption></figure>
 <figure class="shot"><img src="img/sucustu-gece.webp" width="600" height="1304" loading="lazy" alt="Havai Fişek Gecesi: koyu denizin ortasında ahşap iskele, üstünde kalabalık ve kırmızı bir uyarı etiketi."><figcaption>Havai Fişek Gecesi</figcaption></figure>
 <figure class="shot"><img src="img/sucustu-tekne.webp" width="600" height="1304" loading="lazy" alt="Çalkantı bölümü: denizde yalpalayan tekne güvertesinde toplanmış kalabalık ve +190 puan yazısı."><figcaption>Tekne: Çalkantı</figcaption></figure>
+<figure class="shot"><img src="img/sucustu-iskele.webp" width="505" height="900" loading="lazy" alt="İskele Pazarı bölümü: çizgili tenteli tezgâhlar, ahşap kasalar ve ahşap iskele üzerinde koşan kalabalık."><figcaption>İskele Pazarı</figcaption></figure>
 <figure class="shot"><img src="img/sucustu-harita.webp" width="600" height="1304" loading="lazy" alt="Harita: Fırtına Mevsimi bölümleri, kilitli Gece Nöbeti, Hayvanat Kaosu, Kış Sahili, Büyük Kalabalık ve Son Devriye bölgeleri."><figcaption>Bölge haritası</figcaption></figure>
 <figure class="shot"><img src="img/sucustu-koleksiyon.webp" width="600" height="1304" loading="lazy" alt="Koleksiyon: Klasik, Konfeti, Yıldız yağmuru, Kalpler gibi yakalama efektleri."><figcaption>Koleksiyon</figcaption></figure>
+<figure class="shot"><img src="img/sucustu-paylasim.webp" width="600" height="750" loading="lazy" alt="SUÇÜSTÜ! bölüm sonu paylaşım kartı: Rüzgârlı Park, 2045 puan, 10/10 yakalanan ve 0 yanlış ihbar ustalık rozeti."><figcaption>Bölüm sonu devriye kartı</figcaption></figure>
 </div>
 </section>
 
@@ -163,6 +169,7 @@ h1{color:var(--accent)}
 
 <script src="engine.js"></script>
 <script src="lightbox.js" defer></script>
+<script src="i18n.js" defer></script>
 <script>
 "use strict";
 (function () {

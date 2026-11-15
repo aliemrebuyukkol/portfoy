@@ -48,6 +48,8 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 .bubble{position:absolute;left:0;top:0;max-width:220px;padding:10px 12px;border-radius:3px;background:#F3ECDD;color:#141A30;font-family:'Pixelify Sans',monospace;font-size:15px;line-height:1.3;opacity:0;pointer-events:none;transition:opacity .25s ease;box-shadow:0 3px 0 rgba(14,16,30,.35);width:max-content}
 .bubble:after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-6px;border:6px solid transparent;border-top-color:#F3ECDD;border-bottom:0}
 .intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,3vh,22px);padding:calc(24px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));text-align:center;background:rgba(14,16,30,.55)}
+.intro-lang{position:absolute;top:calc(14px + env(safe-area-inset-top));right:calc(clamp(12px,3vw,32px) + env(safe-area-inset-right));font-family:'Pixelify Sans',monospace;font-weight:600;letter-spacing:.08em}
+.lang-code{font-family:'Pixelify Sans',monospace;font-weight:600;letter-spacing:.08em}
 .intro h1{margin:0;font-family:'Pixelify Sans',monospace;font-weight:600;font-size:clamp(44px,min(12vw,16vh),128px);letter-spacing:.04em;line-height:.9;color:#F3ECDD;text-shadow:0 6px 0 rgba(14,16,30,.55)}
 .intro-btn{min-height:52px;padding:0 26px;border:0;border-radius:3px;font-family:Inter,sans-serif;font-weight:600;font-size:16px;cursor:pointer}
 .intro-p{background:#F6B26B;color:#141A30}.intro-p:hover{background:#FFC98C}
@@ -95,14 +97,15 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 
 <sc-if value="{{ intro }}" hint-placeholder-val="{{ true }}">
 <section class="intro" aria-label="Başlangıç">
-<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 15px; letter-spacing: 0.14em; color: #F6B26B">BİR PORTFÖY ORMANI</p>
+<button type="button" class="hud-btn intro-lang" onClick="{{ toggleLang }}" aria-label="{{ langAria }}">{{ langBtn }}</button>
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 15px; letter-spacing: 0.14em; color: #F6B26B">{{ introEyebrow }}</p>
 <h1>BÜYÜKKOL</h1>
-<p style="margin: 0; max-width: 34ch; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.5; color: #E4DDEC">Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.</p>
+<p style="margin: 0; max-width: 34ch; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.5; color: #E4DDEC">{{ introDesc }}</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center">
-<button type="button" class="intro-btn intro-p" onClick="{{ enterSound }}">Sesle gir</button>
-<button type="button" class="intro-btn intro-g" onClick="{{ enterQuiet }}">Sessiz gir</button>
+<button type="button" class="intro-btn intro-p" onClick="{{ enterSound }}">{{ enterSoundLbl }}</button>
+<button type="button" class="intro-btn intro-g" onClick="{{ enterQuiet }}">{{ enterQuietLbl }}</button>
 </div>
-<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B9B3CC"><span class="keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA</span><span class="touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B9B3CC"><span class="keys">{{ introKeys }}</span><span class="touch">{{ introTouch }}</span></p>
 </section>
 </sc-if>
 
@@ -110,12 +113,13 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <header class="top">
 <div style="display: flex; flex-direction: column; gap: 0">
 <a href="#" class="logo" onClick="{{ goAbout }}">BÜYÜKKOL</a>
-<span class="tagline" style="font-size: 14px; color: #D9D2E6; text-shadow: 0 1px 0 rgba(14,16,30,.8)">Ormanda dolaş, her köşede başka bir proje var.</span>
+<span class="tagline" style="font-size: 14px; color: #D9D2E6; text-shadow: 0 1px 0 rgba(14,16,30,.8)">{{ tagline }}</span>
 </div>
 <div style="display: flex; gap: 8px">
 <button type="button" class="hud-btn" onClick="{{ toggleSound }}" aria-pressed="{{ soundPressed }}" aria-label="{{ soundLabel }}"><sc-if value="{{ sound }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></sc-if><sc-if value="{{ mute }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></sc-if><span class="lbl">{{ soundLabel }}</span></button>
-<button type="button" class="hud-btn" onClick="{{ goAbout }}" aria-label="Hakkımda"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 15.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span class="lbl">Hakkımda</span></button>
-<button type="button" class="hud-btn" onClick="{{ goContact }}" aria-label="İletişim"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.6"></rect><path d="m2.5 5 6.5 5 6.5-5" stroke="currentColor" stroke-width="1.6"></path></svg><span class="lbl">İletişim</span></button>
+<button type="button" class="hud-btn" onClick="{{ goAbout }}" aria-label="{{ aboutLabel }}"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 15.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span class="lbl">{{ aboutLabel }}</span></button>
+<button type="button" class="hud-btn" onClick="{{ goContact }}" aria-label="{{ contactLabel }}"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.6"></rect><path d="m2.5 5 6.5 5 6.5-5" stroke="currentColor" stroke-width="1.6"></path></svg><span class="lbl">{{ contactLabel }}</span></button>
+<button type="button" class="hud-btn lang-code" onClick="{{ toggleLang }}" aria-label="{{ langAria }}">{{ langBtn }}</button>
 </div>
 </header>
 
@@ -130,16 +134,16 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <sc-if value="{{ hasDesc }}" hint-placeholder-val="{{ false }}"><p class="card-desc">{{ pDesc }}</p></sc-if>
 <sc-if value="{{ noDesc }}" hint-placeholder-val="{{ true }}"><p class="card-desc"><span class="ph">[Tek cümlelik proje açıklaması]</span></p></sc-if>
 <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap">
-<sc-if value="{{ hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ pHref }}" target="{{ pTarget }}" rel="{{ pRel }}" class="cta">Projeye git<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></a></sc-if>
-<sc-if value="{{ noHref }}" hint-placeholder-val="{{ false }}"><span class="cta cta-soon">Yakında</span></sc-if>
+<sc-if value="{{ hasHref }}" hint-placeholder-val="{{ true }}"><a href="{{ pHref }}" target="{{ pTarget }}" rel="{{ pRel }}" class="cta">{{ goProjLbl }}<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></a></sc-if>
+<sc-if value="{{ noHref }}" hint-placeholder-val="{{ false }}"><span class="cta cta-soon">{{ soonLbl }}</span></sc-if>
 <button type="button" class="cta cta-ghost" onClick="{{ goNext }}">{{ nextLabel }}<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></button>
 </div>
 </sc-if>
 <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
-<p class="card-desc">Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.</p>
+<p class="card-desc">{{ aboutDesc }}</p>
 <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap">
-<a href="hakkimda.html" class="cta">Beni tanı</a>
-<button type="button" class="cta" style="background: transparent; color: #F3ECDD; box-shadow: inset 0 0 0 1px rgba(243,236,221,.4)" onClick="{{ goFirst }}">İlk projeye yürü<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></button>
+<a href="hakkimda.html" class="cta">{{ knowMeLbl }}</a>
+<button type="button" class="cta" style="background: transparent; color: #F3ECDD; box-shadow: inset 0 0 0 1px rgba(243,236,221,.4)" onClick="{{ goFirst }}">{{ firstProjLbl }}<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"></path></svg></button>
 </div>
 </sc-if>
 <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
@@ -147,7 +151,7 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <a href="mailto:aliemrebuyukkol@gmail.com">aliemrebuyukkol@gmail.com</a>
 <a href="https://github.com/aliemrebuyukkol" target="_blank" rel="noopener">GitHub</a>
 </div>
-<div style="display: flex; gap: 8px; flex-wrap: wrap"><a href="mailto:aliemrebuyukkol@gmail.com" class="cta">Mektup yaz</a><button type="button" class="cta cta-ghost" onClick="{{ goHome }}">Başa dön</button></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><a href="mailto:aliemrebuyukkol@gmail.com" class="cta">{{ writeMailLbl }}</a><button type="button" class="cta cta-ghost" onClick="{{ copyMail }}">{{ copyLbl }}</button><button type="button" class="cta cta-ghost" onClick="{{ goHome }}">{{ homeLbl }}</button></div>
 </sc-if>
 </section>
 
@@ -168,20 +172,22 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
-  state = { zone: 0, sound: false, intro: true, seen: this.loadSeen() };
+  state = { zone: 0, sound: false, intro: true, seen: this.loadSeen(), lang: this.loadLang(), copied: false };
+  loadLang() { try { return window.localStorage.getItem('buyukkol.lang') === 'en' ? 'en' : 'tr'; } catch (e) { return 'tr'; } }
+  saveLang(lang) { try { window.localStorage.setItem('buyukkol.lang', lang); } catch (e) {} }
   loadSeen() { try { const v = JSON.parse(window.localStorage.getItem('buyukkol.seen.v2') || '[]'); return Array.isArray(v) ? v.filter((n) => Number.isInteger(n) && n >= 1 && n <= 5) : []; } catch (e) { return []; } }
   saveSeen(seen) { try { window.localStorage.setItem('buyukkol.seen.v2', JSON.stringify(seen)); } catch (e) { /* depolama yoksa sessizce geç */ } }
   game = null;
   bubbleEl = null;
 
   zones = [
-    { type: 'about', name: 'Kulübe', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', eyebrow: 'HAKKIMDA', say: 'Hoş geldin! Ormanda beş proje saklı.' },
-    { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', say: 'Otur, bir çay iç. Acele yok.' },
-    { type: 'project', name: 'Suçüstü', kind: 'OYUN', href: 'sucustu.html', desc: 'Oyuncak görünümlü 3D bir sahilde dikkat oyunu: kanıt yer değiştirir ama sahibi değişmez. Gerçek faili bul.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
-    { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', say: 'Hoş geldiniz efendim! Çayınız taze.' },
-    { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', href: 'patikulac.html', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
-    { type: 'project', name: 'Muchineko', kind: 'OYUN', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
-    { type: 'contact', name: 'Posta kutusu', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', eyebrow: 'İLETİŞİM', say: 'Mektubunu bekliyorum.' }
+    { type: 'about', name: 'Kulübe', nameEn: 'Cabin', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', vibeEn: 'The cabin at the edge of the woods. This is where I live.', eyebrow: 'HAKKIMDA', eyebrowEn: 'ABOUT', say: 'Hoş geldin! Ormanda beş proje saklı.', sayEn: 'Welcome! Five projects are hidden in the woods.' },
+    { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', kindEn: 'APP', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', descEn: 'A journal and focus app: write a few lines, spark your fire, and grow your camp.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', vibeEn: 'The campfire crackles, the kettle steams, and the monk counts his breath.', say: 'Otur, bir çay iç. Acele yok.', sayEn: 'Sit down, have some tea. No rush.' },
+    { type: 'project', name: 'Suçüstü', kind: 'OYUN', kindEn: 'GAME', href: 'sucustu.html', desc: 'Oyuncak görünümlü 3D bir sahilde dikkat oyunu: kanıt yer değiştirir ama sahibi değişmez. Gerçek faili bul.', descEn: 'A 3D beach observation game: evidence drifts with physics, but its owner never changes. Spot the culprit.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', vibeEn: 'Dancers on the floor drop litter, then sweep it up in rhythm.', say: 'Attım ama süpürüyorum, söz!', sayEn: 'I dropped it, but I am sweeping it up!' },
+    { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', kindEn: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', descEn: 'A living isometric web archipelago where Turkey\'s cult viral videos inhabit miniature islands.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', vibeEn: 'The samovar steams, the tea server makes the rounds, and cult clips play on an old TV.', say: 'Hoş geldiniz efendim! Çayınız taze.', sayEn: 'Welcome aboard! Fresh tea is ready.' },
+    { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', kindEn: 'GAME', href: 'patikulac.html', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', descEn: 'A 3D cat swimming race with a sports-broadcast feel that turns finger rhythm into paw strokes. In internal testing.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', vibeEn: 'Cats swimming laps in the pond while the lifeguard cat watches from the chair.', say: 'Koşmak yok, kulaç var!', sayEn: 'No running—just paddling!' },
+    { type: 'project', name: 'Muchineko', kind: 'OYUN', kindEn: 'GAME', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', descEn: 'A horizontal iPhone runner across ink-and-cream-paper rooftops with Mochi and Sumi. In internal testing.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', vibeEn: 'Cats napping and chasing butterflies beneath a blooming tree.', say: 'Miyav. Burada herkes biraz tembel.', sayEn: 'Meow. Everyone is a bit lazy here.' },
+    { type: 'contact', name: 'Posta kutusu', nameEn: 'Mailbox', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', vibeEn: 'The end of the woods. Leave a letter and I will read it.', eyebrow: 'İLETİŞİM', eyebrowEn: 'CONTACT', say: 'Mektubunu bekliyorum.', sayEn: 'Waiting for your letter.' }
   ];
 
   setCanvas = (el) => {
@@ -263,35 +269,70 @@ class Component extends DCLogic {
   }
   enterSound = () => this.enter(true);
   enterQuiet = () => this.enter(false);
+  toggleLang = () => { const nl = this.state.lang === 'en' ? 'tr' : 'en'; this.saveLang(nl); this.setState({ lang: nl }); };
+  copyTimer = 0;
+  copyMail = () => {
+    const email = 'aliemrebuyukkol@gmail.com';
+    const done = () => { this.setState({ copied: true }); clearTimeout(this.copyTimer); this.copyTimer = setTimeout(() => this.setState({ copied: false }), 2000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(done).catch(done);
+    else done();
+  };
 
   renderVals() {
+    const en = this.state.lang === 'en';
     const z = this.state.zone, p = this.zones[z], found = this.state.seen.length;
     let pi = 0;
     const chips = [];
     this.zones.forEach((q, i) => {
       if (q.type !== 'project') return;
       chips.push({
-        name: q.name, color: q.color, seen: this.state.seen.indexOf(i) >= 0,
+        name: (en && q.nameEn) ? q.nameEn : q.name, color: q.color, seen: this.state.seen.indexOf(i) >= 0,
         cls: 'chip' + (i === z ? ' on' : ''), pressed: i === z ? 'true' : 'false',
         go: () => { if (this.game) this.game.go(i); }
       });
       if (i <= z) pi = chips.length;
     });
+    const nextZone = this.zones[z + 1];
+    const nextName = nextZone ? (nextZone.type === 'contact' ? (en ? 'Contact' : 'İletişim') : ((en && nextZone.nameEn) ? nextZone.nameEn : nextZone.name)) : '';
     return {
       setCanvas: this.setCanvas, setBubble: this.setBubble, setChips: this.setChips, setCard: this.setCard, onDown: this.onDown, onUp: this.onUp, onCancel: this.onCancel, onKey: this.onKey,
       sound: this.state.sound, mute: !this.state.sound, onKeyUp: this.onKeyUp, onBlur: this.onBlur,
       prev: this.prev, next: this.next, toggleSound: this.toggleSound, goAbout: this.goAbout, goContact: this.goContact, goFirst: this.goFirst,
-      enterSound: this.enterSound, enterQuiet: this.enterQuiet,
+      enterSound: this.enterSound, enterQuiet: this.enterQuiet, toggleLang: this.toggleLang, copyMail: this.copyMail,
       intro: this.state.intro, hud: !this.state.intro,
       rootCls: this.state.intro ? 'root is-intro' : 'root',
-      soundLabel: this.state.sound ? 'Sesi kapat' : 'Ambiyansı aç',
+      langBtn: en ? 'TR' : 'EN',
+      langAria: en ? 'Türkçeye geç' : 'Switch to English',
+      introEyebrow: en ? 'A PORTFOLIO FOREST' : 'BİR PORTFÖY ORMANI',
+      introDesc: en ? 'Grab your lantern, walk the woods. Every clearing holds a different project and mood.' : 'Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.',
+      enterSoundLbl: en ? 'Enter with sound' : 'Sesle gir',
+      enterQuietLbl: en ? 'Enter quietly' : 'Sessiz gir',
+      introKeys: en ? '← → TO WALK · TAP TO MOVE · 1–5 JUMP TO PROJECT' : '← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA',
+      introTouch: en ? 'TAP TO MOVE · SWIPE, NEXT PROJECT' : 'DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE',
+      tagline: en ? 'Wander the woods, every corner holds a project.' : 'Ormanda dolaş, her köşede başka bir proje var.',
+      aboutLabel: en ? 'About' : 'Hakkımda',
+      contactLabel: en ? 'Contact' : 'İletişim',
+      soundLabel: this.state.sound ? (en ? 'Mute sound' : 'Sesi kapat') : (en ? 'Enable sound' : 'Ambiyansı aç'),
       soundPressed: this.state.sound ? 'true' : 'false',
-      pName: p.name, pVibe: p.vibe, pColor: p.color, pHref: p.href || '#', hasHref: !!p.href, noHref: !p.href, pDesc: p.desc || '', hasDesc: !!p.desc, noDesc: !p.desc,
-      pEyebrow: p.type === 'project' ? 'PROJE ' + pi + ' / ' + this.projCount() + (p.kind ? ' · ' + p.kind : '') : p.eyebrow,
+      pName: (en && p.nameEn) ? p.nameEn : p.name,
+      pVibe: (en && p.vibeEn) ? p.vibeEn : p.vibe,
+      pColor: p.color, pHref: p.href || '#', hasHref: !!p.href, noHref: !p.href,
+      pDesc: (en && p.descEn) ? p.descEn : (p.desc || ''), hasDesc: !!p.desc, noDesc: !p.desc,
+      pEyebrow: p.type === 'project' ? (en ? 'PROJECT ' : 'PROJE ') + pi + ' / ' + this.projCount() + (p.kind ? ' · ' + (en && p.kindEn ? p.kindEn : p.kind) : '') : (en && p.eyebrowEn ? p.eyebrowEn : p.eyebrow),
       isProject: p.type === 'project', isAbout: p.type === 'about', isContact: p.type === 'contact',
-      bubbleText: p.say,
-      hintText: (found === this.projCount() ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/' + this.projCount() + ' · ') + '← → İLE YÜRÜ',
-      nextLabel: (() => { const n = this.zones[z + 1]; return n ? 'Sonraki: ' + (n.type === 'contact' ? 'İletişim' : n.name) : ''; })(),
+      bubbleText: (en && p.sayEn) ? p.sayEn : p.say,
+      goProjLbl: en ? 'View project' : 'Projeye git',
+      soonLbl: en ? 'Soon' : 'Yakında',
+      aboutDesc: en ? 'An amateur vibecoder. I build apps, games, and tiny digital worlds so they feel warm and a bit unexpected. Walk the woods—each stop has someone waiting.' : 'Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.',
+      knowMeLbl: en ? 'About me' : 'Beni tanı',
+      firstProjLbl: en ? 'Walk to first project' : 'İlk projeye yürü',
+      writeMailLbl: en ? 'Write an email' : 'Mektup yaz',
+      copyLbl: this.state.copied ? (en ? 'Copied ✓' : 'Kopyalandı ✓') : (en ? 'Copy email' : 'E-postayı kopyala'),
+      homeLbl: en ? 'Back to start' : 'Başa dön',
+      hintText: en
+        ? (found === this.projCount() ? 'FOUND THEM ALL! ' : 'FOUND ' + found + '/' + this.projCount() + ' · ') + 'WALK WITH ← →'
+        : (found === this.projCount() ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/' + this.projCount() + ' · ') + '← → İLE YÜRÜ',
+      nextLabel: nextName ? (en ? 'Next: ' : 'Sonraki: ') + nextName : '',
       goNext: this.next, goHome: this.goHome, pTarget: p.ext ? '_blank' : '_self', pRel: p.ext ? 'noopener' : '',
       chips: chips
     };

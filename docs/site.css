@@ -20,6 +20,9 @@ img,svg,canvas{display:block}
 /* üst çubuk */
 .bar{position:sticky;top:0;z-index:5;background:rgba(20,26,48,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
 .bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.bar-right{display:flex;align-items:center;gap:10px}
+.lang-btn{min-height:36px;min-width:44px;padding:0 10px;border-radius:3px;border:1px solid var(--line2);background:rgba(20,26,48,.75);color:var(--text);font-family:var(--pixel);font-size:13px;letter-spacing:.08em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.lang-btn:hover{border-color:var(--text);color:#fff}
 .back{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 4px;text-decoration:none;font-weight:500;font-size:15px;color:var(--muted)}
 .back:hover{color:var(--text)}
 .brand{font-family:var(--pixel);font-weight:600;font-size:20px;letter-spacing:.06em;text-decoration:none;color:var(--text);min-height:44px;display:inline-flex;align-items:center}

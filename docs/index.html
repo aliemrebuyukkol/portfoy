@@ -58,6 +58,8 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 .bubble{position:absolute;left:0;top:0;max-width:220px;padding:10px 12px;border-radius:3px;background:#F3ECDD;color:#141A30;font-family:'Pixelify Sans',monospace;font-size:15px;line-height:1.3;opacity:0;pointer-events:none;transition:opacity .25s ease;box-shadow:0 3px 0 rgba(14,16,30,.35);width:max-content}
 .bubble:after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-6px;border:6px solid transparent;border-top-color:#F3ECDD;border-bottom:0}
 .intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,3vh,22px);padding:calc(24px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));text-align:center;background:rgba(14,16,30,.55)}
+.intro-lang{position:absolute;top:calc(14px + env(safe-area-inset-top));right:calc(clamp(12px,3vw,32px) + env(safe-area-inset-right));font-family:'Pixelify Sans',monospace;font-weight:600;letter-spacing:.08em}
+.lang-code{font-family:'Pixelify Sans',monospace;font-weight:600;letter-spacing:.08em}
 .intro h1{margin:0;font-family:'Pixelify Sans',monospace;font-weight:600;font-size:clamp(44px,min(12vw,16vh),128px);letter-spacing:.04em;line-height:.9;color:#F3ECDD;text-shadow:0 6px 0 rgba(14,16,30,.55)}
 .intro-btn{min-height:52px;padding:0 26px;border:0;border-radius:3px;font-family:Inter,sans-serif;font-weight:600;font-size:16px;cursor:pointer}
 .intro-p{background:#F6B26B;color:#141A30}.intro-p:hover{background:#FFC98C}
@@ -107,14 +109,15 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <div class="bubble" id="bubble" aria-hidden="true"></div>
 
 <section class="intro" id="intro" aria-label="Başlangıç">
-<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:15px;letter-spacing:.14em;color:#F6B26B">BİR PORTFÖY ORMANI</p>
+<button type="button" class="hud-btn intro-lang" id="intro-lang" aria-label="Switch to English">EN</button>
+<p id="intro-eyebrow" style="margin:0;font-family:'Pixelify Sans',monospace;font-size:15px;letter-spacing:.14em;color:#F6B26B">BİR PORTFÖY ORMANI</p>
 <h1>BÜYÜKKOL</h1>
-<p style="margin:0;max-width:34ch;font-size:clamp(16px,1.6vw,19px);line-height:1.5;color:#E4DDEC">Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.</p>
+<p id="intro-desc" style="margin:0;max-width:34ch;font-size:clamp(16px,1.6vw,19px);line-height:1.5;color:#E4DDEC">Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
 <button type="button" class="intro-btn intro-p" id="enter-sound">Sesle gir</button>
 <button type="button" class="intro-btn intro-g" id="enter-quiet">Sessiz gir</button>
 </div>
-<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.08em;color:#B9B3CC"><span class="keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA</span><span class="touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
+<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.08em;color:#B9B3CC"><span class="keys" id="intro-keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA</span><span class="touch" id="intro-touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
 <noscript><p style="color:#FFD28A">Orman JavaScript ile çalışıyor. Lütfen JavaScript'i aç.</p></noscript>
 </section>
 
@@ -122,12 +125,13 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <header class="top">
 <div style="display:flex;flex-direction:column">
 <a href="#" class="logo" id="logo">BÜYÜKKOL</a>
-<span class="tagline" style="font-size:14px;color:#D9D2E6;text-shadow:0 1px 0 rgba(14,16,30,.8)">Ormanda dolaş, her köşede başka bir proje var.</span>
+<span class="tagline" id="tagline" style="font-size:14px;color:#D9D2E6;text-shadow:0 1px 0 rgba(14,16,30,.8)">Ormanda dolaş, her köşede başka bir proje var.</span>
 </div>
 <div style="display:flex;gap:8px">
 <button type="button" class="hud-btn" id="snd" aria-pressed="false" aria-label="Ambiyansı aç"><span id="snd-on" hidden><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span id="snd-off" style="display:inline-flex"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="lbl" id="snd-lbl">Ambiyansı aç</span></button>
-<button type="button" class="hud-btn" id="go-about" aria-label="Hakkımda"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 15.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="lbl">Hakkımda</span></button>
-<button type="button" class="hud-btn" id="go-contact" aria-label="İletişim"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="m2.5 5 6.5 5 6.5-5" stroke="currentColor" stroke-width="1.6"/></svg><span class="lbl">İletişim</span></button>
+<button type="button" class="hud-btn" id="go-about" aria-label="Hakkımda"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 15.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="lbl" id="about-lbl">Hakkımda</span></button>
+<button type="button" class="hud-btn" id="go-contact" aria-label="İletişim"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="m2.5 5 6.5 5 6.5-5" stroke="currentColor" stroke-width="1.6"/></svg><span class="lbl" id="contact-lbl">İletişim</span></button>
+<button type="button" class="hud-btn lang-code" id="lang-btn" aria-label="Switch to English">EN</button>
 </div>
 </header>
 
@@ -140,19 +144,19 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <p class="card-vibe" id="c-vibe"></p>
 <div id="c-project" style="display:flex;flex-direction:column;gap:inherit">
 <p class="card-desc" id="c-desc"></p>
-<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta" id="c-cta">Projeye git<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></a><span class="cta cta-soon" id="c-soon" hidden>Yakında</span><button type="button" class="cta cta-ghost" id="c-next"><span id="c-next-lbl"></span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button></div>
+<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta" id="c-cta"><span id="c-cta-lbl">Projeye git</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></a><span class="cta cta-soon" id="c-soon" hidden>Yakında</span><button type="button" class="cta cta-ghost" id="c-next"><span id="c-next-lbl"></span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button></div>
 </div>
 <div id="c-about" hidden style="flex-direction:column;gap:inherit">
-<p class="card-desc">Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.</p>
-<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="hakkimda.html" class="cta">Beni tanı</a><button type="button" class="cta" id="go-first" style="background:transparent;color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)">İlk projeye yürü<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button></div>
+<p class="card-desc" id="about-desc">Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.</p>
+<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="hakkimda.html" class="cta" id="know-me">Beni tanı</a><button type="button" class="cta" id="go-first" style="background:transparent;color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)"><span id="go-first-lbl">İlk projeye yürü</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button></div>
 </div>
 <div id="c-contact" hidden style="flex-direction:column;gap:inherit">
 <div class="links"><a href="mailto:aliemrebuyukkol@gmail.com">aliemrebuyukkol@gmail.com</a><a href="https://github.com/aliemrebuyukkol" target="_blank" rel="noopener">GitHub</a></div>
-<div style="display:flex;gap:8px;flex-wrap:wrap"><a href="mailto:aliemrebuyukkol@gmail.com" class="cta">Mektup yaz</a><button type="button" class="cta cta-ghost" id="go-home">Başa dön</button></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a href="mailto:aliemrebuyukkol@gmail.com" class="cta" id="c-mail-cta">Mektup yaz</a><button type="button" class="cta cta-ghost" id="copy-mail">E-postayı kopyala</button><button type="button" class="cta cta-ghost" id="go-home">Başa dön</button></div>
 </div>
 </section>
 
-<nav class="dock" aria-label="Projeler">
+<nav class="dock" id="dock" aria-label="Projeler">
 <div class="dock-row">
 <button type="button" class="hud-btn navbtn" id="prev" aria-label="Önceki durak"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button>
 <div class="chips" id="chips"><button type="button" class="chip" data-zone="1" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="2" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="3" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="4" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="5" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button></div>
@@ -170,62 +174,179 @@ const Engine = window.BuyukkolEngine;
 
 (function () {
   const zones = [
-    { type: 'about', name: 'Kulübe', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', eyebrow: 'HAKKIMDA', say: 'Hoş geldin! Ormanda beş proje saklı.' },
-    { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', say: 'Otur, bir çay iç. Acele yok.' },
-    { type: 'project', name: 'Suçüstü', kind: 'OYUN', href: 'sucustu.html', desc: 'Oyuncak görünümlü 3D bir sahilde dikkat oyunu: kanıt yer değiştirir ama sahibi değişmez. Gerçek faili bul.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
-    { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', say: 'Hoş geldiniz efendim! Çayınız taze.' },
-    { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', href: 'patikulac.html', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
-    { type: 'project', name: 'Muchineko', kind: 'OYUN', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
-    { type: 'contact', name: 'Posta kutusu', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', eyebrow: 'İLETİŞİM', say: 'Mektubunu bekliyorum.' }
+    { type: 'about', name: 'Kulübe', nameEn: 'Cabin', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', vibeEn: 'The cabin at the edge of the woods. This is where I live.', eyebrow: 'HAKKIMDA', eyebrowEn: 'ABOUT', say: 'Hoş geldin! Ormanda beş proje saklı.', sayEn: 'Welcome! Five projects are hidden in the woods.' },
+    { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', kindEn: 'APP', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', descEn: 'A journal and focus app: write a few lines, spark your fire, and grow your camp.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', vibeEn: 'The campfire crackles, the kettle steams, and the monk counts his breath.', say: 'Otur, bir çay iç. Acele yok.', sayEn: 'Sit down, have some tea. No rush.' },
+    { type: 'project', name: 'Suçüstü', kind: 'OYUN', kindEn: 'GAME', href: 'sucustu.html', desc: 'Oyuncak görünümlü 3D bir sahilde dikkat oyunu: kanıt yer değiştirir ama sahibi değişmez. Gerçek faili bul.', descEn: 'A 3D beach observation game: evidence drifts with physics, but its owner never changes. Spot the culprit.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', vibeEn: 'Dancers on the floor drop litter, then sweep it up in rhythm.', say: 'Attım ama süpürüyorum, söz!', sayEn: 'I dropped it, but I am sweeping it up!' },
+    { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', kindEn: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', descEn: 'A living isometric web archipelago where Turkey\'s cult viral videos inhabit miniature islands.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', vibeEn: 'The samovar steams, the tea server makes the rounds, and cult clips play on an old TV.', say: 'Hoş geldiniz efendim! Çayınız taze.', sayEn: 'Welcome aboard! Fresh tea is ready.' },
+    { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', kindEn: 'GAME', href: 'patikulac.html', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', descEn: 'A 3D cat swimming race with a sports-broadcast feel that turns finger rhythm into paw strokes. In internal testing.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', vibeEn: 'Cats swimming laps in the pond while the lifeguard cat watches from the chair.', say: 'Koşmak yok, kulaç var!', sayEn: 'No running—just paddling!' },
+    { type: 'project', name: 'Muchineko', kind: 'OYUN', kindEn: 'GAME', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', descEn: 'A horizontal iPhone runner across ink-and-cream-paper rooftops with Mochi and Sumi. In internal testing.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', vibeEn: 'Cats napping and chasing butterflies beneath a blooming tree.', say: 'Miyav. Burada herkes biraz tembel.', sayEn: 'Meow. Everyone is a bit lazy here.' },
+    { type: 'contact', name: 'Posta kutusu', nameEn: 'Mailbox', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', vibeEn: 'The end of the woods. Leave a letter and I will read it.', eyebrow: 'İLETİŞİM', eyebrowEn: 'CONTACT', say: 'Mektubunu bekliyorum.', sayEn: 'Waiting for your letter.' }
   ];
   const IDS = ['kulube', 'cozy-camp', 'sucustu', 'hosgeldiniz-efendim', 'pati-kulac', 'muchineko', 'posta'];
   const LAST = IDS.length - 1, NPROJ = 5;
+  const loadLang = () => {
+    try {
+      const q = new URLSearchParams(location.search).get('lang');
+      if (q === 'en' || q === 'tr') { localStorage.setItem('buyukkol.lang', q); return q; }
+      return localStorage.getItem('buyukkol.lang') === 'en' ? 'en' : 'tr';
+    } catch (e) { return 'tr'; }
+  };
+  const saveLang = (l) => { try { localStorage.setItem('buyukkol.lang', l); } catch (e) {} };
   const loadSeen = () => { try { const v = JSON.parse(localStorage.getItem('buyukkol.seen.v2') || '[]'); return Array.isArray(v) ? v.filter((n) => Number.isInteger(n) && n >= 1 && n <= NPROJ) : []; } catch (e) { return []; } };
   const saveSeen = (v) => { try { localStorage.setItem('buyukkol.seen.v2', JSON.stringify(v)); } catch (e) { /* depolama yoksa sessizce geç */ } };
-  const st = { zone: 0, sound: false, intro: true, seen: loadSeen() };
+  const st = { zone: 0, sound: false, intro: true, seen: loadSeen(), lang: loadLang(), copied: false };
   const $ = (id) => document.getElementById(id);
   const chipEls = Array.from(document.querySelectorAll('.chip'));
-  chipEls.forEach((b) => {
-    const z = zones[+b.dataset.zone];
-    b.querySelector('.chip-name').textContent = z.name;
-    b.querySelector('.chip-dot').style.background = z.color;
-  });
+  const T = {
+    tr: {
+      title: 'Ali Emre Büyükkol — Portföy ormanı',
+      scene: 'Piksel sanat bir orman: girişte bir kulübe, kamp ateşinin başında bir keşiş, çiçekli ağacın altında kediler, gölette yüzen kediler, dans pistinde hem çöp atıp hem süpüren dansçılar ve en sonda bir posta kutusu. Ok tuşlarıyla ya da kaydırarak yürüyebilirsin.',
+      introAria: 'Başlangıç',
+      introEyebrow: 'BİR PORTFÖY ORMANI',
+      introDesc: 'Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.',
+      enterSound: 'Sesle gir',
+      enterQuiet: 'Sessiz gir',
+      keys: '← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA',
+      touch: 'DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE',
+      tagline: 'Ormanda dolaş, her köşede başka bir proje var.',
+      soundOn: 'Sesi kapat',
+      soundOff: 'Ambiyansı aç',
+      about: 'Hakkımda',
+      contact: 'İletişim',
+      projectPrefix: 'PROJE ',
+      goProj: 'Projeye git',
+      soon: 'Yakında',
+      nextPrefix: 'Sonraki: ',
+      aboutDesc: 'Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.',
+      knowMe: 'Beni tanı',
+      firstProj: 'İlk projeye yürü',
+      writeMail: 'Mektup yaz',
+      copyMail: 'E-postayı kopyala',
+      copied: 'Kopyalandı ✓',
+      home: 'Başa dön',
+      dockAria: 'Projeler',
+      prevAria: 'Önceki durak',
+      nextAria: 'Sonraki durak',
+      seenAria: 'keşfedildi',
+      foundAll: 'HEPSİNİ BULDUN! ',
+      foundPart: 'KEŞİF ',
+      walkHint: '← → İLE YÜRÜ',
+      langBtn: 'EN',
+      langAria: 'Switch to English'
+    },
+    en: {
+      title: 'Ali Emre Büyükkol — Portfolio Woods',
+      scene: 'A pixel-art forest: a cabin at the entrance, a monk by the campfire, cats beneath a blooming tree, cats swimming laps in a pond, dancers littering and sweeping on a dance floor, and a mailbox at the end. Walk with arrow keys or swipe.',
+      introAria: 'Introduction',
+      introEyebrow: 'A PORTFOLIO FOREST',
+      introDesc: 'Grab your lantern, walk the woods. Every clearing holds a different project and mood.',
+      enterSound: 'Enter with sound',
+      enterQuiet: 'Enter quietly',
+      keys: '← → TO WALK · TAP TO MOVE · 1–5 JUMP TO PROJECT',
+      touch: 'TAP TO MOVE · SWIPE, NEXT PROJECT',
+      tagline: 'Wander the woods, every corner holds a project.',
+      soundOn: 'Mute sound',
+      soundOff: 'Enable sound',
+      about: 'About',
+      contact: 'Contact',
+      projectPrefix: 'PROJECT ',
+      goProj: 'View project',
+      soon: 'Soon',
+      nextPrefix: 'Next: ',
+      aboutDesc: 'An amateur vibecoder. I build apps, games, and tiny digital worlds so they feel warm and a bit unexpected. Walk the woods—each stop has someone waiting.',
+      knowMe: 'About me',
+      firstProj: 'Walk to first project',
+      writeMail: 'Write an email',
+      copyMail: 'Copy email',
+      copied: 'Copied ✓',
+      home: 'Back to start',
+      dockAria: 'Projects',
+      prevAria: 'Previous stop',
+      nextAria: 'Next stop',
+      seenAria: 'discovered',
+      foundAll: 'FOUND THEM ALL! ',
+      foundPart: 'FOUND ',
+      walkHint: 'WALK WITH ← →',
+      langBtn: 'TR',
+      langAria: 'Türkçeye geç'
+    }
+  };
 
   const render = () => {
+    const en = st.lang === 'en', t = T[st.lang];
     const z = st.zone, p = zones[z];
+    document.documentElement.lang = st.lang;
+    document.title = t.title;
+    $('scene').setAttribute('aria-label', t.scene);
+    $('intro').setAttribute('aria-label', t.introAria);
+    $('intro-eyebrow').textContent = t.introEyebrow;
+    $('intro-desc').textContent = t.introDesc;
+    $('enter-sound').textContent = t.enterSound;
+    $('enter-quiet').textContent = t.enterQuiet;
+    $('intro-keys').textContent = t.keys;
+    $('intro-touch').textContent = t.touch;
+    $('intro-lang').textContent = t.langBtn;
+    $('intro-lang').setAttribute('aria-label', t.langAria);
+    $('tagline').textContent = t.tagline;
+    $('go-about').setAttribute('aria-label', t.about); $('about-lbl').textContent = t.about;
+    $('go-contact').setAttribute('aria-label', t.contact); $('contact-lbl').textContent = t.contact;
+    $('lang-btn').textContent = t.langBtn; $('lang-btn').setAttribute('aria-label', t.langAria);
+    $('c-cta-lbl').textContent = t.goProj;
+    $('c-soon').textContent = t.soon;
+    $('about-desc').textContent = t.aboutDesc;
+    $('know-me').textContent = t.knowMe;
+    $('go-first-lbl').textContent = t.firstProj;
+    $('c-mail-cta').textContent = t.writeMail;
+    $('copy-mail').textContent = st.copied ? t.copied : t.copyMail;
+    $('go-home').textContent = t.home;
+    $('dock').setAttribute('aria-label', t.dockAria);
+    $('prev').setAttribute('aria-label', t.prevAria);
+    $('next').setAttribute('aria-label', t.nextAria);
+
     $('root').className = st.intro ? 'root is-intro' : 'root';
     $('intro').hidden = !st.intro;
     $('hud').hidden = st.intro;
     $('snd').setAttribute('aria-pressed', st.sound ? 'true' : 'false');
-    const sl = st.sound ? 'Sesi kapat' : 'Ambiyansı aç';
+    const sl = st.sound ? t.soundOn : t.soundOff;
     $('snd').setAttribute('aria-label', sl); $('snd-lbl').textContent = sl;
     $('snd-on').hidden = !st.sound; $('snd-on').style.display = st.sound ? 'inline-flex' : '';
     $('snd-off').hidden = st.sound; $('snd-off').style.display = st.sound ? '' : 'inline-flex';
     let pi = 0;
     zones.forEach((q, i) => { if (q.type === 'project' && i <= z) pi++; });
     $('c-dot').style.background = p.color;
-    $('c-eyebrow').textContent = p.type === 'project' ? 'PROJE ' + pi + ' / ' + NPROJ + (p.kind ? ' · ' + p.kind : '') : p.eyebrow;
-    $('c-name').textContent = p.name; $('c-name').style.color = p.color;
-    $('c-vibe').textContent = p.vibe;
+    const pKind = en && p.kindEn ? p.kindEn : p.kind;
+    const pEyebrow = en && p.eyebrowEn ? p.eyebrowEn : p.eyebrow;
+    const pName = en && p.nameEn ? p.nameEn : p.name;
+    const pVibe = en && p.vibeEn ? p.vibeEn : p.vibe;
+    const pDesc = en && p.descEn ? p.descEn : p.desc;
+    const pSay = en && p.sayEn ? p.sayEn : p.say;
+    $('c-eyebrow').textContent = p.type === 'project' ? t.projectPrefix + pi + ' / ' + NPROJ + (pKind ? ' · ' + pKind : '') : pEyebrow;
+    $('c-name').textContent = pName; $('c-name').style.color = p.color;
+    $('c-vibe').textContent = pVibe;
     $('c-cta').href = p.href || '#'; $('c-cta').hidden = !p.href; $('c-soon').hidden = !!p.href;
     if (p.ext) { $('c-cta').target = '_blank'; $('c-cta').rel = 'noopener'; } else { $('c-cta').removeAttribute('target'); $('c-cta').removeAttribute('rel'); }
     const nz = zones[z + 1];
-    $('c-next').hidden = !nz; $('c-next-lbl').textContent = nz ? 'Sonraki: ' + (nz.type === 'contact' ? 'İletişim' : nz.name) : '';
+    const nzName = nz ? (nz.type === 'contact' ? t.contact : (en && nz.nameEn ? nz.nameEn : nz.name)) : '';
+    $('c-next').hidden = !nz; $('c-next-lbl').textContent = nz ? t.nextPrefix + nzName : '';
     const d = $('c-desc'); d.textContent = '';
-    if (p.desc) d.textContent = p.desc;
+    if (pDesc) d.textContent = pDesc;
     else { const ph = document.createElement('span'); ph.className = 'ph'; ph.textContent = '[Tek cümlelik proje açıklaması]'; d.appendChild(ph); }
     [['c-project', 'project'], ['c-about', 'about'], ['c-contact', 'contact']].forEach(([id, type]) => {
       const on = p.type === type; $(id).hidden = !on; $(id).style.display = on ? 'flex' : '';
     });
     chipEls.forEach((b) => {
-      const i = +b.dataset.zone, on = i === z;
+      const i = +b.dataset.zone, on = i === z, cq = zones[i];
+      b.querySelector('.chip-name').textContent = (en && cq.nameEn) ? cq.nameEn : cq.name;
+      b.querySelector('.chip-dot').style.background = cq.color;
       b.className = 'chip' + (on ? ' on' : '');
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      b.querySelector('.seen').hidden = st.seen.indexOf(i) < 0;
+      const seenEl = b.querySelector('.seen');
+      seenEl.hidden = st.seen.indexOf(i) < 0;
+      seenEl.setAttribute('aria-label', t.seenAria);
     });
     const found = st.seen.length;
-    $('hint').textContent = (found === NPROJ ? 'HEPSİNİ BULDUN! ' : 'KEŞİF ' + found + '/' + NPROJ + ' · ') + '← → İLE YÜRÜ';
-    $('bubble').textContent = p.say;
+    $('hint').textContent = (found === NPROJ ? t.foundAll : t.foundPart + found + '/' + NPROJ + ' · ') + t.walkHint;
+    $('bubble').textContent = pSay;
   };
 
   const eng = new Engine();
@@ -260,6 +381,33 @@ const Engine = window.BuyukkolEngine;
   $('prev').addEventListener('click', () => go(st.zone - 1));
   $('next').addEventListener('click', () => go(st.zone + 1));
   chipEls.forEach((b) => b.addEventListener('click', () => go(+b.dataset.zone)));
+  const toggleLang = () => { st.lang = st.lang === 'en' ? 'tr' : 'en'; saveLang(st.lang); render(); };
+  $('lang-btn').addEventListener('click', toggleLang);
+  $('intro-lang').addEventListener('click', toggleLang);
+  let copyTimer = 0;
+  $('copy-mail').addEventListener('click', () => {
+    const email = 'aliemrebuyukkol@gmail.com';
+    const done = () => {
+      st.copied = true; render();
+      clearTimeout(copyTimer);
+      copyTimer = setTimeout(() => { st.copied = false; render(); }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(done).catch(() => { fallbackCopy(email); done(); });
+    } else {
+      fallbackCopy(email); done();
+    }
+  });
+  function fallbackCopy(text) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (e) {}
+  }
 
   const cv = $('scene');
   let ptr = null;

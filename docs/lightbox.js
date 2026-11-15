@@ -51,6 +51,20 @@
     count.textContent = (idx + 1) + ' / ' + imgs.length;
   };
 
+  const syncLabels = () => {
+    const en = document.documentElement.lang === 'en';
+    dlg.setAttribute('aria-label', en ? 'Image preview' : 'Görsel önizleme');
+    closeBtn.setAttribute('aria-label', en ? 'Close' : 'Kapat');
+    prevBtn.setAttribute('aria-label', en ? 'Previous image' : 'Önceki görsel');
+    nextBtn.setAttribute('aria-label', en ? 'Next image' : 'Sonraki görsel');
+    imgs.forEach((img) => {
+      const fig = img.closest('figure');
+      const fc = fig && fig.querySelector('figcaption');
+      img.setAttribute('aria-label', (fc ? fc.textContent + ' — ' : '') + (en ? 'zoom image' : 'görseli büyüt'));
+    });
+    if (dlg.open) show(idx);
+  };
+
   const openAt = (i, trigger) => {
     opener = trigger || imgs[i];
     show(i);
@@ -66,14 +80,13 @@
   imgs.forEach((img, i) => {
     img.tabIndex = 0;
     img.setAttribute('role', 'button');
-    const fig = img.closest('figure');
-    const fc = fig && fig.querySelector('figcaption');
-    img.setAttribute('aria-label', (fc ? fc.textContent + ' — ' : '') + 'görseli büyüt');
     img.addEventListener('click', () => openAt(i, img));
     img.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAt(i, img); }
     });
   });
+  syncLabels();
+  window.addEventListener('buyukkol:lang', syncLabels);
 
   prevBtn.addEventListener('click', () => show(idx - 1));
   nextBtn.addEventListener('click', () => show(idx + 1));
