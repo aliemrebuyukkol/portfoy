@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>Hoşgeldiniz Efendim — Ali Emre Büyükkol</title>
+<meta name="description" content="Hoşgeldiniz Efendim: Türkiye'nin kült viral videolarını izometrik minyatür adalarda gezdiren, her yeni videoyla büyüyen yaşayan bir web dünyası.">
+<meta property="og:title" content="Hoşgeldiniz Efendim">
+<meta property="og:description" content="Kült videolar bir listede değil, minyatür adalarda yaşıyor.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='5' y='5' width='6' height='7' fill='%23E9D3A8'/%3E%3Crect x='5' y='8' width='6' height='4' fill='%23B8432F'/%3E%3Crect x='4' y='12' width='8' height='1' fill='%23E9D3A8'/%3E%3Crect x='7' y='2' width='1' height='2' fill='%23C9C3D9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{--accent:#F28AB8}
+.stage{position:relative;height:clamp(300px,64vh,600px);overflow:hidden;overflow:clip;background:#141A30}
+.scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
+.stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
+.stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
+.pill{min-height:44px;padding:0 14px;border:0;border-radius:3px;background:rgba(14,16,30,.84);color:var(--text);font-family:var(--body);font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pill:hover{background:rgba(14,16,30,.96)}
+.hint{position:absolute;left:calc(16px + env(safe-area-inset-left));bottom:30px;z-index:2;font-family:var(--pixel);font-size:13px;letter-spacing:.08em;color:#E4DDEC;text-shadow:0 1px 0 rgba(14,16,30,.9)}
+@media (max-width:420px){.hint{display:none}}
+.intro{display:flex;flex-direction:column;gap:18px;padding-top:8px}
+.title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{width:64px;height:64px;border-radius:14px;background:#1E2442;box-shadow:inset 0 0 0 1px var(--line2);display:grid;place-items:center;flex:0 0 64px}
+.mark svg{width:40px;height:40px}
+h1{color:var(--accent)}
+.sub{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,24px);color:var(--text);margin-top:4px}
+.status{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-left:0;border-radius:4px;padding:14px 16px;font-size:15px;color:var(--muted)}
+.status b{color:var(--text);font-weight:600}
+.status .led{flex:0 0 10px;height:10px;margin-top:7px;background:#FFD28A;box-shadow:0 0 0 3px rgba(255,210,138,.18)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.feat .card{padding:18px}
+.feat h3{font-size:16px;font-family:var(--pixel);font-weight:600;letter-spacing:.06em;color:var(--accent)}
+.bays{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
+.bays li{display:flex;gap:12px;align-items:baseline;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;font-size:15px}
+.bays span{font-family:var(--pixel);font-size:13px;color:var(--soft);flex:0 0 46px}
+.shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 14px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
+.shot{flex:0 0 clamp(280px,78vw,520px);margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+.shot img{width:100%;height:auto;border-radius:18px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#F1ECE1}
+.shot figcaption{font-size:14px;color:var(--muted);text-align:center}
+.build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.stat b{display:block;font-family:var(--display);font-size:24px}
+.stat span{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--soft)}
+.rule{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
+.rule div{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.rule b{display:block;font-family:var(--pixel);font-size:15px;letter-spacing:.04em;color:var(--accent);margin-bottom:4px}
+.rule p{font-size:15px;color:var(--muted)}
+.hero-img{margin:0;display:flex;flex-direction:column;gap:10px}
+.hero-img img{width:100%;height:auto;border-radius:6px;box-shadow:0 0 0 1px var(--line2)}
+.hero-img figcaption,.dio figcaption{font-size:14px;color:var(--muted)}
+.dios{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px}
+.dio{margin:0;display:flex;flex-direction:column;gap:8px}
+.dio img{width:100%;height:auto;aspect-ratio:1;border-radius:6px;box-shadow:0 0 0 1px var(--line2)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:8px}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:baseline;padding:14px 16px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;font-size:16px;color:var(--muted)}
+.steps li:before{content:"0" counter(s);font-family:var(--pixel);font-size:14px;color:var(--accent);flex:0 0 26px}
+.steps b{color:var(--text);font-weight:600}
+.status.live .led{background:#7FD39A;box-shadow:0 0 0 3px rgba(127,211,154,.18)}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap">
+<a class="back" href="index.html#hosgeldiniz-efendim"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<a class="brand" href="index.html#hosgeldiniz-efendim" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+</div>
+</header>
+
+<div class="stage" id="stage">
+<canvas class="scene" id="scene" role="img" aria-label="Piksel sanat çay ocağı: tüten semaver, tepsiyle dolaşan çaycı, masada çay içen iki amca ve kanal değiştiren eski bir televizyon."></canvas>
+<span class="hint" aria-hidden="true">TELEVİZYONA DOKUN</span>
+<div class="stage-ui"><button type="button" class="pill" id="snd" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path id="snd-w" d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span id="snd-lbl">Çay ocağını dinle</span></button></div>
+</div>
+
+<main class="wrap">
+<section class="intro" aria-labelledby="baslik">
+<div class="title-row">
+<div class="mark" aria-hidden="true"><svg viewBox="0 0 10 10" shape-rendering="crispEdges"><rect x="3" y="2" width="4" height="6" fill="#E9D3A8"/><rect x="3" y="4" width="4" height="4" fill="#B8432F"/><rect x="2" y="8" width="6" height="1" fill="#E9D3A8"/><rect x="4" y="0" width="1" height="1" fill="#C9C3D9"/><rect x="5" y="1" width="1" height="1" fill="#C9C3D9"/></svg></div>
+<div><p class="eyebrow">WEB · YAŞAYAN DÜNYA</p><h1 id="baslik">Hoşgeldiniz Efendim</h1><p class="sub">Kült videoların izometrik takımadası</p></div>
+</div>
+<p class="lead">Türkiye'nin kült viral videoları bir listede değil, minyatür adalarda yaşıyor. Her ada bir videonun dünyası: derede kurbağa vaaklıyor, pazarda tente sallanıyor, dağ evinde semaver tütüyor. Bir adaya dokun, video açılsın.</p>
+<div class="status live" role="note"><span class="led" aria-hidden="true"></span><p><b>Yayında.</b> Masaüstü ve telefondan tarayıcıyla gezilebilir; kurulum gerekmez.</p></div>
+<div class="cta-row"><a class="btn" href="https://nazartesi.com/hosgeldinizefendim/" target="_blank" rel="noopener">Dünyayı gez<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></a></div>
+<div class="facts" aria-label="Proje bilgileri"><span class="chip">23 ada</span><span class="chip">Masaüstü ve mobil</span><span class="chip">Hareketi azalt desteği</span><span class="chip">Tarayıcıda çalışır</span></div>
+</section>
+
+<section class="section" aria-labelledby="takimada">
+<div class="section-head"><p class="eyebrow">01 · TAKIMADA</p></div>
+<h2 id="takimada">Video listesi yerine bir harita</h2>
+<div class="stack">
+<figure class="hero-img"><img src="img/hos-takimada.webp" width="1200" height="618" loading="lazy" alt="Gül rengi gökyüzünde süzülen altı izometrik ada: dere kenarında kulübe, çizgili tenteli pazar, sonbahar ağaçlı çay köşesi, beyaz otomobilli gece adası ve kilimli bir piknik alanı."><figcaption>Takımadanın erken bir hâli. Bugün haritada 23 ada var.</figcaption></figure>
+<ol class="steps">
+<li><span><b>Sürükle ve yakınlaştır.</b> Harita fareyle, dokunmatikte iki parmakla gezilir.</span></li>
+<li><span><b>Bir adaya dokun.</b> Videosu tek bir oynatıcıda açılır; kapattığında ses de hemen durur.</span></li>
+<li><span><b>Ada dosyasını aç.</b> Unutulmaz replik, "neden burada?" notu ve etiketler aynı yerde.</span></li>
+<li><span><b>Rehberli tura çık.</b> İlk Adımlar, Gece Klasikleri, Müzik ve Meydan gibi küratör koleksiyonlarıyla gez.</span></li>
+</ol>
+</div>
+</section>
+
+<section class="section" aria-labelledby="dioramalar">
+<div class="section-head"><p class="eyebrow">02 · DİORAMALAR</p></div>
+<h2 id="dioramalar">Her ada kendi küçük dünyası</h2>
+<div class="stack">
+<p class="muted">Adalar düz kart değil; toprak katmanları, sarkan çimleri ve kendi gölgesi olan minyatür bloklar. Üstlerinde düşük kare hızında küçük hareketler dönüyor: çay dumanı, dalgalanan su, göz kırpan kurbağa, rüzgârda salınan sazlıklar.</p>
+<div class="dios">
+<figure class="dio"><img src="img/hos-dere.webp" width="720" height="720" loading="lazy" alt="Dere kenarında kırmızı çatılı ahşap kulübe, büyük ağaçlar ve kayalar arasından akan su."><figcaption>Dere ve kulübe</figcaption></figure>
+<figure class="dio"><img src="img/hos-dag.webp" width="720" height="720" loading="lazy" alt="Karlı dağın eteğinde çam ormanı, mağara girişi ve semaver başında bankta oturan kasketli yaşlı bir adam."><figcaption>Dağ ve semaver</figcaption></figure>
+<figure class="dio"><img src="img/hos-pazar.webp" width="720" height="720" loading="lazy" alt="Kırmızı kuleli taş kalenin önünde çadırlar, meyve kasaları ve çizgili tenteli pazar tezgâhı."><figcaption>Kale ve pazar</figcaption></figure>
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="yapim">
+<div class="section-head"><p class="eyebrow">03 · YAPIM NOTLARI</p></div>
+<h2 id="yapim">Nasıl yapıldı?</h2>
+<div class="stack">
+<p class="muted">React 19 ve PixiJS 8 ile yazıldı. Sahne dört katmandan oluşuyor: arazi, diorama çizimi, mikro hareket ve etkileşim. Yeni bir video eklendiğinde harita kendiliğinden büyüyor; boş komşu noktalar taranıyor ve yeni ada, mevcut adalara en çok temas eden yere yerleşiyor. Eski adaların yeri hiç değişmiyor. İçerik paneli Supabase üzerinde, yazma izinleri veritabanı tarafında korunuyor.</p>
+<p class="muted">Hareketi azalt tercihi açıksa motor, geçişler ve kayan yazı birlikte sakinleşiyor. Arka plandaki çanlar kayıt değil, tarayıcıda kodla üretiliyor.</p>
+<div class="build">
+<div class="stat"><b>23</b><span>ada, her biri bir video</span></div>
+<div class="stat"><b>4</b><span>katmanlı sahne</span></div>
+<div class="stat"><b>2:1</b><span>izometrik projeksiyon</span></div>
+</div>
+<p class="note">Videolar YouTube üzerinden gömülü oynatıcıyla açılır ve sahiplerine aittir. Ada çizimleri videolardan alınmış kareler değil, bu proje için üretilmiş illüstrasyonlardır. Geliştirici: Ali Emre Büyükkol.</p>
+</div>
+</section>
+</main>
+
+<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="sucustu.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#C99BFF">SUÇÜSTÜ!</span></a><a class="pn next" href="muchineko.html"><span class="pn-k">Sonraki proje<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n" style="color:#F5A8CB">Muchineko</span></a></nav>
+
+<footer class="foot">
+<div class="wrap"><span>© 2026 Ali Emre Büyükkol · Hoşgeldiniz Efendim</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#hosgeldiniz-efendim">Ormana dön</a></span></div>
+</footer>
+<script src="engine.js"></script>
+<script>
+"use strict";
+(function () {
+  const cv = document.getElementById('scene');
+  if (!window.BuyukkolEngine || !cv.getContext) return;
+  const eng = new window.BuyukkolEngine();
+  const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
+  game.jump(3);
+  cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
+  if (window.IntersectionObserver) {
+    new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
+  }
+  let on = false;
+  const btn = document.getElementById('snd');
+  btn.addEventListener('click', () => {
+    on = !on;
+    const ok = game.setSound(on);
+    if (on && ok === false) { on = false; document.getElementById('snd-lbl').textContent = 'Ses bu tarayıcıda çalışmıyor'; return; }
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    document.getElementById('snd-lbl').textContent = on ? 'Sesi kapat' : 'Çay ocağını dinle';
+    document.getElementById('snd-w').setAttribute('d', on ? 'M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10' : 'M12.5 6.5l4 5M16.5 6.5l-4 5');
+  });
+})();
+</script>
+</body>
+</html>

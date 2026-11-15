@@ -65,3 +65,13 @@ p{margin:0}
 .foot{margin-top:clamp(64px,10vw,96px);border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area-inset-bottom));font-size:14px;color:var(--soft)}
 .foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
 .foot a{color:var(--soft);min-height:44px;display:inline-flex;align-items:center}
+
+/* proje sayfaları arası geçiş */
+.pnav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(56px,9vw,80px)}
+.pn{display:flex;flex-direction:column;gap:6px;padding:18px 20px;min-height:44px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;text-decoration:none;transition:border-color .15s}
+.pn:hover{border-color:var(--line2)}
+.pn.next{align-items:flex-end;text-align:right}
+.pn-k{display:inline-flex;align-items:center;gap:6px;font-family:var(--pixel);font-size:13px;letter-spacing:.1em;color:var(--soft)}
+.pn-n{font-family:var(--display);font-weight:700;font-size:clamp(17px,2.6vw,22px);line-height:1.2;color:var(--text)}
+@media (max-width:480px){.pnav{grid-template-columns:1fr}.pn.next{align-items:flex-start;text-align:left}}
+.pnav + .foot{margin-top:40px}

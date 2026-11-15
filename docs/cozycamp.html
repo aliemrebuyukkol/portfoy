@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="site.css">
 <style>
 :root{--accent:#F6B26B}
-.stage{position:relative;height:clamp(300px,58vh,560px);overflow:hidden;overflow:clip;background:#141A30}
+.stage{position:relative;height:clamp(300px,64vh,600px);overflow:hidden;overflow:clip;background:#141A30}
 .scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
 .stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
 .stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
@@ -48,7 +48,13 @@ h1{color:var(--accent)}
 .checks li{display:flex;gap:10px;font-size:15px;color:var(--muted)}
 .checks li:before{content:"";flex:0 0 8px;height:8px;margin-top:8px;background:var(--accent)}
 .shots{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 12px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
-.phone{flex:0 0 clamp(170px,42vw,220px);aspect-ratio:9/19.5;border-radius:24px;background:#1B2240;box-shadow:inset 0 0 0 6px #0E1222,inset 0 0 0 7px var(--line2);display:grid;place-items:center;padding:20px;text-align:center;scroll-snap-align:start;font-size:14px}
+.shot{flex:0 0 clamp(190px,46vw,240px);margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+.shot img{width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#BFD9EE}
+.shot figcaption{font-size:14px;color:var(--muted);text-align:center}
+.build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.stat b{display:block;font-family:var(--display);font-size:22px}
+.stat span{font-size:13px;color:var(--muted)}
 .note{font-size:13px;color:var(--soft)}
 </style>
 </head>
@@ -112,18 +118,24 @@ h1{color:var(--accent)}
 <div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
 <h2 id="ekranlar">Uygulamadan kareler</h2>
 <div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
-<div class="phone"><span class="ph">[Ekran görüntüsü 1]</span></div>
-<div class="phone"><span class="ph">[Ekran görüntüsü 2]</span></div>
-<div class="phone"><span class="ph">[Ekran görüntüsü 3]</span></div>
+<figure class="shot"><img src="img/cozy-kamp.webp" width="600" height="1047" loading="lazy" alt="Kamp ekranı: gökyüzünde süzülen low-poly Göl Adası; çadır, kamp ateşi, iki gölet ve iskele. Üstte ada görevleri, 20 günlük seri ve odun sayısı."><figcaption>Kampın</figcaption></figure>
+<figure class="shot"><img src="img/cozy-gunluk.webp" width="600" height="1047" loading="lazy" alt="Günlük yazma ekranı: 'Bugün aklında ne kaldı?' sorusu, 'Bugün kendime küçük bir an ayırdım.' satırı, günün aurası seçenekleri ve Kaydet düğmesi."><figcaption>Bir satır yaz</figcaption></figure>
+<figure class="shot"><img src="img/cozy-mola.webp" width="600" height="1047" loading="lazy" alt="Mola ekranı: koyu yeşil zemin üzerinde 25:00 sayaç ve küçük kamp adası, altta 'Biraz yavaşla.' kartı ile süre seçenekleri."><figcaption>Mola</figcaption></figure>
+<figure class="shot"><img src="img/cozy-takimada.webp" width="600" height="1047" loading="lazy" alt="Takımada ekranı: 'Yaşadığın her ada, hatıralarıyla birlikte burada.' başlığı, Göl Adası kartı ve sırada bekleyen yeni ada."><figcaption>Takımada</figcaption></figure>
 </div>
 </section>
 
 <section class="section" aria-labelledby="hikaye">
-<div class="section-head"><p class="eyebrow">04 · HİKÂYESİ</p></div>
-<h2 id="hikaye">Neden yaptım?</h2>
+<div class="section-head"><p class="eyebrow">04 · YAPIM NOTLARI</p></div>
+<h2 id="hikaye">Nasıl yapıldı?</h2>
 <div class="stack">
-<p><span class="ph">[2–3 cümle: Cozy Camp hangi ihtiyaçtan doğdu?]</span></p>
-<p class="muted">Geliştirici: Ali Emre Büyükkol</p>
+<p class="muted">Tamamen Apple'ın kendi araçlarıyla yazıldı. Kamp dünyası SceneKit ile çiziliyor; ağaçlar, hayvanlar, çadırlar ve ateşler hazır model değil, kodla üretilen low-poly şekiller. Yazdığın satırın duygusu cihazın içinde, NaturalLanguage ile okunuyor; metin hiçbir sunucuya gitmiyor. Ortam sesleri de kayıt değil, AVAudioEngine ile anlık sentezleniyor.</p>
+<div class="build">
+<div class="stat"><b>SceneKit</b><span>3D kamp dünyası</span></div>
+<div class="stat"><b>SwiftUI</b><span>arayüz, WidgetKit ile widget</span></div>
+<div class="stat"><b>Cihaz içi</b><span>duygu okuma</span></div>
+</div>
+<p class="note">Geliştirici: Ali Emre Büyükkol.</p>
 </div>
 </section>
 
@@ -139,6 +151,8 @@ h1{color:var(--accent)}
 </div>
 </section>
 </main>
+
+<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="hakkimda.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Başa dön</span><span class="pn-n">Hakkımda</span></a><a class="pn next" href="sucustu.html"><span class="pn-k">Sonraki proje<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n" style="color:#C99BFF">SUÇÜSTÜ!</span></a></nav>
 
 <footer class="foot">
 <div class="wrap"><span>© 2026 Ali Emre Büyükkol · Cozy Camp</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#cozy-camp">Ormana dön</a></span></div>

@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="site.css">
 <style>
 :root{--accent:#F5A8CB}
-.stage{position:relative;height:clamp(300px,58vh,560px);overflow:hidden;overflow:clip;background:#141A30}
+.stage{position:relative;height:clamp(300px,64vh,600px);overflow:hidden;overflow:clip;background:#141A30}
 .scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
 .stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
 .stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
@@ -133,6 +133,8 @@ h1{color:var(--accent)}
 </div>
 </section>
 </main>
+
+<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="hosgeldiniz.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#F28AB8">Hoşgeldiniz Efendim</span></a><a class="pn next" href="index.html#posta"><span class="pn-k">Son durak<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n">Posta kutusu</span></a></nav>
 
 <footer class="foot">
 <div class="wrap"><span>© 2026 Ali Emre Büyükkol · Muchineko</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#muchineko">Ormana dön</a></span></div>
