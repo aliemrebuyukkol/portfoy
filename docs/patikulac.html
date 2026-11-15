@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>Pati Kulaç — Ali Emre Büyükkol</title>
+<meta name="description" content="Pati Kulaç: parmak ritmini pati vuruşuna çeviren, 120 Hz fizik motorlu 3D kedi yüzme yarışı. SwiftUI ve RealityKit ile iPhone için geliştiriliyor.">
+<meta property="og:title" content="Pati Kulaç">
+<meta property="og:description" content="Koşmak yok, kulaç var.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://buyukkol.com/patikulac.html">
+<meta property="og:url" content="https://buyukkol.com/patikulac.html">
+<meta property="og:site_name" content="Büyükkol">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://buyukkol.com/img/og-patikulac.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Piksel ormanda gölette kulaç atan kediler ve cankurtaran kedi; Pati Kulaç yazısı.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='2' y='10' width='12' height='4' fill='%232A6584'/%3E%3Crect x='2' y='10' width='12' height='1' fill='%237FD0EE'/%3E%3Crect x='5' y='5' width='1' height='2' fill='%23E39A4A'/%3E%3Crect x='10' y='5' width='1' height='2' fill='%23E39A4A'/%3E%3Crect x='5' y='6' width='6' height='4' fill='%23E39A4A'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%232A2A1E'/%3E%3Crect x='9' y='8' width='1' height='1' fill='%232A2A1E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{--accent:#7FD0EE}
+.stage{position:relative;height:clamp(300px,64vh,600px);overflow:hidden;overflow:clip;background:#141A30}
+.scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
+.stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
+.stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
+.pill{min-height:44px;padding:0 14px;border:0;border-radius:3px;background:rgba(14,16,30,.84);color:var(--text);font-family:var(--body);font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pill:hover{background:rgba(14,16,30,.96)}
+.hint{position:absolute;left:calc(16px + env(safe-area-inset-left));bottom:30px;z-index:2;font-family:var(--pixel);font-size:13px;letter-spacing:.08em;color:#E4DDEC;text-shadow:0 1px 0 rgba(14,16,30,.9)}
+@media (max-width:420px){.hint{display:none}}
+.intro{display:flex;flex-direction:column;gap:18px;padding-top:8px}
+.title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{width:64px;height:64px;border-radius:14px;background:#1E2442;box-shadow:inset 0 0 0 1px var(--line2);display:grid;place-items:center;flex:0 0 64px}
+.mark svg{width:40px;height:40px}
+h1{color:var(--accent)}
+.sub{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,24px);color:var(--text);margin-top:4px}
+.status{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-left:0;border-radius:4px;padding:14px 16px;font-size:15px;color:var(--muted)}
+.status b{color:var(--text);font-weight:600}
+.status .led{flex:0 0 10px;height:10px;margin-top:7px;background:#FFD28A;box-shadow:0 0 0 3px rgba(255,210,138,.18)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.feat .card{padding:18px}
+.feat h3{font-size:16px;font-family:var(--pixel);font-weight:600;letter-spacing:.06em;color:var(--accent)}
+.rule{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
+.rule div{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.rule b{display:block;font-family:var(--pixel);font-size:15px;letter-spacing:.04em;color:var(--accent);margin-bottom:4px}
+.rule p{font-size:15px;color:var(--muted)}
+.build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.stat b{display:block;font-family:var(--display);font-size:24px}
+.stat span{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--soft)}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap">
+<a class="back" href="index.html#pati-kulac"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<a class="brand" href="index.html#pati-kulac" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+</div>
+</header>
+
+<div class="stage" id="stage">
+<canvas class="scene" id="scene" role="img" aria-label="Piksel sanat gölet sahnesi: suda kulaç atan üç kedi, yüksek koltukta düdük çalan cankurtaran kedi, iskelede bekleyen kedi ve rüzgârda salınan sazlıklar."></canvas>
+<span class="hint" aria-hidden="true">GÖLETE DOKUN</span>
+<div class="stage-ui"><button type="button" class="pill" id="snd" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path id="snd-w" d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span id="snd-lbl">Göleti dinle</span></button></div>
+</div>
+
+<main class="wrap">
+<section class="intro" aria-labelledby="baslik">
+<div class="title-row">
+<div class="mark" aria-hidden="true"><svg viewBox="0 0 10 10" shape-rendering="crispEdges"><rect x="1" y="7" width="8" height="2" fill="#2A6584"/><rect x="1" y="6" width="8" height="1" fill="#7FD0EE"/><rect x="2" y="2" width="1" height="2" fill="#E39A4A"/><rect x="7" y="2" width="1" height="2" fill="#E39A4A"/><rect x="2" y="3" width="6" height="3" fill="#E39A4A"/><rect x="3" y="4" width="1" height="1" fill="#2A2A1E"/><rect x="6" y="4" width="1" height="1" fill="#2A2A1E"/><rect x="0" y="5" width="1" height="1" fill="#F6E7CF"/><rect x="9" y="5" width="1" height="1" fill="#F6E7CF"/></svg></div>
+<div><p class="eyebrow">OYUN · iPHONE · 3D</p><h1 id="baslik">Pati Kulaç</h1><p class="sub">Parmak ritmini pati vuruşuna çeviren kedi yüzme yarışı</p></div>
+</div>
+<p class="lead">İki parmakla sırayla suyu yakala, ritmi tuttur, kulaçlar arasında süzülerek enerjini topla. Üç boyutlu bir havuzda fizikle yüzen kediler, dört kulvarlı kısa ve tempolu bir 25 metre yarışı.</p>
+<div class="status" role="note"><span class="led" aria-hidden="true"></span><p><b>Şu an erken prototip aşamasında ve iç TestFlight'ta.</b> Fizik çekirdeği, dört kulvarlı yarış ve ilk kedi iskeleti çalışıyor; kedi modelleri, yüz ifadeleri ve yeni parkurlar hâlâ yapım aşamasında olduğu için burada henüz mağaza ekran görüntüsü yer almıyor — üstteki gölette kulaç atan kedileri izleyebilir ya da suya dokunabilirsin.</p></div>
+<div class="facts" aria-label="Oyun bilgileri"><span class="chip">iPhone · iOS 18+</span><span class="chip">25 m · 4 kulvar</span><span class="chip">120 Hz fizik</span><span class="chip">Çevrimdışı oynanır</span></div>
+</section>
+
+<section class="section" aria-labelledby="nasil">
+<div class="section-head"><p class="eyebrow">01 · NASIL OYNANIR</p></div>
+<h2 id="nasil">Suyu yakala, ritmi koru, süzül</h2>
+<div class="rule">
+<div><b>ÇEKİŞ VE RİTİM</b><p>Alt iki bölgede sırayla kısa aşağı çekişlerle ya da ritim halkası doldukça dokunarak kulaç atarsın. Çok erken basmak veya aynı patiyi üst üste zorlamak ek hız vermez.</p></div>
+<div><b>SÜZÜLME VE ENERJİ</b><p>Her kulaç zamana yayılan bir itki üretir. Kulaçlar arasında bıraktığın kısa boşlukta kedi suda süzülür ve enerjisini toplar.</p></div>
+<div><b>DÖRT ADIMLI ALIŞTIRMA</b><p>İlk kulaç, dönüşümlü pati, ritim aralığı ve süzülerek enerji toplama adımlarını öğreten isteğe bağlı havuz alıştırması.</p></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="havuz">
+<div class="section-head"><p class="eyebrow">02 · HAVUZDA NE VAR</p></div>
+<h2 id="havuz">Dört kulvar, gerçek süreler</h2>
+<div class="feat">
+<div class="card"><h3>ARKA ÇAPRAZ KAMERA</h3><p>Geri sayımdan bitiş duvarına kadar yüzücüyü ve yan kulvarları aynı kadrajda tutan yarış kamerası.</p></div>
+<div class="card"><h3>FİZİK TABANLI RAKİPLER</h3><p>Yan kulvarlardaki üç kedi hazır animasyonla değil, aynı su fiziği ve beş farklı yüzme profiliyle yarışır.</p></div>
+<div class="card"><h3>TRİBÜN VE SESLER</h3><p>Köpek ve tavşan seyircilerin yarış olaylarına tepki verdiği tribünler; motor olaylarına bağlı su ve kulaç sesleri.</p></div>
+<div class="card"><h3>ATOMİK KAYIT</h3><p>Son 20 yüzüş, kontrol moduna göre ayrılan kişisel rekorlar ve ilk kariyer görevi cihaz içinde korunur.</p></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="yapim">
+<div class="section-head"><p class="eyebrow">03 · YAPIM NOTLARI</p></div>
+<h2 id="yapim">Nasıl yapıldı?</h2>
+<div class="stack">
+<p class="muted">SwiftUI ve RealityKit ile yazılıyor. Yüzme fiziği görüntü karesinden bağımsız çalışan CatSwimCore paketinde 120 Hz sabit adımla hesaplanıyor: kaldırma kuvveti, suya göre direnç, zamana yayılan pati itkisi ve yorulma tek bir fizik kaynağından çıkıyor. İlk yüzücü kedi Çakıl, Blender'da hazırlanan 30 kemikli USDZ iskeletiyle yüzüyor; dört patinin suya değdiği noktalarda Metal tabanlı su ve köpük efektleri üretiliyor.</p>
+<div class="build">
+<div class="stat"><b>120 Hz</b><span>sabit fizik adımı, CatSwimCore</span></div>
+<div class="stat"><b>RealityKit</b><span>USDZ iskelet ve Metal su</span></div>
+<div class="stat"><b>0.1.0</b><span>iç TestFlight prototipi</span></div>
+</div>
+<p class="note">Geliştirici: Ali Emre Büyükkol.</p>
+</div>
+</section>
+</main>
+
+<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="hosgeldiniz.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#F28AB8">Hoşgeldiniz Efendim</span></a><a class="pn next" href="muchineko.html"><span class="pn-k">Sonraki proje<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n" style="color:#F5A8CB">Muchineko</span></a></nav>
+
+<footer class="foot">
+<div class="wrap"><span>© 2026 Ali Emre Büyükkol · Pati Kulaç</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#pati-kulac">Ormana dön</a></span></div>
+</footer>
+
+<script src="engine.js"></script>
+<script>
+"use strict";
+(function () {
+  const cv = document.getElementById('scene');
+  if (!window.BuyukkolEngine || !cv.getContext) return;
+  const eng = new window.BuyukkolEngine();
+  const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
+  game.jump(4);
+  cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
+  if (window.IntersectionObserver) {
+    new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
+  }
+  let on = false;
+  const btn = document.getElementById('snd');
+  btn.addEventListener('click', () => {
+    on = !on;
+    const ok = game.setSound(on);
+    if (on && ok === false) { on = false; document.getElementById('snd-lbl').textContent = 'Ses bu tarayıcıda çalışmıyor'; return; }
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    document.getElementById('snd-lbl').textContent = on ? 'Sesi kapat' : 'Göleti dinle';
+    document.getElementById('snd-w').setAttribute('d', on ? 'M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10' : 'M12.5 6.5l4 5M16.5 6.5l-4 5');
+  });
+})();
+</script>
+</body>
+</html>

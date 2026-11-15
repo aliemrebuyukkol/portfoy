@@ -21,12 +21,14 @@ docs/                  Yayınlanan site (GitHub Pages bu klasörden yayınlayabi
   cozycamp.html        Cozy Camp proje sayfası
   sucustu.html         SUÇÜSTÜ! proje sayfası (3D sürüm)
   hosgeldiniz.html     Hoşgeldiniz Efendim proje sayfası
+  patikulac.html       Pati Kulaç proje sayfası
   muchineko.html       Muchineko proje sayfası
   media/               Cozy Camp tanıtım videosu
   404.html             Kayıp patika sayfası (GitHub Pages kendiliğinden kullanır)
   sitemap.xml, robots.txt  Arama motorları için
   img/                 Proje ekran görüntüleri (webp)
   engine.js            Orman motoru (üretilir, elle düzenleme)
+  lightbox.js          Proje sayfaları için görsel büyütme
   site.css             Alt sayfaların ortak stili
 tasarim/               Claude Design tuvalindeki kaynak dosyalar
   Main.dc.html         Ormanın tek kaynağı: motor, sahne, arayüz
@@ -43,7 +45,7 @@ Motor ve sahne `tasarim/Main.dc.html` içinde. Değişiklikten sonra siteyi yeni
 python3 build_standalone.py
 ```
 
-`docs/hakkimda.html`, `docs/cozycamp.html`, `docs/sucustu.html`, `docs/hosgeldiniz.html`, `docs/muchineko.html` ve `docs/site.css` elle yazılmış sayfalar; doğrudan düzenlenir.
+`docs/hakkimda.html`, `docs/cozycamp.html`, `docs/sucustu.html`, `docs/hosgeldiniz.html`, `docs/patikulac.html`, `docs/muchineko.html`, `docs/lightbox.js` ve `docs/site.css` elle yazılmış sayfalar/betikler; doğrudan düzenlenir.
 
 ## Yerelde açmak
 
@@ -70,7 +72,7 @@ DNS (Spaceship): kök alan için GitHub Pages'in dört A kaydı (185.199.108–1
 
 Sitede yer tutucu kalmadı. Açık işler:
 
-- Pati Kulaç proje sayfası (oyun erken prototip aşamasında, sanatı henüz taslak; kartta "Yakında" yazıyor)
+- Pati Kulaç için mağaza hazır olduğunda ekran görüntüleri ve App Store bağlantısı (sayfası erken prototip/iç TestFlight notuyla yayında)
 - Suçüstü App Store'da yayımlanınca sayfadaki TestFlight notunun yerine mağaza bağlantısı
 - Suçüstü 3D için kısa oynanış videosu (projede henüz kayıt yok)
 - Muchineko App Store'a çıkınca gizlilik ve destek bağlantıları

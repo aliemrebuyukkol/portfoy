@@ -27,6 +27,7 @@ html = f'''<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#141A30">
 <title>Ali Emre Büyükkol — Portföy ormanı</title>
@@ -66,7 +67,7 @@ html = f'''<!DOCTYPE html>
 <button type="button" class="intro-btn intro-p" id="enter-sound">Sesle gir</button>
 <button type="button" class="intro-btn intro-g" id="enter-quiet">Sessiz gir</button>
 </div>
-<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.08em;color:#B9B3CC"><span class="keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–4 İLE PROJEYE ATLA</span><span class="touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
+<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.08em;color:#B9B3CC"><span class="keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA</span><span class="touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
 <noscript><p style="color:#FFD28A">Orman JavaScript ile çalışıyor. Lütfen JavaScript'i aç.</p></noscript>
 </section>
 
@@ -181,6 +182,7 @@ const Engine = window.BuyukkolEngine;
       if (fresh && !st.intro && navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) {{ try {{ navigator.vibrate(12); }} catch (e) {{ /* desteklenmiyor */ }} }}
       st.zone = i;
       if (fresh) {{ st.seen = st.seen.concat([i]); saveSeen(st.seen); if (st.seen.length === NPROJ) game.celebrate(); }}
+      if (!st.intro && history.replaceState) {{ try {{ history.replaceState(null, '', i === 0 ? location.pathname + location.search : '#' + IDS[i]); }} catch (e) {{ /* sessizce geç */ }} }}
       render();
       const on = document.querySelector('.chip.on');
       const box = $('chips');
@@ -217,13 +219,25 @@ const Engine = window.BuyukkolEngine;
   }});
   cv.addEventListener('pointercancel', () => {{ ptr = null; }});
   const isL = (k) => k === 'ArrowLeft' || k === 'a' || k === 'A', isR = (k) => k === 'ArrowRight' || k === 'd' || k === 'D';
-  cv.addEventListener('keydown', (e) => {{
-    if (st.intro) return;
+  window.addEventListener('keydown', (e) => {{
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (st.intro) {{
+      if ((e.key === 'Enter' || e.key === ' ') && !(e.target && e.target.closest && e.target.closest('button, a'))) {{
+        e.preventDefault();
+        enter(false);
+      }}
+      return;
+    }}
     if (isL(e.key)) {{ game.hold(-1); e.preventDefault(); }}
     else if (isR(e.key)) {{ game.hold(1); e.preventDefault(); }}
     else if (e.key >= '1' && e.key <= String(NPROJ)) go(+e.key);
+    else if (e.key === '0' || e.key === 'Home') {{ go(0); if (e.key === 'Home') e.preventDefault(); }}
+    else if (e.key === String(LAST) || e.key === 'End') {{ go(LAST); if (e.key === 'End') e.preventDefault(); }}
   }});
-  cv.addEventListener('keyup', (e) => {{ if (isL(e.key) || isR(e.key)) game.hold(0); }});
+  window.addEventListener('keyup', (e) => {{ if (isL(e.key) || isR(e.key)) game.hold(0); }});
+  window.addEventListener('blur', () => game.hold(0));
   cv.addEventListener('blur', () => game.hold(0));
   render();
   // Bir proje sayfasından dönüş: index.html#cozy-camp gibi bir adresle gelindiyse girişi atla, o durakta başla.

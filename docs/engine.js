@@ -68,17 +68,24 @@ window.BuyukkolEngine = class {
       set(B.wind, 0.035); set(B.fire, mix[0] * 0.05); set(B.pop, mix[0] * 0.35);
       set(B.chime, mix[1] * 0.3); set(B.water, mix[2] * 0.16); set(B.beat, mix[3] * 0.32); set(B.tea, mix[4] * 0.35); set(B.murmur, mix[4] * 0.05);
     };
+    let wantedOn = false;
     return {
       setOn: (on) => {
-        if (on && !ac && !init()) return false;
+        wantedOn = !!on;
+        if (on && !ac && !init()) { wantedOn = false; return false; }
         if (!ac) return false;
-        if (on) ac.resume();
+        if (on && ac.state === 'suspended') ac.resume().catch(() => {});
         master.gain.setTargetAtTime(on ? 0.9 : 0, ac.currentTime, 0.25);
         apply();
         return true;
       },
+      setSuspend: (s) => {
+        if (!ac || ac.state === 'closed') return;
+        if (s && ac.state === 'running') ac.suspend().catch(() => {});
+        else if (!s && wantedOn && ac.state === 'suspended') ac.resume().catch(() => {});
+      },
       setMix: (m) => { mix = m; apply(); },
-      stop: () => { clearInterval(timer); if (ac) ac.close(); ac = null; }
+      stop: () => { wantedOn = false; clearInterval(timer); if (ac && ac.state !== 'closed') ac.close().catch(() => {}); ac = null; }
     };
   }
 
@@ -1198,7 +1205,11 @@ window.BuyukkolEngine = class {
     window.addEventListener('resize', onResize);
     let ro = null;
     if (window.ResizeObserver) { ro = new ResizeObserver(onResize); ro.observe(wrapOf()); }
-    const onVis = () => { visible = !document.hidden; if (visible) start(); };
+    const onVis = () => {
+      visible = !document.hidden;
+      if (audio && audio.setSuspend) audio.setSuspend(document.hidden);
+      if (visible) start();
+    };
     document.addEventListener('visibilitychange', onVis);
     layout();
 
@@ -1233,7 +1244,7 @@ window.BuyukkolEngine = class {
       },
       setSound: (on) => audio.setOn(on),
       celebrate: () => { celebT = 4.5; start(); },
-      setVisible: (v) => { visible = !!v && !document.hidden; if (visible) start(); },
+      setVisible: (v) => { visible = !!v && !document.hidden; if (audio && audio.setSuspend) audio.setSuspend(document.hidden); if (visible) start(); },
       stop: () => {
         alive = false; if (raf) cancelAnimationFrame(raf);
         window.removeEventListener('resize', onResize); document.removeEventListener('visibilitychange', onVis);

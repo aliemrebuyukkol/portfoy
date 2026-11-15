@@ -102,7 +102,7 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <button type="button" class="intro-btn intro-p" onClick="{{ enterSound }}">Sesle gir</button>
 <button type="button" class="intro-btn intro-g" onClick="{{ enterQuiet }}">Sessiz gir</button>
 </div>
-<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B9B3CC"><span class="keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–4 İLE PROJEYE ATLA</span><span class="touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
+<p style="margin: 0; font-family: 'Pixelify Sans', monospace; font-size: 13px; letter-spacing: 0.08em; color: #B9B3CC"><span class="keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA</span><span class="touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
 </section>
 </sc-if>
 
@@ -179,7 +179,7 @@ class Component extends DCLogic {
     { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', say: 'Otur, bir çay iç. Acele yok.' },
     { type: 'project', name: 'Suçüstü', kind: 'OYUN', href: 'sucustu.html', desc: 'Oyuncak görünümlü 3D bir sahilde dikkat oyunu: kanıt yer değiştirir ama sahibi değişmez. Gerçek faili bul.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', say: 'Attım ama süpürüyorum, söz!' },
     { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', say: 'Hoş geldiniz efendim! Çayınız taze.' },
-    { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
+    { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', href: 'patikulac.html', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', say: 'Koşmak yok, kulaç var!' },
     { type: 'project', name: 'Muchineko', kind: 'OYUN', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', say: 'Miyav. Burada herkes biraz tembel.' },
     { type: 'contact', name: 'Posta kutusu', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', eyebrow: 'İLETİŞİM', say: 'Mektubunu bekliyorum.' }
   ];
@@ -364,17 +364,24 @@ class Component extends DCLogic {
       set(B.wind, 0.035); set(B.fire, mix[0] * 0.05); set(B.pop, mix[0] * 0.35);
       set(B.chime, mix[1] * 0.3); set(B.water, mix[2] * 0.16); set(B.beat, mix[3] * 0.32); set(B.tea, mix[4] * 0.35); set(B.murmur, mix[4] * 0.05);
     };
+    let wantedOn = false;
     return {
       setOn: (on) => {
-        if (on && !ac && !init()) return false;
+        wantedOn = !!on;
+        if (on && !ac && !init()) { wantedOn = false; return false; }
         if (!ac) return false;
-        if (on) ac.resume();
+        if (on && ac.state === 'suspended') ac.resume().catch(() => {});
         master.gain.setTargetAtTime(on ? 0.9 : 0, ac.currentTime, 0.25);
         apply();
         return true;
       },
+      setSuspend: (s) => {
+        if (!ac || ac.state === 'closed') return;
+        if (s && ac.state === 'running') ac.suspend().catch(() => {});
+        else if (!s && wantedOn && ac.state === 'suspended') ac.resume().catch(() => {});
+      },
       setMix: (m) => { mix = m; apply(); },
-      stop: () => { clearInterval(timer); if (ac) ac.close(); ac = null; }
+      stop: () => { wantedOn = false; clearInterval(timer); if (ac && ac.state !== 'closed') ac.close().catch(() => {}); ac = null; }
     };
   }
 
@@ -1494,7 +1501,11 @@ class Component extends DCLogic {
     window.addEventListener('resize', onResize);
     let ro = null;
     if (window.ResizeObserver) { ro = new ResizeObserver(onResize); ro.observe(wrapOf()); }
-    const onVis = () => { visible = !document.hidden; if (visible) start(); };
+    const onVis = () => {
+      visible = !document.hidden;
+      if (audio && audio.setSuspend) audio.setSuspend(document.hidden);
+      if (visible) start();
+    };
     document.addEventListener('visibilitychange', onVis);
     layout();
 
@@ -1529,7 +1540,7 @@ class Component extends DCLogic {
       },
       setSound: (on) => audio.setOn(on),
       celebrate: () => { celebT = 4.5; start(); },
-      setVisible: (v) => { visible = !!v && !document.hidden; if (visible) start(); },
+      setVisible: (v) => { visible = !!v && !document.hidden; if (audio && audio.setSuspend) audio.setSuspend(document.hidden); if (visible) start(); },
       stop: () => {
         alive = false; if (raf) cancelAnimationFrame(raf);
         window.removeEventListener('resize', onResize); document.removeEventListener('visibilitychange', onVis);
