@@ -60,16 +60,11 @@ cd docs && python3 -m http.server 8000
 2. Alan adı alındığında: Pages > Custom domain alanına `buyukkol.com` yaz (GitHub `docs/CNAME` dosyasını kendisi ekler).
 3. Alan adı sağlayıcısında GitHub Pages'in DNS kayıtlarını tanımla ve "Enforce HTTPS"i aç.
 
-## Alan adına geçerken
+## Alan adı
 
-Paylaşım kartları (`og:image`), `canonical` bağlantıları, `sitemap.xml` ve `robots.txt` şimdilik `https://aliemrebuyukkol.github.io/portfoy/` adresini gösteriyor. buyukkol.com bağlandığında bu adresi tek seferde değiştir:
+Site `https://buyukkol.com` adresinde yayınlanıyor; `docs/CNAME` bu alan adını GitHub Pages'e bildirir. Paylaşım kartları, `canonical` bağlantıları, `sitemap.xml` ve `robots.txt` bu adresi kullanır.
 
-```
-grep -rl "aliemrebuyukkol.github.io/portfoy" docs build_standalone.py | xargs sed -i '' 's#https://aliemrebuyukkol.github.io/portfoy/#https://buyukkol.com/#g'
-python3 build_standalone.py
-```
-
-`robots.txt` yalnız alan adının kökünde çalışır; github.io alt yolunda etkisizdir, buyukkol.com'da devreye girer. Paylaşım kartı görselleri `docs/img/og-*.jpg`; ormanın kendi sahnelerinden üretildi.
+DNS (Spaceship): kök alan için GitHub Pages'in dört A kaydı (185.199.108–111.153) ve dört AAAA kaydı (2606:50c0:8000–8003::153), `www` için `aliemrebuyukkol.github.io` adresine CNAME.
 
 ## Henüz eksik olanlar
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aliemrebuyukkol.github.io/portfoy/sitemap.xml
+Sitemap: https://buyukkol.com/sitemap.xml
