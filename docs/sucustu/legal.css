@@ -1,0 +1,56 @@
+/* SUÇÜSTÜ! yasal sayfaları (gizlilik, destek, koşullar). site.css'in üstüne gelir. */
+:root{--accent:#C99BFF}
+[hidden]{display:none!important}
+.skip{position:absolute;left:-9999px;top:8px;z-index:10;background:var(--text);color:var(--bg);padding:10px 14px;border-radius:3px;font-weight:600;text-decoration:none}
+.skip:focus{left:calc(16px + env(safe-area-inset-left))}
+
+.hero{display:flex;flex-direction:column;gap:16px;padding-top:clamp(40px,8vw,72px)}
+.hero h1,.hero .hero-title{color:var(--accent);margin:0;font-family:var(--display);font-weight:700;font-size:clamp(38px,8vw,64px);line-height:1;letter-spacing:-.03em}
+.hero .lead{max-width:40ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.meta .chip{font-variant-numeric:tabular-nums}
+.seg{display:inline-flex;gap:3px;padding:3px;border:1px solid var(--line2);border-radius:4px}
+.seg button{min-height:38px;min-width:88px;padding:0 14px;border:0;border-radius:2px;background:transparent;color:var(--muted);font:500 14px/1 var(--body);cursor:pointer}
+.seg button:hover{color:var(--text)}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+
+.doc{padding-top:clamp(40px,7vw,64px)}
+.doc + .doc{border-top:2px dashed var(--line2);margin-top:clamp(48px,8vw,72px)}
+.doc-title{font-size:clamp(24px,4vw,30px);margin:0 0 14px;font-family:var(--display);font-weight:700;line-height:1.15;letter-spacing:-.02em}
+.intro p{color:var(--text);max-width:64ch}
+.intro p + p{margin-top:14px}
+.doc a{color:var(--ph);text-decoration-color:rgba(201,155,255,.45);text-underline-offset:3px;overflow-wrap:anywhere}
+.doc a:hover{text-decoration-color:var(--accent)}
+.doc a.btn{color:var(--bg);text-decoration:none}
+.doc a.btn:hover{color:var(--bg)}
+
+.contact{margin-top:24px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.contact-mail{font-family:var(--display);font-weight:700;font-size:clamp(18px,3.4vw,24px);letter-spacing:-.01em;overflow-wrap:anywhere}
+.contact .row{margin-top:8px}
+
+.toc{margin-top:28px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
+.toc .eyebrow{color:var(--soft)}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:0 24px;counter-reset:toc}
+.toc li{counter-increment:toc;border-top:1px solid var(--line)}
+.toc a{display:flex;gap:12px;align-items:baseline;min-height:44px;padding:11px 0;text-decoration:none;color:var(--muted);font-size:15px;line-height:1.35;font-weight:400}
+.toc a:before{content:counter(toc,decimal-leading-zero);font-family:var(--pixel);font-size:13px;letter-spacing:.06em;color:var(--accent);flex:0 0 auto}
+.toc a:hover{color:var(--text)}
+
+.clause{padding-top:clamp(36px,6vw,52px);scroll-margin-top:76px}
+.clause .section-head{margin-bottom:12px}
+.clause .section-head .eyebrow{color:var(--accent)}
+.clause h2{font-size:clamp(22px,3.6vw,28px);margin:0 0 12px}
+.clause-body p{color:var(--muted);max-width:68ch}
+.clause-body p + p{margin-top:14px}
+
+.legal-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin-top:clamp(56px,9vw,80px)}
+.legal-nav .pn{color:var(--text)}
+.legal-nav + .foot,.foot{margin-top:clamp(48px,8vw,72px)}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap}
+
+@media print{
+  .bar,.seg,.legal-nav,.foot,.skip,.contact .row{display:none!important}
+  body{background:#fff;color:#000}
+  .doc[hidden]{display:block!important}
+  .clause-body p,.intro p{color:#000}
+}

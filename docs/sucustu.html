@@ -61,6 +61,11 @@ h1{color:var(--accent)}
 .stat b{display:block;font-family:var(--display);font-size:24px}
 .stat span{font-size:13px;color:var(--muted)}
 .note{font-size:13px;color:var(--soft)}
+.twist-tag{margin:0;font-family:var(--pixel);font-size:14px;letter-spacing:.14em;color:var(--soft)}
+.twist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;margin-top:14px}
+.twist-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.twist-card h3{font-size:15px;font-family:var(--pixel);font-weight:600;letter-spacing:.04em;color:var(--accent);margin:0 0 6px}
+.twist-card p{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
 </style>
 </head>
 <body>
@@ -118,6 +123,28 @@ h1{color:var(--accent)}
 <p class="note" style="margin-top:12px">On bölgenin bazıları. Yağmur, kar, sis ve fener ışığında gece devriyeleri de var.</p>
 </section>
 
+<section class="section v12-twists" aria-labelledby="twist-baslik">
+<div class="section-head"><p class="twist-tag">SÜRÜM 1.2 · BÖLÜM SÜRPRİZLERİ</p></div>
+<h2 id="twist-baslik">Her bölümün kendi sürprizi</h2>
+<div class="stack">
+<p class="muted twist-lead">Sürüm 1.2 ile toplam 236 bölümün (206 ana + 30 özel bölüm) her birine özgü bir kural geldi. 4 zorluk kademesinde sahildeki 12 mekanik; gerçek sentezlenmiş gaz sesleri, daha hareketli müzikler ve yeni ilk açılış rehberiyle buluşuyor:</p>
+<div class="twist-grid">
+<div class="twist-card"><h3>Ses Perdesi</h3><p>Yüksek ses gaz sesini maskeler; faili yakalamak için gözlerini dört aç.</p></div>
+<div class="twist-card"><h3>Koku İzi</h3><p>Rüzgâr kokuyu taşır; gaz bulutunun süzüldüğü asıl kaynağı bul.</p></div>
+<div class="twist-card"><h3>Sahte Hamle</h3><p>Şüpheli hareket yapan herkes suçlu değildir; hemen karar verme.</p></div>
+<div class="twist-card"><h3>Masum Köpek</h3><p>Köpek atılan şişeyi kapıp başkasının önüne bırakabilir.</p></div>
+<div class="twist-card"><h3>Kör Nokta</h3><p>Şemsiye, büfe ve tentelerin arkasında gizlenenlere dikkat et.</p></div>
+<div class="twist-card"><h3>Kapalı Kutu</h3><p>Dar ve görüşü kısıtlı köşelerde doğru anı yakala.</p></div>
+<div class="twist-card"><h3>Kesişen Kalabalık</h3><p>Kalabalık gruplar birbirinin önünden geçerken faili gözden kaçırma.</p></div>
+<div class="twist-card"><h3>Yer Değiştirme</h3><p>Dansçılar ve gezenler aniden yer değiştirip kafanı karıştırabilir.</p></div>
+<div class="twist-card"><h3>Önce Kanıt</h3><p>Kanıt yere düşmeden veya koku yayılmadan failin hamlesini sez.</p></div>
+<div class="twist-card"><h3>İkizler</h3><p>Tıpatıp benzer ikizlerden yalnızca biri kuralı çiğnemiştir.</p></div>
+<div class="twist-card"><h3>Çalkantı</h3><p>Dalgalı denizde yalpalayan teknede fizik kuralları zorlaşır.</p></div>
+<div class="twist-card"><h3>Rüzgâr İzi</h3><p>Değişen rüzgâr yönünü bayrak ve duman hareketinden takip et.</p></div>
+</div>
+</div>
+</section>
+
 <section class="section" aria-labelledby="ekranlar">
 <div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
 <h2 id="ekranlar">Oyundan kareler</h2>
@@ -154,8 +181,9 @@ h1{color:var(--accent)}
 <div class="stack">
 <p class="muted">Giriş gerekmez; ilerlemen ve ayarların cihazında kalır. Oyunda Google AdMob reklamları var: ilk üç bölümde reklam çıkmaz, açılışta reklam izni sorulur, uygulama izleme izni istenmez. Tek seferlik "Reklamları kaldır" satın alması reklamları kalıcı olarak kapatır.</p>
 <div class="row">
-<a class="btn ghost" href="https://nazartesi.com/sucustu/privacy">Gizlilik politikası</a>
-<a class="btn ghost" href="https://nazartesi.com/sucustu/support">Destek</a>
+<a class="btn ghost" href="sucustu/privacy/">Gizlilik politikası</a>
+<a class="btn ghost" href="sucustu/support/">Destek</a>
+<a class="btn ghost" id="btn-terms" href="sucustu/terms/">Kullanım koşulları</a>
 </div>
 </div>
 </section>
@@ -173,6 +201,52 @@ h1{color:var(--accent)}
 <script>
 "use strict";
 (function () {
+  const TWISTS = [
+    { trT: 'Ses Perdesi', enT: 'Noise Curtain', trD: 'Yüksek ses gaz sesini maskeler; faili yakalamak için gözlerini dört aç.', enD: 'Loud ambient noise masks the sound; watch movements closely.' },
+    { trT: 'Koku İzi', enT: 'Smell Trail', trD: 'Rüzgâr kokuyu taşır; gaz bulutunun süzüldüğü asıl kaynağı bul.', enD: 'Wind drifts the scent; trace the cloud back to its true source.' },
+    { trT: 'Sahte Hamle', enT: 'Fake Wind-up', trD: 'Şüpheli hareket yapan herkes suçlu değildir; hemen karar verme.', enD: 'Suspicious wind-ups can mislead; verify before you accuse.' },
+    { trT: 'Masum Köpek', enT: 'Innocent Dog', trD: 'Köpek atılan şişeyi kapıp başkasının önüne bırakabilir.', enD: 'A dog may fetch discarded litter and drop it next to a bystander.' },
+    { trT: 'Kör Nokta', enT: 'Blind Spot', trD: 'Şemsiye, büfe ve tentelerin arkasında gizlenenlere dikkat et.', enD: 'Watch out for suspects hiding behind parasols, stalls, and awnings.' },
+    { trT: 'Kapalı Kutu', enT: 'Closed Box', trD: 'Dar ve görüşü kısıtlı köşelerde doğru anı yakala.', enD: 'Limited sightlines in tight spaces require pinpoint timing.' },
+    { trT: 'Kesişen Kalabalık', enT: 'Crossing Crowd', trD: 'Kalabalık gruplar birbirinin önünden geçerken faili gözden kaçırma.', enD: 'Crisscrossing pedestrian traffic masks the true culprit.' },
+    { trT: 'Yer Değiştirme', enT: 'Swap Places', trD: 'Dansçılar ve gezenler aniden yer değiştirip kafanı karıştırabilir.', enD: 'Dancers and strollers rapidly trade spots to baffle you.' },
+    { trT: 'Önce Kanıt', enT: 'Evidence First', trD: 'Kanıt yere düşmeden veya koku yayılmadan failin hamlesini sez.', enD: 'Read the culprit\'s posture before the clue is even released.' },
+    { trT: 'İkizler', enT: 'Twins', trD: 'Tıpatıp benzer ikizlerden yalnızca biri kuralı çiğnemiştir.', enD: 'Identical lookalikes walk together; only one is guilty.' },
+    { trT: 'Çalkantı', enT: 'Bumpy Ride', trD: 'Dalgalı denizde yalpalayan teknede fizik kuralları zorlaşır.', enD: 'A rocking boat deck in choppy waters throws off physical clues.' },
+    { trT: 'Rüzgâr İzi', enT: 'Wind Trace', trD: 'Değişen rüzgâr yönünü bayrak ve duman hareketinden takip et.', enD: 'Read shifting wind directions from environmental flags.' }
+  ];
+
+  function updateTwistLang(lang) {
+    const isEn = lang === 'en';
+    const tag = document.querySelector('.twist-tag');
+    if (tag) tag.textContent = isEn ? 'VERSION 1.2 · LEVEL TWISTS' : 'SÜRÜM 1.2 · BÖLÜM SÜRPRİZLERİ';
+    const h2 = document.getElementById('twist-baslik');
+    if (h2) h2.textContent = isEn ? 'Every level has its own twist' : 'Her bölümün kendi sürprizi';
+    const lead = document.querySelector('.twist-lead');
+    if (lead) lead.textContent = isEn
+      ? 'In version 1.2, every single one of the 236 levels (206 main + 30 special chapters) features its own twist. Across 4 difficulty tiers, 12 distinct mechanics meet synthesized fart audio, bouncier music, and a brand-new first-run onboarding:'
+      : 'Sürüm 1.2 ile toplam 236 bölümün (206 ana + 30 özel bölüm) her birine özgü bir kural geldi. 4 zorluk kademesinde sahildeki 12 mekanik; gerçek sentezlenmiş gaz sesleri, daha hareketli müzikler ve yeni ilk açılış rehberiyle buluşuyor:';
+    const cards = document.querySelectorAll('.twist-card');
+    cards.forEach((card, idx) => {
+      const data = TWISTS[idx];
+      if (!data) return;
+      const h3 = card.querySelector('h3');
+      const p = card.querySelector('p');
+      if (h3) h3.textContent = isEn ? data.enT : data.trT;
+      if (p) p.textContent = isEn ? data.enD : data.trD;
+    });
+    const termsBtn = document.getElementById('btn-terms');
+    if (termsBtn) termsBtn.textContent = isEn ? 'Terms of use' : 'Kullanım koşulları';
+  }
+
+  window.addEventListener('buyukkol:lang', function (e) {
+    updateTwistLang(e.detail && e.detail.lang);
+  });
+  try {
+    const saved = localStorage.getItem('buyukkol.lang') || document.documentElement.lang;
+    if (saved === 'en') updateTwistLang('en');
+  } catch (e) {}
+
   const cv = document.getElementById('scene');
   if (!window.BuyukkolEngine || !cv.getContext) return;
   const eng = new window.BuyukkolEngine();
