@@ -14,11 +14,18 @@
 <meta property="og:url" content="https://buyukkol.com/sucustu.html">
 <meta property="og:site_name" content="Büyükkol">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:image" content="https://buyukkol.com/img/og-sucustu.jpg">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://buyukkol.com/img/og-sucustu.png">
+<meta property="og:image:secure_url" content="https://buyukkol.com/img/og-sucustu.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Piksel ormanda renkli bir dans pisti; SUÇÜSTÜ! yazısı.">
+<meta property="og:image:alt" content="Piksel ormanda disko ışıklı dans pisti ve SUÇÜSTÜ! oyun kartı.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SUÇÜSTÜ!">
+<meta name="twitter:description" content="Gaz salanı, çöp atanı yakala! 236 bölüm, her bölümde başka bir oyun.">
+<meta name="twitter:image" content="https://buyukkol.com/img/og-sucustu.png">
+<meta name="twitter:image:alt" content="Piksel ormanda disko ışıklı dans pisti ve SUÇÜSTÜ! oyun kartı.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='7' y='2' width='2' height='8' fill='%23E5533A'/%3E%3Crect x='7' y='12' width='2' height='2' fill='%23E5533A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
@@ -54,7 +61,7 @@ h1{color:var(--accent)}
 .shot img{width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#F4EFE6}
 .shot figcaption{font-size:14px;color:var(--muted);text-align:center}
 .film{margin:0 0 22px;display:flex;flex-direction:column;align-items:center;gap:10px}
-.film video{width:min(100%,320px);height:auto;aspect-ratio:528/642;border-radius:22px;background:#0E1222;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2)}
+.film video{width:min(100%,300px);height:auto;aspect-ratio:528/1144;border-radius:26px;background:#0E1222;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2)}
 .film figcaption{font-size:14px;color:var(--muted);text-align:center}
 .build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
 .stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
@@ -213,6 +220,29 @@ h1{color:var(--accent)}
 <script src="engine.js"></script>
 <script src="lightbox.js" defer></script>
 <script src="i18n.js" defer></script>
-
+<script>
+"use strict";
+(function () {
+  const cv = document.getElementById('scene');
+  if (!window.BuyukkolEngine || !cv.getContext) return;
+  const eng = new window.BuyukkolEngine();
+  const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
+  game.jump(2);
+  cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
+  if (window.IntersectionObserver) {
+    new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
+  }
+  let on = false;
+  const btn = document.getElementById('snd');
+  btn.addEventListener('click', () => {
+    on = !on;
+    const ok = game.setSound(on);
+    if (on && ok === false) { on = false; document.getElementById('snd-lbl').textContent = 'Ses bu tarayıcıda çalışmıyor'; return; }
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    document.getElementById('snd-lbl').textContent = on ? 'Sesi kapat' : 'Ritmi aç';
+    document.getElementById('snd-w').setAttribute('d', on ? 'M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10' : 'M12.5 6.5l4 5M16.5 6.5l-4 5');
+  });
+})();
+</script>
 </body>
 </html>
