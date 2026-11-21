@@ -17,6 +17,7 @@ ICON_ON = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidd
 ICON_OFF = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'
 ARROW_UP = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>'
 ARROW_R = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>'
+APPLE_ICO = '<svg width="15" height="18" viewBox="0 0 18 22" fill="currentColor" aria-hidden="true"><path d="M14.94 11.58c-.02-2.29 1.87-3.4 1.96-3.45-1.07-1.56-2.73-1.77-3.32-1.8-1.4-.14-2.75.83-3.46.83-.72 0-1.82-.81-3-.79-1.53.02-2.95.9-3.74 2.27-1.61 2.79-.41 6.91 1.14 9.17.76 1.11 1.67 2.35 2.86 2.3 1.15-.05 1.59-.74 2.98-.74 1.39 0 1.79.74 3 .71 1.24-.02 2.02-1.12 2.77-2.23.88-1.28 1.24-2.53 1.26-2.59-.03-.01-2.43-.93-2.45-3.68ZM12.66 4.84c.63-.77 1.06-1.83.94-2.89-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.79 1.02.08 2.06-.51 2.69-1.27Z"/></svg>'
 FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='5' y='2' width='6' height='2' fill='%2369964B'/%3E%3Crect x='3' y='4' width='10' height='5' fill='%23426D3E'/%3E%3Crect x='4' y='5' width='3' height='2' fill='%2369964B'/%3E%3Crect x='7' y='9' width='2' height='4' fill='%235A3F2A'/%3E%3Crect x='11' y='11' width='2' height='2' fill='%23F6B26B'/%3E%3C/svg%3E"
 
 chips = ''.join(
@@ -36,6 +37,9 @@ html = f'''<!DOCTYPE html>
 <meta property="og:description" content="Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://buyukkol.com/">
+<link rel="alternate" hreflang="tr" href="https://buyukkol.com/">
+<link rel="alternate" hreflang="en" href="https://buyukkol.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://buyukkol.com/">
 <meta property="og:url" content="https://buyukkol.com/">
 <meta property="og:site_name" content="Büyükkol">
 <meta property="og:locale" content="tr_TR">
@@ -102,7 +106,7 @@ html = f'''<!DOCTYPE html>
 <p class="card-vibe" id="c-vibe"></p>
 <div id="c-project" style="display:flex;flex-direction:column;gap:inherit">
 <p class="card-desc" id="c-desc"></p>
-<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta" id="c-cta"><span id="c-cta-lbl">Projeye git</span>{ARROW_UP}</a><span class="cta cta-soon" id="c-soon" hidden>Yakında</span><button type="button" class="cta cta-ghost" id="c-next"><span id="c-next-lbl"></span>{ARROW_R}</button></div>
+<div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap"><a href="#" class="cta cta-store" id="c-store" target="_blank" rel="noopener" hidden>{APPLE_ICO}<span id="c-store-lbl">App Store'dan indir</span>{ARROW_UP}</a><a href="#" class="cta" id="c-cta"><span id="c-cta-lbl">Projeye git</span>{ARROW_UP}</a><span class="cta cta-soon" id="c-soon" hidden>Yakında</span><button type="button" class="cta cta-ghost" id="c-next"><span id="c-next-lbl"></span>{ARROW_R}</button></div>
 </div>
 <div id="c-about" hidden style="flex-direction:column;gap:inherit">
 <p class="card-desc" id="about-desc">Amatör bir vibecoder. Uygulamalar, oyunlar ve küçük dijital dünyalar yapıyorum; güzel ve biraz farklı görünsünler diye. Ormanda yürü, her durakta biri seni bekliyor.</p>
@@ -139,8 +143,10 @@ const Engine = window.BuyukkolEngine;
     try {{
       const q = new URLSearchParams(location.search).get('lang');
       if (q === 'en' || q === 'tr') {{ localStorage.setItem('buyukkol.lang', q); return q; }}
-      return localStorage.getItem('buyukkol.lang') === 'en' ? 'en' : 'tr';
-    }} catch (e) {{ return 'tr'; }}
+      const s = localStorage.getItem('buyukkol.lang');
+      if (s === 'en' || s === 'tr') return s;
+    }} catch (e) {{}}
+    return (navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
   }};
   const saveLang = (l) => {{ try {{ localStorage.setItem('buyukkol.lang', l); }} catch (e) {{}} }};
   const loadSeen = () => {{ try {{ const v = JSON.parse(localStorage.getItem('buyukkol.seen.v2') || '[]'); return Array.isArray(v) ? v.filter((n) => Number.isInteger(n) && n >= 1 && n <= NPROJ) : []; }} catch (e) {{ return []; }} }};
@@ -165,6 +171,7 @@ const Engine = window.BuyukkolEngine;
       about: 'Hakkımda',
       contact: 'İletişim',
       projectPrefix: 'PROJE ',
+      storeCta: "App Store'dan indir",
       goProj: 'Projeye git',
       soon: 'Yakında',
       nextPrefix: 'Sonraki: ',
@@ -201,6 +208,7 @@ const Engine = window.BuyukkolEngine;
       about: 'About',
       contact: 'Contact',
       projectPrefix: 'PROJECT ',
+      storeCta: 'Get on App Store',
       goProj: 'View project',
       soon: 'Soon',
       nextPrefix: 'Next: ',
@@ -243,6 +251,7 @@ const Engine = window.BuyukkolEngine;
     $('go-contact').setAttribute('aria-label', t.contact); $('contact-lbl').textContent = t.contact;
     $('lang-btn').textContent = t.langBtn; $('lang-btn').setAttribute('aria-label', t.langAria);
     $('c-cta-lbl').textContent = t.goProj;
+    $('c-store-lbl').textContent = t.storeCta;
     $('c-soon').textContent = t.soon;
     $('about-desc').textContent = t.aboutDesc;
     $('know-me').textContent = t.knowMe;
@@ -274,7 +283,9 @@ const Engine = window.BuyukkolEngine;
     $('c-eyebrow').textContent = p.type === 'project' ? t.projectPrefix + pi + ' / ' + NPROJ + (pKind ? ' · ' + pKind : '') : pEyebrow;
     $('c-name').textContent = pName; $('c-name').style.color = p.color;
     $('c-vibe').textContent = pVibe;
+    $('c-store').href = p.storeHref || '#'; $('c-store').hidden = !p.storeHref;
     $('c-cta').href = p.href || '#'; $('c-cta').hidden = !p.href; $('c-soon').hidden = !!p.href;
+    $('c-cta').className = p.storeHref ? 'cta cta-ghost' : 'cta';
     if (p.ext) {{ $('c-cta').target = '_blank'; $('c-cta').rel = 'noopener'; }} else {{ $('c-cta').removeAttribute('target'); $('c-cta').removeAttribute('rel'); }}
     const nz = zones[z + 1];
     const nzName = nz ? (nz.type === 'contact' ? t.contact : (en && nz.nameEn ? nz.nameEn : nz.name)) : '';

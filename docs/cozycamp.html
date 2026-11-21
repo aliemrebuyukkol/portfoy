@@ -5,13 +5,20 @@
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#141A30">
+<meta name="apple-itunes-app" content="app-id=6826295096">
 <title>Cozy Camp: Günlük ve Kamp — Ali Emre Büyükkol</title>
 <meta name="description" content="Cozy Camp: günlük, odak sayacı ve gökyüzünde küçük bir kamp. Birkaç satır yaz, ateşin canlansın. iPhone için App Store'da.">
 <meta property="og:title" content="Cozy Camp: Günlük ve Kamp">
 <meta property="og:description" content="Yaz, odaklan, kampını büyüt.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://buyukkol.com/cozycamp.html">
+<link rel="alternate" hreflang="tr" href="https://buyukkol.com/cozycamp.html">
+<link rel="alternate" hreflang="en" href="https://buyukkol.com/en/cozycamp.html">
+<link rel="alternate" hreflang="x-default" href="https://buyukkol.com/cozycamp.html">
 <meta property="og:url" content="https://buyukkol.com/cozycamp.html">
+<meta property="al:ios:app_store_id" content="6826295096">
+<meta property="al:ios:app_name" content="Cozy Camp: Journal &amp; Focus">
+<meta property="al:ios:url" content="https://apps.apple.com/app/cozy-camp-journal-focus/id6826295096">
 <meta property="og:site_name" content="Büyükkol">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:locale:alternate" content="en_US">
@@ -46,10 +53,18 @@
 .mark svg{width:40px;height:40px}
 h1{color:var(--accent)}
 .sub{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,24px);color:var(--text);margin-top:4px}
-.store{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 20px;border-radius:6px;background:var(--text);color:var(--bg);text-decoration:none;font-weight:600;font-size:16px}
-.store small{display:block;font-size:11px;font-weight:500;opacity:.75;line-height:1}
+.store{display:inline-flex;align-items:center;gap:12px;min-height:58px;padding:0 24px;border-radius:8px;background:var(--accent);color:#141A30;text-decoration:none;font-weight:700;font-size:17px;box-shadow:0 8px 26px rgba(246,178,107,.28),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .14s ease,background .14s ease,box-shadow .14s ease}
+.store small{display:block;font-size:11px;font-weight:600;letter-spacing:.03em;opacity:.82;line-height:1.1}
 .store span{display:flex;flex-direction:column;line-height:1.15}
-.store:hover{background:#fff;color:var(--bg)}
+.store:hover{background:#FFC98C;color:#141A30;transform:translateY(-1px);box-shadow:0 12px 32px rgba(246,178,107,.38)}
+.store-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.store-meta{font-size:14px;color:var(--muted)}
+.bar-store{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:4px;background:var(--accent);color:#141A30;font-weight:600;font-size:13px;text-decoration:none;white-space:nowrap}
+.bar-store:hover{background:#FFC98C;color:#141A30}
+@media (max-width:540px){.bar .brand{display:none}}
+.dl-banner{margin-top:28px;padding:24px;border-radius:8px;background:linear-gradient(135deg,rgba(246,178,107,.13),rgba(27,34,64,.96) 58%);border:1px solid rgba(246,178,107,.35);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.dl-banner h3{font-family:var(--display);font-size:clamp(20px,3vw,24px);color:var(--text)}
+.dl-banner p{font-size:15px;color:var(--muted);margin-top:4px;max-width:40ch}
 .facts{display:flex;flex-wrap:wrap;gap:8px}
 .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
 .feat .card{flex-direction:row;align-items:flex-start;gap:14px;padding:18px}
@@ -82,7 +97,10 @@ h1{color:var(--accent)}
 <header class="bar">
 <div class="wrap">
 <a class="back" href="index.html#cozy-camp"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<div class="bar-right">
 <a class="brand" href="index.html#cozy-camp" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+<a class="bar-store" href="https://apps.apple.com/app/cozy-camp-journal-focus/id6826295096" target="_blank" rel="noopener"><svg width="13" height="16" viewBox="0 0 18 22" fill="currentColor" aria-hidden="true"><path d="M14.94 11.58c-.02-2.29 1.87-3.4 1.96-3.45-1.07-1.56-2.73-1.77-3.32-1.8-1.4-.14-2.75.83-3.46.83-.72 0-1.82-.81-3-.79-1.53.02-2.95.9-3.74 2.27-1.61 2.79-.41 6.91 1.14 9.17.76 1.11 1.67 2.35 2.86 2.3 1.15-.05 1.59-.74 2.98-.74 1.39 0 1.79.74 3 .71 1.24-.02 2.02-1.12 2.77-2.23.88-1.28 1.24-2.53 1.26-2.59-.03-.01-2.43-.93-2.45-3.68ZM12.66 4.84c.63-.77 1.06-1.83.94-2.89-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.79 1.02.08 2.06-.51 2.69-1.27Z"/></svg>App Store</a>
+</div>
 </div>
 </header>
 
@@ -99,8 +117,9 @@ h1{color:var(--accent)}
 <div><p class="eyebrow">UYGULAMA · APP STORE'DA</p><h1 id="baslik">Cozy Camp</h1><p class="sub">Yaz, odaklan, kampını büyüt.</p></div>
 </div>
 <p class="lead">Birkaç satır yaz, ateşin canlansın. Cozy Camp; bir günlüğü, bir odak sayacını ve gökyüzünde süzülen küçük bir kampı bir araya getiriyor. Yazdığın her gün ateşin parlıyor, adana bir anı geliyor, hayvan dostlar kampına katılıyor.</p>
-<div class="row">
-<a class="store" href="https://apps.apple.com/tr/app/cozy-camp-journal-focus/id6826295096"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="2" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v8M6 10h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><small>Ücretsiz indir</small>App Store</span></a>
+<div class="store-wrap">
+<a class="store" href="https://apps.apple.com/app/cozy-camp-journal-focus/id6826295096" target="_blank" rel="noopener"><svg width="22" height="26" viewBox="0 0 18 22" fill="currentColor" aria-hidden="true"><path d="M14.94 11.58c-.02-2.29 1.87-3.4 1.96-3.45-1.07-1.56-2.73-1.77-3.32-1.8-1.4-.14-2.75.83-3.46.83-.72 0-1.82-.81-3-.79-1.53.02-2.95.9-3.74 2.27-1.61 2.79-.41 6.91 1.14 9.17.76 1.11 1.67 2.35 2.86 2.3 1.15-.05 1.59-.74 2.98-.74 1.39 0 1.79.74 3 .71 1.24-.02 2.02-1.12 2.77-2.23.88-1.28 1.24-2.53 1.26-2.59-.03-.01-2.43-.93-2.45-3.68ZM12.66 4.84c.63-.77 1.06-1.83.94-2.89-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.79 1.02.08 2.06-.51 2.69-1.27Z"/></svg><span><small>App Store'dan ücretsiz indir</small>App Store</span><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
+<span class="store-meta" id="store-meta">iPhone · iOS 17+ · Ücretsiz</span>
 </div>
 <div class="facts" aria-label="Uygulama bilgileri"><span class="chip">iPhone · iOS 17+</span><span class="chip">Türkçe dahil 33 dil</span><span class="chip">Ücretsiz · uygulama içi satın alma</span><span class="chip">9+</span></div>
 </section>
@@ -147,6 +166,10 @@ h1{color:var(--accent)}
 <figure class="shot"><img src="img/cozy-widget.webp" width="600" height="1304" loading="lazy" alt="Widget seçim ekranı: kampın ve gün sayısını gösteren küçük widget, kampın geniş widget ve dostlarla etkileşim widget örnekleri."><figcaption>Widgetlar</figcaption></figure>
 </div>
 <p class="note" style="margin-top:10px">Görüntüler ve video 1.2 "Kamp Yaşamı" sürümünden.</p>
+<div class="dl-banner">
+<div><h3 id="dl-title">Ateşini bu akşam yak</h3><p id="dl-desc">Ücretsiz indir; hesap açmadan hemen başla. Yazdıkların yalnızca telefonunda kalır.</p></div>
+<a class="store" href="https://apps.apple.com/app/cozy-camp-journal-focus/id6826295096" target="_blank" rel="noopener"><svg width="22" height="26" viewBox="0 0 18 22" fill="currentColor" aria-hidden="true"><path d="M14.94 11.58c-.02-2.29 1.87-3.4 1.96-3.45-1.07-1.56-2.73-1.77-3.32-1.8-1.4-.14-2.75.83-3.46.83-.72 0-1.82-.81-3-.79-1.53.02-2.95.9-3.74 2.27-1.61 2.79-.41 6.91 1.14 9.17.76 1.11 1.67 2.35 2.86 2.3 1.15-.05 1.59-.74 2.98-.74 1.39 0 1.79.74 3 .71 1.24-.02 2.02-1.12 2.77-2.23.88-1.28 1.24-2.53 1.26-2.59-.03-.01-2.43-.93-2.45-3.68ZM12.66 4.84c.63-.77 1.06-1.83.94-2.89-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.79 1.02.08 2.06-.51 2.69-1.27Z"/></svg><span><small>App Store'dan ücretsiz indir</small>App Store</span><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
+</div>
 </section>
 
 <section class="section" aria-labelledby="hikaye">

@@ -4,8 +4,10 @@
     try {
       const q = new URLSearchParams(location.search).get('lang');
       if (q === 'en' || q === 'tr') { localStorage.setItem('buyukkol.lang', q); return q; }
-      return localStorage.getItem('buyukkol.lang') === 'en' ? 'en' : 'tr';
-    } catch (e) { return 'tr'; }
+      const s = localStorage.getItem('buyukkol.lang');
+      if (s === 'en' || s === 'tr') return s;
+    } catch (e) {}
+    return (navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
   };
   const saveLang = (l) => { try { localStorage.setItem('buyukkol.lang', l); } catch (e) {} };
   let lang = loadLang(), copied = false, copyTimer = 0;
@@ -73,7 +75,7 @@
         'main > .section .eyebrow': ['01 · IN THE WOODS', '02 · TOOLS', '03 · CONTACT'],
         '.work-meta': [
           'A journal and focus app: write a few lines, spark your fire, and grow your camp.',
-          'An observation game on a toy-like 3D beach: evidence moves around, its owner never changes. RealityKit, SwiftUI.',
+          'Catch farters and litterbugs! 236 levels across toy-like 3D worlds, 12 twists, and 50 animal pals. RealityKit, SwiftUI.',
           "A living web world placing Turkey's cult viral videos onto isometric miniature islands. React, PixiJS.",
           'A sports-broadcast-style cat swimming race that turns finger rhythm into paw strokes. SwiftUI, RealityKit.',
           'A horizontal iPhone game sending Mochi and Sumi across rooftops drawn in ink and cream paper. SwiftUI, SpriteKit.'
@@ -95,7 +97,9 @@
         '.intro .eyebrow': 'APP · ON THE APP STORE',
         '.intro .sub': 'Write, focus, grow your camp.',
         '.intro .lead': 'Write a few lines and spark your fire. Cozy Camp brings together a journal, a focus timer, and a tiny camp floating in the sky. Every day you write, your flame glows brighter, a memory joins your island, and animal friends visit your camp.',
-        '.store small': 'Download free',
+        '#store-meta': 'iPhone · iOS 17+ · Free',
+        '#dl-title': 'Light your campfire tonight',
+        '#dl-desc': 'Download free—no sign-up needed. Everything you write stays privately on your iPhone.',
         '#neler': 'A corner of your own',
         '#kampplus': 'Free forever, optional extras',
         '#ekranlar': 'From the app',
@@ -104,6 +108,7 @@
         '.film figcaption': '23-second preview. Use the video controls for audio.'
       },
       lists: {
+        '.store small': ['Download free on the', 'Download free on the'],
         '.facts .chip': ['iPhone · iOS 17+', '33 languages incl. Turkish & English', 'Free · in-app purchases', '9+'],
         'main > .section .eyebrow': ['01 · AROUND THE CAMP', '02 · CAMP+', '03 · SCREENS', '04 · BUILD NOTES', '05 · SUPPORT'],
         '.feat .card h3': ['JOURNAL', 'AURA', 'FRIENDS', 'ISLANDS', 'BREAK', 'WOOD & FIRES', 'WIDGETS'],
@@ -127,7 +132,7 @@
         '.build .stat b': ['SceneKit', 'SwiftUI', 'On-device'],
         'section[aria-labelledby="hikaye"] .note': ['Developer: Ali Emre Büyükkol.'],
         'section[aria-labelledby="destek"] .muted': ['What you write in your journal stays only on your device. Details about other collected data and ads are in the privacy policy.'],
-        'section[aria-labelledby="destek"] .btn': ['Privacy policy', 'Support']
+        'section[aria-labelledby="destek"] .btn': ['Privacy policy', 'Support', 'Terms of use']
       },
       attrs: {
         '#scene': ['aria-label', 'Pixel-art campfire scene: a monk sitting cross-legged by the fire, a tent, a steaming kettle, and fireflies.'],

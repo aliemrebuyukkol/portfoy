@@ -32,6 +32,7 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 .cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border:0;border-radius:3px;background:#F3ECDD;color:#141A30;font-family:Inter,sans-serif;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer}
 .cta:hover{background:#FFFFFF;color:#141A30}
 .cta-ghost{background:transparent;color:#F3ECDD;box-shadow:inset 0 0 0 1px rgba(243,236,221,.4)}.cta-ghost:hover{background:rgba(243,236,221,.08);color:#FFFFFF}
+.cta-store{background:#F6B26B;color:#141A30;box-shadow:0 4px 18px rgba(246,178,107,.24)}.cta-store:hover{background:#FFC98C;color:#141A30}
 .ph{color:#FFD28A;border-bottom:1px dashed rgba(255,210,138,.55)}
 .cta-soon{background:transparent;color:#C9C3D9;box-shadow:inset 0 0 0 1px rgba(243,236,221,.22);cursor:default}
 .card{position:absolute;left:calc(clamp(12px,3vw,32px) + env(safe-area-inset-left));bottom:96px;width:min(420px,calc(100% - 24px));padding:22px 24px;border-radius:4px;background:rgba(14,16,30,.86);box-shadow:0 0 0 1px rgba(243,236,221,.08);display:flex;flex-direction:column;gap:10px}
@@ -173,7 +174,13 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   state = { zone: 0, sound: false, intro: true, seen: this.loadSeen(), lang: this.loadLang(), copied: false };
-  loadLang() { try { return window.localStorage.getItem('buyukkol.lang') === 'en' ? 'en' : 'tr'; } catch (e) { return 'tr'; } }
+  loadLang() {
+    try {
+      const s = window.localStorage.getItem('buyukkol.lang');
+      if (s === 'en' || s === 'tr') return s;
+    } catch (e) {}
+    return (navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+  }
   saveLang(lang) { try { window.localStorage.setItem('buyukkol.lang', lang); } catch (e) {} }
   loadSeen() { try { const v = JSON.parse(window.localStorage.getItem('buyukkol.seen.v2') || '[]'); return Array.isArray(v) ? v.filter((n) => Number.isInteger(n) && n >= 1 && n <= 5) : []; } catch (e) { return []; } }
   saveSeen(seen) { try { window.localStorage.setItem('buyukkol.seen.v2', JSON.stringify(seen)); } catch (e) { /* depolama yoksa sessizce geç */ } }
@@ -182,8 +189,8 @@ class Component extends DCLogic {
 
   zones = [
     { type: 'about', name: 'Kulübe', nameEn: 'Cabin', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', vibeEn: 'The cabin at the edge of the woods. This is where I live.', eyebrow: 'HAKKIMDA', eyebrowEn: 'ABOUT', say: 'Hoş geldin! Ormanda beş proje saklı.', sayEn: 'Welcome! Five projects are hidden in the woods.' },
-    { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', kindEn: 'APP', href: 'cozycamp.html', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', descEn: 'A journal and focus app: write a few lines, spark your fire, and grow your camp.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', vibeEn: 'The campfire crackles, the kettle steams, and the monk counts his breath.', say: 'Otur, bir çay iç. Acele yok.', sayEn: 'Sit down, have some tea. No rush.' },
-    { type: 'project', name: 'Suçüstü', kind: 'OYUN', kindEn: 'GAME', href: 'sucustu.html', desc: 'Oyuncak görünümlü 3D bir sahilde dikkat oyunu: kanıt yer değiştirir ama sahibi değişmez. Gerçek faili bul.', descEn: 'A 3D beach observation game: evidence drifts with physics, but its owner never changes. Spot the culprit.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', vibeEn: 'Dancers on the floor drop litter, then sweep it up in rhythm.', say: 'Attım ama süpürüyorum, söz!', sayEn: 'I dropped it, but I am sweeping it up!' },
+    { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', kindEn: 'APP', href: 'cozycamp.html', storeHref: 'https://apps.apple.com/app/cozy-camp-journal-focus/id6826295096', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', descEn: 'A journal and focus app: write a few lines, spark your fire, and grow your camp.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', vibeEn: 'The campfire crackles, the kettle steams, and the monk counts his breath.', say: 'Otur, bir çay iç. Acele yok.', sayEn: 'Sit down, have some tea. No rush.' },
+    { type: 'project', name: 'SUÇÜSTÜ!', nameEn: 'CAUGHT!', kind: 'OYUN', kindEn: 'GAME', href: 'sucustu.html', desc: 'Gaz salanı, çöp atanı yakala! Oyuncak görünümlü 3D dünyalarda 236 bölüm, 12 kural ve 50 hayvan dostu.', descEn: 'Catch farters and litterbugs! 236 levels in toy-like 3D worlds, 12 level twists, and 50 animal pals.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', vibeEn: 'Dancers on the floor drop litter, then sweep it up in rhythm.', say: 'Attım ama süpürüyorum, söz!', sayEn: 'I dropped it, but I am sweeping it up!' },
     { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', kindEn: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', descEn: 'A living isometric web archipelago where Turkey\'s cult viral videos inhabit miniature islands.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', vibeEn: 'The samovar steams, the tea server makes the rounds, and cult clips play on an old TV.', say: 'Hoş geldiniz efendim! Çayınız taze.', sayEn: 'Welcome aboard! Fresh tea is ready.' },
     { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', kindEn: 'GAME', href: 'patikulac.html', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', descEn: 'A 3D cat swimming race with a sports-broadcast feel that turns finger rhythm into paw strokes. In internal testing.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', vibeEn: 'Cats swimming laps in the pond while the lifeguard cat watches from the chair.', say: 'Koşmak yok, kulaç var!', sayEn: 'No running—just paddling!' },
     { type: 'project', name: 'Muchineko', kind: 'OYUN', kindEn: 'GAME', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında Mochi ile Sumi\'yi koşturan yatay bir iPhone oyunu. Şu an iç testte.', descEn: 'A horizontal iPhone runner across ink-and-cream-paper rooftops with Mochi and Sumi. In internal testing.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', vibeEn: 'Cats napping and chasing butterflies beneath a blooming tree.', say: 'Miyav. Burada herkes biraz tembel.', sayEn: 'Meow. Everyone is a bit lazy here.' },
