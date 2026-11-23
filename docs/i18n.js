@@ -75,7 +75,7 @@
         'main > .section .eyebrow': ['01 · IN THE WOODS', '02 · TOOLS', '03 · CONTACT'],
         '.work-meta': [
           'A journal and focus app: write a few lines, spark your fire, and grow your camp.',
-          'Catch farters and litterbugs! 236 levels across toy-like 3D worlds, 12 twists, and 50 animal pals. RealityKit, SwiftUI.',
+          'Spot litter, spray & horn culprits! 236 levels across toy-like 3D worlds, 12 twists, and 50 animal pals. RealityKit, SwiftUI.',
           "A living web world placing Turkey's cult viral videos onto isometric miniature islands. React, PixiJS.",
           'A sports-broadcast-style cat swimming race that turns finger rhythm into paw strokes. SwiftUI, RealityKit.',
           'A horizontal iPhone game sending Mochi and Sumi across rooftops drawn in ink and cream paper. SwiftUI, SpriteKit.'
@@ -152,14 +152,14 @@
     },
     sucustu: {
       title: 'SUÇÜSTÜ! (CAUGHT!) — Ali Emre Büyükkol',
-      desc: 'CAUGHT!: catch farters and litterbugs! 236 levels in toy-like 3D worlds, a different rule in every level, pals with abilities.',
+      desc: 'CAUGHT!: spot litter, spray & horn culprits! 236 levels in toy-like 3D worlds, a different rule in every level, pals with abilities.',
       soundOff: 'Start the beat',
       text: {
         '.stage .hint': 'TAP THE FLOOR',
         '.intro .eyebrow': 'GAME · iPHONE · 3D',
-        '.intro .sub': 'Catch farters and litterbugs!',
-        '.intro .lead': 'Somewhere in the crowd someone sneaks out a fart, someone drops litter. The cloud drifts with the wind, the dog carries the bottle to someone else; the evidence moves but its owner never changes. Spot the culprit in toy-like 3D worlds and tap them, red-handed.',
-        '#nasil': 'One tap, lots of laughs',
+        '.intro .sub': 'Spot litter, spray & horn culprits!',
+        '.intro .lead': 'Somewhere in the crowd someone sprays paint, blasts a horn, or drops litter. Paint mist drifts on the wind, the dog fetches a tossed bottle, bystanders cover their ears; the evidence moves but its owner never changes. Spot the culprit in toy-like 3D worlds and tap them, red-handed.',
+        '#nasil': 'One tap, sharp eyes',
         '#twist-baslik': 'Every level has its own twist',
         '.twist-lead': 'After the tutorial, every level comes with one of these rules; you read it on the level card before you start.',
         '#dostlar': '50 animal pals, 5 abilities',
@@ -168,7 +168,7 @@
         '#ekranlar': 'Trailer and screens',
         '#yapim': 'How was it built?',
         '#destek': 'Help & privacy',
-        '.film figcaption': 'A 25-second trailer with the game’s own music and fart sounds.'
+        '.film figcaption': 'A 25-second trailer with the game’s own music.'
       },
       html: {
         '.status p': '<b>Version 1.2 is in TestFlight.</b> Not on the App Store yet—the download link will appear here once released.'
@@ -178,43 +178,43 @@
         'main > .section .eyebrow': ['01 · HOW TO PLAY', '02 · LEVEL TWISTS', '03 · PALS', '04 · WORLDS', '05 · SCREENS', '06 · BUILD NOTES', '07 · SUPPORT'],
         '.feat .card h3': ['TAP THE CULPRIT', 'EVERY LEVEL HAS A TWIST', 'PALS WITH ABILITIES', 'IT GETS HARDER', 'ONE MORE CHANCE', 'REAL SOUNDS'],
         '.feat .card p': [
-          'Whoever the cloud came from, whoever dropped the bottle. Tapping an innocent costs points; your decision time is on every level card.',
-          'Noise drowns out the fart, a guard scans the area, twins fart silently. 12 different rules; neighbouring levels never play the same.',
-          'Every animal pal has an ability: it sniffs, slows time, shields you. The more you catch together, the stronger your bond.',
+          'Whoever left the paint mist, blasted the horn, or dropped the bottle. Tapping an innocent costs points; your decision time is on every level card.',
+          'Noise drowns out horns and spray, a guard scans the area, twins act quietly. 12 different rules; neighbouring levels never play the same.',
+          'Every animal pal has an ability: it tracks clues, slows time, shields you. The more you catch together, the stronger your bond.',
           'Fields grow, crowds swell, decision time shrinks. Rookie, Normal, Hard and Legend each keep their own stars.',
           'A second chance when five culprits escape, and if that fails, resume from the phase you reached. Daily patrol and endless waves every day.',
-          'Six synthesized fart sounds and a cheerful brass band that plays fart notes. All made in code, nothing recorded.'
+          'Six synthesized variations each for spray and horn effects, plus a cheerful brass band. All made in code, nothing recorded.'
         ],
-        '.v12-twists .twist-card h3': ['Noise Curtain', 'Smell Trail', 'Fake Wind-up', 'Innocent Dog', 'Blind Spot', 'Closed Box', 'Crossing Crowds', 'Swap Places', 'Evidence First', 'Twins', 'Bumpy Ride', 'Wind Tracking'],
+        '.v12-twists .twist-card h3': ['Noise Curtain', 'Paint Trail', 'Fake Wind-up', 'Innocent Dog', 'Blind Spot', 'Closed Box', 'Crossing Crowds', 'Swap Places', 'Evidence First', 'Twins', 'Bumpy Ride', 'Wind Tracking'],
         '.v12-twists .twist-card p': [
-          'Noise drowns out the fart. Watch the cloud and whoever holds their nose.',
-          'The culprit farts and walks away. Catch whoever started the smell trail.',
+          'Noise drowns out horns and spray. Watch the sound rings and paint mist.',
+          'The culprit sprays paint and keeps walking. Catch whoever started the paint trail.',
           'Some fake a throw and back out. Don’t tap until something leaves their hand.',
-          'The dog always barks at the wrong person. Look at the source of the smell, not the dog.',
+          'The dog always barks at the wrong person. Look at the source of the clue, not the dog.',
           'The guard scans the area. Culprits always strike where they aren’t looking.',
-          'The smell builds up inside. When the doors open, everyone swaps places.',
+          'Paint mist builds up inside. When the doors open, everyone swaps places.',
           'Two crowds pass through each other. Don’t lose the culprit in the crowd.',
-          'The culprit slips away and an innocent steps in. Don’t trust who’s by the cloud.',
+          'The culprit slips away and an innocent steps in. Don’t trust who’s beside the clue.',
           'The culprit gives no warning. Spot the evidence first, then find the owner.',
-          'Identical outfits and silent farts. Keep your eyes peeled.',
-          'With every bump everyone stumbles, and someone holds their nose for nothing.',
-          'Strong wind drags the cloud. Look against the wind to find the source.'
+          'Identical outfits and quiet clues. Keep your eyes peeled.',
+          'With every bump everyone stumbles, and someone covers their ears for nothing.',
+          'Strong wind carries the paint mist. Look against the wind to find the source.'
         ],
-        '.pal-grid .twist-card h3': ['Sniff', 'Slow Motion', 'Shield', 'Spotter', 'Token Magnet'],
+        '.pal-grid .twist-card h3': ['Track Clue', 'Slow Motion', 'Shield', 'Spotter', 'Token Magnet'],
         '.pal-grid .twist-card p': [
-          'Dogs sniff out the culprit and point at them briefly.',
+          'Dogs track the clue trail and point at the culprit briefly.',
           'Cats slow the world down for a few seconds.',
           'Big pals forgive one escaped culprit.',
           'Birds put an exclamation mark over offenders for a while.',
           'Rodents add extra tokens to your next catches.'
         ],
         'section[aria-labelledby="bolgeler"] .note': ['70 regions, 206 main levels and 30 special levels. Rain, snow, fog and night patrols; a black-hatted wanted ringleader in region finales.'],
-        '.shot figcaption': ['Catch the farter red-handed', 'Every level has a twist', 'Level card', '236 levels, 10 worlds', 'Night patrol', '50 animal pals'],
-        'section[aria-labelledby="yapim"] .muted': ['It started as a top-down 2D sea game in SpriteKit, then moved to 3D with RealityKit: people, litter, and balls move with real physics, while the visible gas puff and gameplay scent field are simulated separately. Dogs follow scent, cats flee dogs, pigeons take flight on sound. Audio effects are synthesized rather than recorded—each effect has six variants and never repeats back-to-back.'],
+        '.shot figcaption': ['Catch the culprit red-handed', 'Every level has a twist', 'Level card', '236 levels, 10 worlds', 'Night patrol', '50 animal pals'],
+        'section[aria-labelledby="yapim"] .muted': ['It started as a top-down 2D sea game in SpriteKit, then moved to 3D with RealityKit: people, litter, and balls move with real physics, while drifting paint mist and sonic wave fields are simulated in world space. Dogs follow trails, cats flee dogs, pigeons take flight on sound. Audio effects are synthesized rather than recorded—each effect has six variants and never repeats back-to-back.'],
         '.build .stat b': ['RealityKit', 'SwiftUI', 'On-device'],
         '.build .stat span': ['3D scene & physics', 'menus & UI', 'progression & profiling'],
         'section[aria-labelledby="yapim"] .note': ['Developer: Ali Emre Büyükkol.'],
-        'section[aria-labelledby="destek"] .muted': ['No login required; progression and settings stay on your device. Includes Google AdMob ads (with Yandex through AdMob) after the first three levels, with startup consent; no App Tracking Transparency requested. A one-time "Remove Ads" purchase disables ads permanently.'],
+        'section[aria-labelledby="destek"] .muted': ['No login required; progression and settings stay on your device. Uses Unity Ads and Yandex Ads after the first three levels, with in-app privacy choices before ads start; no App Tracking Transparency requested. A one-time "Remove Ads" purchase disables ads permanently.'],
         'section[aria-labelledby="destek"] .btn': ['Privacy policy', 'Support', 'Terms of use']
       },
       ownLists: {
@@ -224,7 +224,7 @@
         '#scene': ['aria-label', 'Pixel-art dance floor: dancers drop litter, one catches someone red-handed, then they sweep up while dancing.'],
         '.facts': ['aria-label', 'Game details'],
         '.shots': ['aria-label', 'Screenshots, horizontally scrollable'],
-        '.film video': ['aria-label', 'CAUGHT! trailer: catching a farter, the guard’s blind spot, the night market and a level card.']
+        '.film video': ['aria-label', 'CAUGHT! trailer: spotting litter, paint spray and horn culprits, the guard’s blind spot, the night market and a level card.']
       },
       imgAlts: [
         'Basketball court level: the Noise Curtain is on, a crowd, and the pal button in the corner.',
