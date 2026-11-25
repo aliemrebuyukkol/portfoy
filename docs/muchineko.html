@@ -50,7 +50,7 @@ h1{color:var(--accent)}
 .status b{color:var(--text);font-weight:600}
 .status .led{flex:0 0 10px;height:10px;margin-top:7px;background:#FFD28A;box-shadow:0 0 0 3px rgba(255,210,138,.18)}
 .facts{display:flex;flex-wrap:wrap;gap:8px}
-.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
 .feat .card{padding:18px}
 .feat h3{font-size:16px;font-family:var(--pixel);font-weight:600;letter-spacing:.06em;color:var(--accent)}
 .bays{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
@@ -92,66 +92,82 @@ h1{color:var(--accent)}
 <div><p class="eyebrow">OYUN · iPHONE · YATAY</p><h1 id="baslik">Muchineko</h1><p class="sub">むちねこ · Küçük bir çatı macerası</p></div>
 </div>
 <p class="lead">Krem kâğıt ve mürekkepten çizilmiş bir şehrin çatılarında kedin kendi koşar; sen yalnızca zıplatırsın. Asıl mesele ne kadar tok olduğun: yediğin mama sıçrayışını değiştirir, rotayı ona göre okursun.</p>
-<div class="status" role="note"><span class="led" aria-hidden="true"></span><p><b>Şu an iç TestFlight'ta.</b> Henüz App Store'da değil; yayımlandığında indirme bağlantısı burada olacak.</p></div>
-<div class="facts" aria-label="Oyun bilgileri"><span class="chip">iPhone · iOS 18+</span><span class="chip">Yatay oynanır</span><span class="chip">8 mahalle</span><span class="chip">Çevrimdışı oynanır</span></div>
+<div class="status" role="note"><span class="led" aria-hidden="true"></span><p><b>Yakında App Store'da.</b> Sürüm 1.0 yayına hazırlanıyor. Ücretsiz indirilir; yayımlandığında indirme bağlantısı burada olacak.</p></div>
+<div class="facts" aria-label="Oyun bilgileri"><span class="chip">iPhone · iOS 18+</span><span class="chip">Yatay oynanır</span><span class="chip">10 harita · 81 rota</span><span class="chip">21 kedi</span><span class="chip">11 dil</span><span class="chip">Çevrimdışı oynanır</span></div>
 </section>
 
 <section class="section" aria-labelledby="nasil">
 <div class="section-head"><p class="eyebrow">01 · NASIL OYNANIR</p></div>
 <h2 id="nasil">Dokun, zıpla, tokluğunu ayarla</h2>
 <div class="stack">
-<p class="muted">Dokunarak zıplarsın; basılı tutarsan daha yükseğe çıkarsın, erken bırakırsan sıçrayış kısalır. Yoldaki mama tokluğu artırır, kedi otu azaltır. Tokluk göstergesi hangi yolun açık olduğunu söyler:</p>
+<p class="muted">Kısa dokunursan kısa zıplarsın; basılı tutarsan daha yükseğe çıkarsın. Yoldaki mama tokluğu artırır, kedi otu azaltır. Tokluk göstergesi hangi yolun açık olduğunu söyler:</p>
 <div class="rule">
 <div><b>40'ın ALTI · HAFİF</b><p>Çamaşır iplerine inebilirsin; ipler yalnız hafif kediyi taşır.</p></div>
-<div><b>40–70 · FORMDA</b><p>En güçlü zıplayış. Uzun boşlukları bu aralıkta geçersin.</p></div>
+<div><b>40–70 · FORMDA</b><p>En güçlü zıplayış. En yüksek çatılara bu aralıkta çıkarsın.</p></div>
 <div><b>70'İN ÜSTÜ · TOMBUL</b><p>Tentelere düşünce sekip göğe yükselirsin.</p></div>
 </div>
-<p class="muted">Düşersen son güvenli çatıdan devam edersin. Her rota bir yol arkadaşıyla geçer: Mochi ya da gri çizgili Sumi. Koşu bitince kedinle selamlaşır, bağınızı büyütür, çatına kalıcı bir ayrıntı eklersin.</p>
+<p class="muted">Düşersen bütün rota boşa gitmez; son ulaştığın çatıdan devam edersin. Rota bitince kedinle selamlaşır, bağınızı büyütür, çatına kalıcı bir ayrıntı eklersin.</p>
 </div>
 </section>
 
-<section class="section" aria-labelledby="mahalleler">
-<div class="section-head"><p class="eyebrow">02 · SEKİZ MAHALLE</p></div>
-<h2 id="mahalleler">Sessiz Çatılar'dan Fener Rıhtımı'na</h2>
+<section class="section" aria-labelledby="haritalar">
+<div class="section-head"><p class="eyebrow">02 · ON HARİTA</p></div>
+<h2 id="haritalar">Her serinin kendi kuralı var</h2>
+<p class="muted">On altı mahalle rotasına ek olarak on seri: rüzgâr, buhar, ıslak çatılar, ışıkta görünmeden geçmek, pazar davulunun vuruşu. Her gün yeni bir Günün Rotası da açılır.</p>
 <ul class="bays">
-<li><span>01</span>Sessiz Çatılar</li>
-<li><span>02</span>Anten Sokağı</li>
-<li><span>03</span>Son Işık</li>
-<li><span>04</span>Çamaşır İpleri</li>
-<li><span>05</span>Kiremit Yokuşu</li>
-<li><span>06</span>Ay Işığı Pazarı</li>
-<li><span>07</span>Fırın Sokağı</li>
-<li><span>08</span>Fener Rıhtımı</li>
+<li><span>01</span>Tente Postacıları</li>
+<li><span>02</span>Ayın Arka Sokağı</li>
+<li><span>03</span>Buharlı Avlu</li>
+<li><span>04</span>Rüzgâr Haritacıları</li>
+<li><span>05</span>Kayıp Sesler Deposu</li>
+<li><span>06</span>Sera Düğümü</li>
+<li><span>07</span>Yağmurdan Sonra</li>
+<li><span>08</span>Fener Alayı</li>
+<li><span>09</span>Sisli Kıyı</li>
+<li><span>10</span>Gece Pazarı · özel harita</li>
 </ul>
 </section>
 
+<section class="section" aria-labelledby="kediler">
+<div class="section-head"><p class="eyebrow">03 · KEDİLER VE WIDGET</p></div>
+<h2 id="kediler">Yirmi bir kedi, her biri başka zıplar</h2>
+<div class="feat">
+<div class="card"><h3>BAĞ VE ANILAR</h3><p class="muted">Mochi ve gri çizgili Sumi ile başlarsın. Rotalarda birlikte koştukça bağınız büyür, yeni kediler ve anılar açılır.</p></div>
+<div class="card"><h3>ANA EKRAN WIDGET'I</h3><p class="muted">Kedini seç; sabah, öğle ve akşam en sevdiği mamayı ana ekrandan ver, besleme serini büyüt.</p></div>
+<div class="card"><h3>HERKES İÇİN</h3><p class="muted">İnternet ve hesap gerekmez. Rahat zıplama, büyük yazı ve Hareketi Azalt desteği var.</p></div>
+</div>
+</section>
+
 <section class="section" aria-labelledby="ekranlar">
-<div class="section-head"><p class="eyebrow">03 · EKRANLAR</p></div>
+<div class="section-head"><p class="eyebrow">04 · EKRANLAR</p></div>
 <h2 id="ekranlar">Oyundan kareler</h2>
 <div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
-<figure class="shot"><img src="img/muchineko-ana.webp" width="1200" height="552" loading="lazy" alt="Muchineko ana ekranı: krem zemin üzerinde 'Bir lokma daha.' başlığı, Çatılara çık düğmesi ve çatıda oturan siyah beyaz kedi Mochi."><figcaption>Ana ekran</figcaption></figure>
-<figure class="shot"><img src="img/muchineko-kosu.webp" width="1200" height="675" loading="lazy" alt="Koşu: mürekkep çizimi çatıların üstünde zıplayan kedi, solda tokluk göstergesi, havada mama taneleri."><figcaption>Sessiz Çatılar'da koşu</figcaption></figure>
-<figure class="shot"><img src="img/muchineko-sonuc.webp" width="1200" height="675" loading="lazy" alt="Rota sonu: 'Afiyet olsun.' başlığı, Mochi ile bağ kartı, 11 mama ve 46 saniyelik sonuç, Çatına bir ayrıntı seç düğmesi."><figcaption>Rota sonu ve bağ</figcaption></figure>
-<figure class="shot"><img src="img/muchineko-catilar.webp" width="1200" height="675" loading="lazy" alt="Bizim çatılar paneli: Güneş Bahçesi ve Fırının Sofrası adlı iki çatı kartı, tamamlanan rotaların bıraktığı izler."><figcaption>Çatını büyüt</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-v1-ana.webp" width="1200" height="637" loading="lazy" alt="Muchineko ana ekranı: 'Bir lokma daha.' başlığı, Çatılara çık düğmesi, Görevler, Rotalar, Kediler, Koleksiyon ve Bugün kartları, çatıda yatan siyah beyaz kedi Mochi."><figcaption>Ana ekran</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-v1-kosu.webp" width="1200" height="637" loading="lazy" alt="Koşu: mürekkep çizimi çatıların üstünde zıplayan kedi, tokluk göstergesi ve havada mama taneleri."><figcaption>Sessiz Çatılar'da koşu</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-v1-harita.webp" width="1200" height="637" loading="lazy" alt="Ayın Arka Sokağı serisinden bir rota: gece çatıları ve ışıklar."><figcaption>Ayın Arka Sokağı</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-v1-pazar.webp" width="1200" height="637" loading="lazy" alt="Özel harita Gece Pazarı: tezgâh ışıklarının arasında koşan kedi."><figcaption>Özel harita: Gece Pazarı</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-v1-kediler.webp" width="1200" height="637" loading="lazy" alt="Kediler ekranı: farklı renk ve desenlerde kedi kartları."><figcaption>Yirmi bir kedi</figcaption></figure>
+<figure class="shot"><img src="img/muchineko-v1-widget.webp" width="1200" height="637" loading="lazy" alt="Ana ekran widget'ı: Mochi, sabah, öğle ve akşam öğünleri, Kuru, Yaş ve Balık mama düğmeleri, Sev düğmesi."><figcaption>Günlük besleme widget'ı</figcaption></figure>
 </div>
 </section>
 
 <section class="section" aria-labelledby="yapim">
-<div class="section-head"><p class="eyebrow">04 · YAPIM NOTLARI</p></div>
+<div class="section-head"><p class="eyebrow">05 · YAPIM NOTLARI</p></div>
 <h2 id="yapim">Nasıl yapıldı?</h2>
 <div class="stack">
-<p class="muted">SwiftUI ve SpriteKit ile yazılmış, Türkçe, yatay bir iPhone oyunu. Bütün çizimler krem kâğıt ve mürekkep diliyle, iki renk ağırlıklı yapıldı. Oyun tamamen çevrimdışı oynanıyor; ilerleme önce cihazdaki yerel kayda yazılıyor. Bulut yedeği, kullanım verisi ve hata paylaşımı ayrı ayrı ve isteğe bağlı. Büyük yazı ve Hareketi Azalt ayarlarına uyum ayrıca sınandı.</p>
+<p class="muted">SwiftUI ve SpriteKit ile yazılmış yatay bir iPhone oyunu. Bütün çizimler krem kâğıt ve mürekkep diliyle yapıldı. Oyun çevrimdışı oynanıyor; ilerleme önce cihazdaki yerel kayda yazılıyor. Ücretsiz sürümde reklam var; tek seferlik Reklamsız, Bütün Şehir ve Premium Kediler paketleri ile yıllık Kedi Kulübü aboneliği isteğe bağlı.</p>
 <div class="build">
-<div class="stat"><b>8</b><span>mahalle, her biri ayrı rota</span></div>
-<div class="stat"><b>2</b><span>yol arkadaşı: Mochi ve Sumi</span></div>
-<div class="stat"><b>0.23.1</b><span>son iç test sürümü</span></div>
+<div class="stat"><b>10</b><span>harita, 81 rota</span></div>
+<div class="stat"><b>21</b><span>kedi, her biri ayrı zıplar</span></div>
+<div class="stat"><b>11</b><span>dil</span></div>
+<div class="stat"><b>1.0</b><span>ilk App Store sürümü</span></div>
 </div>
 <p class="note">Geliştirici: Ali Emre Büyükkol.</p>
 </div>
 </section>
 </main>
 
-<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="patikulac.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#7FD0EE">Pati Kulaç</span></a><a class="pn next" href="index.html#posta"><span class="pn-k">Son durak<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n">Posta kutusu</span></a></nav>
+<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="cozycamp.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#F6B26B">Cozy Camp</span></a><a class="pn next" href="sucustu.html"><span class="pn-k">Sonraki proje<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n" style="color:#C99BFF">SUÇÜSTÜ!</span></a></nav>
 
 <footer class="foot">
 <div class="wrap"><span>© 2026 Ali Emre Büyükkol · Muchineko</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#muchineko">Ormana dön</a></span></div>
@@ -166,7 +182,7 @@ h1{color:var(--accent)}
   if (!window.BuyukkolEngine || !cv.getContext) return;
   const eng = new window.BuyukkolEngine();
   const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
-  game.jump(5);
+  game.jump(2);
   cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
   if (window.IntersectionObserver) {
     new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));

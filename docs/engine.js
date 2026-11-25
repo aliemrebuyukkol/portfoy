@@ -124,14 +124,28 @@ window.BuyukkolEngine = class {
       ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2);
     };
 
+    // Dünya sabit koordinatlarda çizilir; yürüyüş sırası ise parçaları yeniden dizer:
+    // kulübe+Cozy Camp | Muchineko | Suçüstü+Hoşgeldiniz+Pati Kulaç | posta kutusu.
+    // Her parça dikeyde kaydırılır ki yol eklerde kesintisiz birleşsin.
+    const C1 = 420, C2 = 1300, C3 = 1600, SL = C3 - C2;
+    const SEGS = [
+      { v0: 0, v1: C1, d: 0, dy: 0 },
+      { v0: C1, v1: C1 + SL, d: C2 - C1, dy: pathY(C1) - pathY(C2) },
+      { v0: C1 + SL, v1: C3, d: -SL, dy: pathY(C3) - pathY(C2) },
+      { v0: C3, v1: WW, d: 0, dy: 0 }
+    ];
+    const segAt = (v) => SEGS.find((g) => v < g.v1) || SEGS[SEGS.length - 1];
+    const toWorld = (v) => v + segAt(v).d;
+    const toVis = (w) => { const g = SEGS.find((q) => w >= q.v0 + q.d && w < q.v1 + q.d) || SEGS[0]; return { x: w - g.d, dy: g.dy }; };
+    const zoneAt = (cx, stop, sx, sy) => { const v = toVis(cx); return { cx: v.x, stop: toVis(stop).x, say: [toVis(sx).x, sy + v.dy] }; };
     const ZONES = [
-      { cx: 96, stop: 112, say: [86, 100] },
-      { cx: 246, stop: 216, say: [226, 121] },
-      { cx: 552, stop: 522, say: [552, 97] },
-      { cx: 860, stop: 838, say: [852, 116] },
-      { cx: 1146, stop: 1116, say: [1084, 74] },
-      { cx: 1450, stop: 1420, say: [1416, 127] },
-      { cx: 1695, stop: 1676, say: [1695, 119] }
+      zoneAt(96, 112, 86, 100),
+      zoneAt(246, 216, 226, 121),
+      zoneAt(1450, 1420, 1416, 127),
+      zoneAt(552, 522, 552, 97),
+      zoneAt(860, 838, 852, 116),
+      zoneAt(1146, 1116, 1084, 74),
+      zoneAt(1695, 1676, 1695, 119)
     ];
     let begun = false, stillT = 0, oddFrame = false;
     const coarse = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
@@ -289,6 +303,7 @@ window.BuyukkolEngine = class {
     };
 
     /* ---------- dünya kurulumu ---------- */
+    let seamTrees = [];
     const placeTrees = () => {
       trees = [];
       for (let x = -10; x < WW + 10; x += 12 + rand() * 16) {
@@ -318,6 +333,10 @@ window.BuyukkolEngine = class {
       trees.push(makeLeafy(1306, 198, 1.5, 'oak', 0));
       trees.push(makePine(20, 194, 1.25, 0));
       trees.push(makeLeafy(1618, 198, 1.4, 'oak', 0));
+      // Kesim noktasının üstüne düşen ağaç ikiye bölünmesin: dünyadan çıkar, ek yerini çerçeve ağaçları örter.
+      const cuts = [C1, C2, C3];
+      trees = trees.filter((it) => { const w = (it.R || it.Ht * 0.3) + 2; return cuts.every((c) => Math.abs(it.cx - c) > w); });
+      seamTrees = [C1, C1 + SL, C3].flatMap((v) => [makeLeafy(v - 4, 150, 1.0, 'bush', 0), makeLeafy(v + 2, 198, 1.45, 'oak', 0)]);
       tufts = [];
       for (let i = 0; i < 260; i++) {
         const x = rand() * WW, y = HZ + 12 + rand() * (WH - HZ - 12);
@@ -910,7 +929,7 @@ window.BuyukkolEngine = class {
       owl.look = Math.sin(t * 0.35) > 0 ? 1 : 0;
       if (celebT > 0) {
         celebT -= dt;
-        if (fx() < dt * 8) parts.push({ k: 'shoot', x: camX + VW * (0.35 + fx() * 0.75), y: 2 + fx() * 30, vx: -60 - fx() * 40, vy: 22 + fx() * 12, life: 1.1, max: 1.1 });
+        if (fx() < dt * 8) parts.push({ k: 'shoot', x: toWorld(clamp(camX + VW * (0.35 + fx() * 0.75), 0, WW - 1)), y: 2 + fx() * 30, vx: -60 - fx() * 40, vy: 22 + fx() * 12, life: 1.1, max: 1.1 });
       }
       if (cayci.mode === 'go') {
         const ddx = cayci.target - cayci.x;
@@ -1027,8 +1046,8 @@ window.BuyukkolEngine = class {
     const drawTuft = (g) => {
       for (const b of g.blades) { ctx.fillStyle = b.col; for (let j = 0; j < b.h; j++) ctx.fillRect(g.x + b.x + Math.round(g.amp * b.flex * Math.pow(j / b.h, 1.5)), g.baseY - j, 1, 1); }
     };
-    const drawPlayer = () => {
-      const x = Math.round(player.x), y = pathY(player.x) + 1, f = player.moving ? Math.floor(player.walkT * 8) % 2 : 0, d = player.dir;
+    const drawPlayer = (px) => {
+      const x = Math.round(px), y = pathY(px) + 1, f = player.moving ? Math.floor(player.walkT * 8) % 2 : 0, d = player.dir;
       R(x - 2, y, 5, 1, 'rgba(0,0,0,0.25)');
       if (f) { R(x - 1, y - 2, 1, 2, '#2A2230'); R(x + 1, y - 3, 1, 2, '#2A2230'); } else { R(x - 1, y - 2, 1, 2, '#2A2230'); R(x + 1, y - 2, 1, 2, '#2A2230'); }
       R(x - 2, y - 9, 5, 7, '#3D4C78'); R(d > 0 ? x - 2 : x + 2, y - 9, 1, 7, '#2B3658');
@@ -1039,12 +1058,30 @@ window.BuyukkolEngine = class {
     };
 
     const draw = () => {
-      const cx = Math.round(camX);
+      const vcx = Math.round(camX), vcam = camX;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.drawImage(sky, 0, 0);
       for (const s of stars) if (Math.sin(t * 2 + s.ph * 5) > 0.75) R(s.x, s.y, 1, 1, '#FFFFFF');
-      ctx.drawImage(hills, -Math.round(Math.max(0, cx) * 0.35), OY + HZ - 34);
-      ctx.setTransform(1, 0, 0, 1, -cx, OY);
+      ctx.drawImage(hills, -Math.round(Math.max(0, vcx) * 0.35), OY + HZ - 34);
+      const pseg = segAt(player.x);
+      for (const g of SEGS) {
+        if (g.v1 <= vcx || g.v0 >= vcx + VW) continue;
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, -vcx, OY);
+        ctx.beginPath(); ctx.rect(g.v0, -OY, g.v1 - g.v0, VH + 8); ctx.clip();
+        if (g.dy < 0) { ctx.fillStyle = P.ground[2]; ctx.fillRect(g.v0, WH + g.dy - 1, g.v1 - g.v0, 1 - g.dy); }
+        camX = vcam + g.d;
+        drawWorld(vcx + g.d, g.dy, g === pseg ? player.x + g.d : null);
+        camX = vcam;
+        ctx.restore();
+      }
+      ctx.setTransform(1, 0, 0, 1, -vcx, OY);
+      for (const it of seamTrees) if (visX(it.cx, (it.R || it.Ht * 0.3) + 10)) drawTree(it);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    };
+    const drawWorld = (cx, dy, pw) => {
+      ctx.setTransform(1, 0, 0, 1, -cx, OY + dy);
       ctx.drawImage(bg, Math.max(0, cx), 0, VW, WH, Math.max(0, cx), 0, VW, WH);
       if (cx < 0) { ctx.save(); ctx.scale(-1, 1); ctx.drawImage(bg, 0, 0, -cx, WH, 0, 0, -cx, WH); ctx.restore(); }
 
@@ -1094,7 +1131,7 @@ window.BuyukkolEngine = class {
       add(141, 640, 8, () => drawSpeaker(640));
       disco.litter.forEach((l) => add(l.y - 0.5, l.x, 6, () => drawLitter(l)));
       dancers.forEach((p) => add(p.y, p.x, 10, () => drawPerson(p)));
-      add(pathY(player.x) + 1, player.x, 10, drawPlayer);
+      if (pw !== null) add(pathY(pw) + 1, pw, 10, () => drawPlayer(pw));
       ents.sort((a, b) => a.y - b.y);
       for (const e of ents) e.f();
 
@@ -1135,9 +1172,8 @@ window.BuyukkolEngine = class {
           glow(ex, 134, 12, col.join(','), 0.3);
         }
       }
-      glow(player.x + 3 * player.dir, pathY(player.x) - 5, 24 + Math.sin(t * 9) * 1.5, '255,200,110', 0.26);
+      if (pw !== null) glow(pw + 3 * player.dir, pathY(pw) - 5, 24 + Math.sin(t * 9) * 1.5, '255,200,110', 0.26);
       ctx.globalCompositeOperation = 'source-over';
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
     };
 
     const frame = (now) => {
@@ -1151,7 +1187,7 @@ window.BuyukkolEngine = class {
       mixAcc += dt;
       if (mixAcc > 0.25) {
         mixAcc = 0;
-        audio.setMix([ZONES[1], ZONES[5], ZONES[4], ZONES[2], ZONES[3]].map((z) => { const m = clamp(1 - Math.abs(player.x - z.cx) / 210, 0, 1); return m * m * (3 - 2 * m); }));
+        audio.setMix([ZONES[1], ZONES[2], ZONES[5], ZONES[3], ZONES[4]].map((z) => { const m = clamp(1 - Math.abs(player.x - z.cx) / 210, 0, 1); return m * m * (3 - 2 * m); }));
       }
       oddFrame = !oddFrame;
       if (!coarse || oddFrame) draw();
@@ -1224,8 +1260,9 @@ window.BuyukkolEngine = class {
       go: (i) => { begun = true; walkTo(ZONES[clamp(i, 0, ZONES.length - 1)].stop); start(); },
       hold: (d) => { if (d) begun = true; player.hold = d; if (!d) player.target = player.x; },
       tap: (cx0, cy0, rect, stay) => {
-        const wx = camX + (cx0 - rect.left) / S, wy = (cy0 - rect.top) / S - OY;
-        begun = true; if (!stay) walkTo(wx);
+        const vx = camX + (cx0 - rect.left) / S, tg = segAt(vx);
+        const wx = vx + tg.d, wy = (cy0 - rect.top) / S - OY - tg.dy;
+        begun = true; if (!stay) walkTo(vx);
         if (wx > 1686 && wx < 1704 && wy > 124 && wy < 146) for (let i = 0; i < 3; i++) parts.push({ k: 'letter', x: 1694 + i * 3, y: 126, vx: fx() * 10 - 5, vy: -12 - fx() * 8, life: 1.6, max: 1.6 });
         if (wx > 80 && wx < 106 && wy > 104 && wy < 128) parts.push({ k: 'heart', x: 92, y: 98, vx: 0, vy: -6, life: 1.4, max: 1.4 });
         if (Math.hypot(wx - camp.fx, wy - camp.fy) < 14) for (let i = 0; i < 24; i++) parts.push({ k: 'spark', x: camp.fx, y: camp.fy - 6, vx: fx() * 30 - 15, vy: -20 - fx() * 25, g: 30, life: 1.2, max: 1.2 });

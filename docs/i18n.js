@@ -75,10 +75,10 @@
         'main > .section .eyebrow': ['01 · IN THE WOODS', '02 · TOOLS', '03 · CONTACT'],
         '.work-meta': [
           'A journal and focus app: write a few lines, spark your fire, and grow your camp.',
+          'A landscape iPhone game where your cat runs across rooftops drawn in ink and cream paper: 10 maps, 21 cats. SwiftUI, SpriteKit.',
           'Spot litter, spray & horn culprits! 236 levels across toy-like 3D worlds, 12 twists, and 50 animal pals. RealityKit, SwiftUI.',
           "A living web world placing Turkey's cult viral videos onto isometric miniature islands. React, PixiJS.",
-          'A sports-broadcast-style cat swimming race that turns finger rhythm into paw strokes. SwiftUI, RealityKit.',
-          'A horizontal iPhone game sending Mochi and Sumi across rooftops drawn in ink and cream paper. SwiftUI, SpriteKit.'
+          'A sports-broadcast-style cat swimming race that turns finger rhythm into paw strokes. SwiftUI, RealityKit.'
         ],
         '#araclar + .chips .chip': ['Swift & SwiftUI', 'SpriteKit', 'SceneKit', 'RealityKit', 'React', 'PixiJS', 'React Native & Expo', 'Firebase', 'Supabase', 'Blender', 'Claude Code'],
         '#iletisim + .stack .muted': ['Feel free to write about a project, a collaboration, or just to say hello.'],
@@ -347,33 +347,41 @@
         '.intro .sub': 'むちねこ · A little rooftop adventure',
         '.intro .lead': 'Across rooftops sketched in cream paper and ink, your cat runs on its own—you just time the jump. The catch is how full you are: the kibble you eat shifts your arc, so you read the route accordingly.',
         '#nasil': 'Tap, jump, balance your appetite',
-        '#mahalleler': 'From Quiet Rooftops to Lantern Pier',
+        '#haritalar': 'Every series has its own rule',
+        '#kediler': 'Twenty-one cats, each jumps its own way',
         '#ekranlar': 'From the game',
-        '#yapim': 'How was it built?'
+        '#yapim': 'How was it built?',
+        'section[aria-labelledby="haritalar"] > .muted': 'Sixteen neighbourhood routes plus ten series: wind, steam, wet roofs, slipping past the lights, landing on the market drum\'s beat. A new Route of the Day opens every day.'
       },
       html: {
-        '.status p': '<b>Currently in internal TestFlight.</b> Not on the App Store yet—the download link will appear here once released.'
+        '.status p': '<b>Coming soon to the App Store.</b> Version 1.0 is getting ready for release. Free to download; the link will appear here once it is live.'
       },
       lists: {
-        '.facts .chip': ['iPhone · iOS 18+', 'Landscape mode', '8 districts', 'Playable offline'],
-        'main > .section .eyebrow': ['01 · HOW TO PLAY', '02 · EIGHT DISTRICTS', '03 · SCREENS', '04 · BUILD NOTES'],
+        '.facts .chip': ['iPhone · iOS 18+', 'Landscape mode', '10 maps · 81 routes', '21 cats', '11 languages', 'Playable offline'],
+        'main > .section .eyebrow': ['01 · HOW TO PLAY', '02 · TEN MAPS', '03 · CATS & WIDGET', '04 · SCREENS', '05 · BUILD NOTES'],
         'section[aria-labelledby="nasil"] .muted': [
-          'Tap to jump; hold for extra height, release early for a short hop. Kibble increases fullness while catnip lowers it. The fullness gauge tells you which routes are open:',
-          'Fall off and you resume from the last safe roof. Each run pairs you with Mochi or tabby Sumi. At the end of a route you greet your cat, deepen your bond, and add a lasting detail to your rooftop.'
+          'Tap short for a short hop; hold to go higher. Kibble increases fullness while catnip lowers it. The fullness gauge tells you which routes are open:',
+          'A fall never costs the whole route: you carry on from the last roof you reached. At the end of a route you greet your cat, deepen your bond, and add a lasting detail to your rooftop.'
         ],
         '.rule div b': ['UNDER 40 · LIGHT', '40–70 · FIT', 'OVER 70 · CHUBBY'],
         '.rule div p': [
           'Land safely on clotheslines—only a light cat will be carried across.',
-          'Strongest horizontal jump. Clear wide rooftop gaps in this sweet spot.',
+          'Strongest jump. The tallest roofs are reachable in this sweet spot.',
           'Drop onto shop awnings to bounce straight up to high sky paths.'
         ],
-        '.shot figcaption': ['Home screen', 'Running in Quiet Rooftops', 'Route summary & bond', 'Grow your rooftop'],
-        'section[aria-labelledby="yapim"] .muted': ['A landscape iPhone game written in SwiftUI and SpriteKit using a two-tone cream paper and ink palette. Completely playable offline with local progression first; cloud backup, usage telemetry, and crash sharing are separate opt-in switches. Tested specifically with Dynamic Type and Reduced Motion accessibility settings.'],
-        '.build .stat span': ['districts, each its own route', 'companions: Mochi & Sumi', 'latest internal test build'],
+        '.feat h3': ['BOND & MEMORIES', 'HOME SCREEN WIDGET', 'FOR EVERYONE'],
+        '.feat .muted': [
+          'You start with Mochi and tabby Sumi. The more routes you run together, the more your bond grows and new cats and memories open.',
+          'Pick your cat and serve its favourite food from the home screen at breakfast, lunch and dinner to grow your feeding streak.',
+          'No internet or account needed. Relaxed jumps, large text and Reduce Motion support.'
+        ],
+        '.shot figcaption': ['Home screen', 'Running in Quiet Rooftops', "The Moon's Back Alley", 'Special map: Night Market', 'Twenty-one cats', 'Daily feeding widget'],
+        'section[aria-labelledby="yapim"] .muted': ['A landscape iPhone game written in SwiftUI and SpriteKit, drawn entirely in a cream-paper-and-ink style. It plays offline, with progress written first to a local save on the device. The free version shows ads; the one-time Ad-Free, Whole City and Premium Cats packs and the yearly Cat Club subscription are optional.'],
+        '.build .stat span': ['maps, 81 routes', 'cats, each jumps its own way', 'languages', 'first App Store release'],
         'section[aria-labelledby="yapim"] .note': ['Developer: Ali Emre Büyükkol.']
       },
       ownLists: {
-        '.bays li': ['Quiet Rooftops', 'Antenna Street', 'Last Light', 'Clotheslines', 'Tile Slope', 'Moonlight Market', 'Bakery Alley', 'Lantern Pier']
+        '.bays li': ['Awning Postal Cats', "The Moon's Back Alley", 'Steamy Courtyard', 'Wind Mapmakers', 'Storeroom of Lost Sounds', 'Greenhouse Knot', 'After the Rain', 'Lantern Parade', 'Misty Shore', 'Night Market · special map']
       },
       attrs: {
         '#scene': ['aria-label', 'Pixel-art forest: cats napping and chasing butterflies beneath a blooming tree.'],
@@ -381,10 +389,12 @@
         '.shots': ['aria-label', 'Screenshots, horizontally scrollable']
       },
       imgAlts: [
-        'Muchineko home screen: "One more bite." heading on cream paper with Hit the Roofs button and black-and-white cat Mochi sitting on a roof.',
-        'Gameplay: cat leaping across ink-drawn rooftops with fullness gauge on the left and kibble floating ahead.',
-        'Route summary: "Bon appétit." card showing Mochi bond level, 11 kibble, 46-second run, and Pick a rooftop detail button.',
-        'Our rooftops panel: Sunlit Garden and Bakery Table roof cards recording traces of finished runs.'
+        'Muchineko home screen: "One more bite." heading, Hit the Roofs button, Missions, Routes, Cats, Collection and Today cards, and black-and-white cat Mochi lying on a roof.',
+        'Gameplay: a cat leaping across ink-drawn rooftops with the fullness gauge and kibble floating ahead.',
+        "A route from The Moon's Back Alley series: night rooftops and lights.",
+        'Special map Night Market: a cat running between stall lights.',
+        'Cats screen: cat cards in different colours and patterns.',
+        'Home screen widget: Mochi, breakfast, lunch and dinner meals, Dry, Wet and Fish food buttons, and a Pet button.'
       ]
     },
     '404': {

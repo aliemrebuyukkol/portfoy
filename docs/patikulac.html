@@ -143,7 +143,7 @@ h1{color:var(--accent)}
 </section>
 </main>
 
-<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="hosgeldiniz.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#F28AB8">Hoşgeldiniz Efendim</span></a><a class="pn next" href="muchineko.html"><span class="pn-k">Sonraki proje<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n" style="color:#F5A8CB">Muchineko</span></a></nav>
+<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="hosgeldiniz.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#F28AB8">Hoşgeldiniz Efendim</span></a><a class="pn next" href="index.html#posta"><span class="pn-k">Son durak<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n">Posta kutusu</span></a></nav>
 
 <footer class="foot">
 <div class="wrap"><span>© 2026 Ali Emre Büyükkol · Pati Kulaç</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#pati-kulac">Ormana dön</a></span></div>
@@ -159,7 +159,7 @@ h1{color:var(--accent)}
   if (!window.BuyukkolEngine || !cv.getContext) return;
   const eng = new window.BuyukkolEngine();
   const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
-  game.jump(4);
+  game.jump(5);
   cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
   if (window.IntersectionObserver) {
     new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));

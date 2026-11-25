@@ -167,7 +167,7 @@ h1{color:var(--accent)}
   if (!window.BuyukkolEngine || !cv.getContext) return;
   const eng = new window.BuyukkolEngine();
   const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
-  game.jump(3);
+  game.jump(4);
   cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
   if (window.IntersectionObserver) {
     new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
