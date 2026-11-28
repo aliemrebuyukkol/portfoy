@@ -76,7 +76,7 @@
         '.work-meta': [
           'A journal and focus app: write a few lines, spark your fire, and grow your camp.',
           'A landscape iPhone game where your cat runs across rooftops drawn in ink and cream paper: 10 maps, 21 cats. SwiftUI, SpriteKit.',
-          'A cozy 3D reaction game: jump on UP, crouch on OOPS, reverse on FLIP, hold on FREEZE! 58 sculpted animals across 6 biomes and 20 stages. Three.js, React, Capacitor.',
+          'A cozy 3D reaction game: jump on UP, crouch on OOPS, reverse on FLIP, hold on FREEZE! 58 sculpted animals across 6 biomes and 200 stages in 10 chapters. Three.js, React, Capacitor.',
           'Spot litter, spray & horn culprits! 236 levels across toy-like 3D worlds, 12 twists, and 50 animal pals. RealityKit, SwiftUI.',
           "A living web world placing Turkey's cult viral videos onto isometric miniature islands. React, PixiJS.",
           'A sports-broadcast-style cat swimming race that turns finger rhythm into paw strokes. SwiftUI, RealityKit.'
@@ -400,7 +400,7 @@
     },
     uporoops: {
       title: 'Up or Oops — Ali Emre Büyükkol',
-      desc: 'Up or Oops: a cozy 3D reaction game inspired by classic stand-up/sit-down play. Jump on UP, crouch on OOPS, reverse on FLIP, hold on FREEZE! 58 animals across 6 biomes and 20 stages.',
+      desc: 'Up or Oops: a cozy 3D reaction game inspired by classic stand-up/sit-down play. Jump on UP, crouch on OOPS, reverse on FLIP, hold on FREEZE! 58 animals across 6 biomes and 200 stages in 10 chapters.',
       soundOff: 'Hear the barn',
       text: {
         '.stage .hint': 'TAP THE STAGE',
@@ -410,7 +410,7 @@
         '#nasil': 'Two buttons, five rules',
         '#biyomlar': 'From the barnyard to the sanctuary',
         '.biome-lead': 'Every animal is sculpted from scratch in 3D: the sheep’s straw hat, the elephant’s curling trunk, the toucan’s bright beak, the axolotl’s pink gills. Unlock 40 animals simply by playing and earning Acorns and stars; 18 exclusive animals join through optional Biome Packs and Barn VIP.',
-        '#bolgeler': '20 stages, Endless & Daily Challenge',
+        '#bolgeler': '200 stages, Endless & Daily Challenge',
         '#ekranlar': 'From the game',
         '#yapim': 'How was it built?',
         '#destek': 'Help & privacy'
@@ -419,8 +419,8 @@
         '.status p': '<b>Version 3.0 is in TestFlight.</b> Testing 58 animals, 6 biomes, 6 languages, and natural anatomical crouch physics. The App Store link will appear here on launch.'
       },
       lists: {
-        '.facts .chip': ['58 3D animals · 6 biomes', '20 stages · 4 worlds', '5 reflex mechanics', '6 languages · Offline'],
-        'main > .section .eyebrow': ['01 · HOW TO PLAY', '02 · 58 ANIMALS, 6 BIOMES', '03 · FOUR WORLDS & MODES', '04 · SCREENS', '05 · BUILD NOTES', '06 · SUPPORT'],
+        '.facts .chip': ['58 3D animals · 6 biomes', '200 stages · 10 chapters', '5 reflex mechanics', '6 languages · Offline'],
+        'main > .section .eyebrow': ['01 · HOW TO PLAY', '02 · 58 ANIMALS, 6 BIOMES', '03 · TEN CHAPTERS & MODES', '04 · SCREENS', '05 · BUILD NOTES', '06 · SUPPORT'],
         'section[aria-labelledby="nasil"] .muted': [
           'Tap the two big buttons below or swipe up and down. The signpost always sits cleanly above your animal so you can read every cue at a glance:',
           'Keep your streak going to charge the Fever bar, speed up the beat, and multiply your score. Prefer a calmer rhythm? Toggle Gentle Pace and Reduced Motion anytime in Settings.'
@@ -442,7 +442,7 @@
           'Penguin, Polar Bear, Seal, Walrus, Snowy Owl, Arctic Fox and Reindeer.',
           'Axolotl, Red Panda, Narwhal, Unicorn, Red Stag, Dragon and Phoenix.'
         ],
-        'section[aria-labelledby="biyomlar"] .note': ['Fair-play rule: every animal passive is balanced; you can three-star all 20 stages even with your starter animal.'],
+        'section[aria-labelledby="biyomlar"] .note': ['Fair-play rule: every animal passive is balanced; you can three-star all 200 stages even with your starter animal.'],
         '.feat .card h3': ['FAKE CROWD', 'ENDLESS MODE', 'DAILY CHALLENGE'],
         '.feat .card p': [
           'In later stages, background animals deliberately perform the wrong move to trick your eyes.',
@@ -458,7 +458,18 @@
         'section[aria-labelledby="destek"] .btn': ['Privacy policy', 'Support', 'Terms of use']
       },
       ownLists: {
-        '.bays li': ['Sunny Barn', 'Golden Harvest', 'Campfire Woods', 'Highland Festival']
+        '.bays li': [
+          'Sunny Barn',
+          'Golden Harvest',
+          'Campfire Woods',
+          'Highland Peak',
+          'Sunrise Meadow',
+          'Amber Mill',
+          'Starlight Pines',
+          'Windy Summit',
+          'Grand Harvest Gala',
+          'Apex Festival'
+        ]
       },
       attrs: {
         '#scene': ['aria-label', 'Pixel-art wooden barn stage: under festive bunting, a straw-hatted sheep, rooster, lion and elephant hop and crouch to the UP/OOPS signpost.'],
