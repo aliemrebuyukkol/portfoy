@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#141A30">
 <title>Ali Emre Büyükkol — Portföy ormanı</title>
-<meta name="description" content="Ali Emre Büyükkol'un portföyü: piksel bir ormanda yürü; Cozy Camp, Muchineko, Suçüstü, Hoşgeldiniz Efendim ve Pati Kulaç projelerini keşfet.">
+<meta name="description" content="Ali Emre Büyükkol'un portföyü: piksel bir ormanda yürü; Cozy Camp, Muchineko, Up or Oops, Suçüstü, Hoşgeldiniz Efendim ve Pati Kulaç projelerini keşfet.">
 <meta property="og:title" content="BÜYÜKKOL — Portföy ormanı">
 <meta property="og:description" content="Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.">
 <meta property="og:type" content="website">
@@ -128,7 +128,7 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <button type="button" class="intro-btn intro-p" id="enter-sound">Sesle gir</button>
 <button type="button" class="intro-btn intro-g" id="enter-quiet">Sessiz gir</button>
 </div>
-<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.08em;color:#B9B3CC"><span class="keys" id="intro-keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA</span><span class="touch" id="intro-touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
+<p style="margin:0;font-family:'Pixelify Sans',monospace;font-size:13px;letter-spacing:.08em;color:#B9B3CC"><span class="keys" id="intro-keys">← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–6 İLE PROJEYE ATLA</span><span class="touch" id="intro-touch">DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE</span></p>
 <noscript><p style="color:#FFD28A">Orman JavaScript ile çalışıyor. Lütfen JavaScript'i aç.</p></noscript>
 </section>
 
@@ -170,7 +170,7 @@ a{color:#F3ECDD}a:hover{color:#FFD28A}
 <nav class="dock" id="dock" aria-label="Projeler">
 <div class="dock-row">
 <button type="button" class="hud-btn navbtn" id="prev" aria-label="Önceki durak"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button>
-<div class="chips" id="chips"><button type="button" class="chip" data-zone="1" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="2" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="3" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="4" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="5" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button></div>
+<div class="chips" id="chips"><button type="button" class="chip" data-zone="1" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="2" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="3" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="4" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="5" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button><button type="button" class="chip" data-zone="6" aria-pressed="false"><span aria-hidden="true" class="chip-dot"></span><span class="chip-name"></span><span class="seen" aria-label="keşfedildi" hidden>✓</span></button></div>
 <button type="button" class="hud-btn navbtn" id="next" aria-label="Sonraki durak"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></button>
 </div>
 <span class="hint" id="hint"></span>
@@ -185,16 +185,17 @@ const Engine = window.BuyukkolEngine;
 
 (function () {
   const zones = [
-    { type: 'about', name: 'Kulübe', nameEn: 'Cabin', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', vibeEn: 'The cabin at the edge of the woods. This is where I live.', eyebrow: 'HAKKIMDA', eyebrowEn: 'ABOUT', say: 'Hoş geldin! Ormanda beş proje saklı.', sayEn: 'Welcome! Five projects are hidden in the woods.' },
+    { type: 'about', name: 'Kulübe', nameEn: 'Cabin', color: '#E9C98A', vibe: 'Ormanın girişindeki kulübe. Burada ben yaşıyorum.', vibeEn: 'The cabin at the edge of the woods. This is where I live.', eyebrow: 'HAKKIMDA', eyebrowEn: 'ABOUT', say: 'Hoş geldin! Ormanda altı proje saklı.', sayEn: 'Welcome! Six projects are hidden in the woods.' },
     { type: 'project', name: 'Cozy Camp', kind: 'UYGULAMA', kindEn: 'APP', href: 'cozycamp.html', storeHref: 'https://apps.apple.com/app/cozy-camp-journal-focus/id6826295096', desc: 'Günlük ve odak uygulaması: birkaç satır yaz, ateşin canlansın, kampın büyüsün.', descEn: 'A journal and focus app: write a few lines, spark your fire, and grow your camp.', color: '#F6B26B', vibe: 'Kamp ateşi çıtırdıyor, çaydanlık tütüyor, keşiş nefesini sayıyor.', vibeEn: 'The campfire crackles, the kettle steams, and the monk counts his breath.', say: 'Otur, bir çay iç. Acele yok.', sayEn: 'Sit down, have some tea. No rush.' },
     { type: 'project', name: 'Muchineko', kind: 'OYUN', kindEn: 'GAME', href: 'muchineko.html', desc: 'Mürekkep ve krem kâğıttan bir şehrin çatılarında kedini koşturduğun yatay iPhone oyunu: 10 harita, 81 rota, 21 kedi. Yakında App Store\'da.', descEn: 'A landscape iPhone runner across ink-and-cream-paper rooftops: 10 maps, 81 routes, 21 cats. Coming soon to the App Store.', color: '#F5A8CB', vibe: 'Çiçek açmış ağacın altında uyuklayan, kelebek kovalayan kediler.', vibeEn: 'Cats napping and chasing butterflies beneath a blooming tree.', say: 'Miyav. Burada herkes biraz tembel.', sayEn: 'Meow. Everyone is a bit lazy here.' },
+    { type: 'project', name: 'Up or Oops', kind: 'OYUN', kindEn: 'GAME', href: 'uporoops.html', desc: 'Deve-Cüce refleks oyunu: UP zıpla, OOPS çömel, FLIP tersini yap, FREEZE kımıldama! 6 biyomda 58 3D hayvan ve 20 bölge. Şu an TestFlight\'ta.', descEn: 'A cozy 3D reaction game: jump on UP, crouch on OOPS, reverse on FLIP, hold on FREEZE! 58 sculpted animals across 6 biomes and 20 stages. In TestFlight.', color: '#F4B942', vibe: 'Ahşap sahnede hasır şapkalı koyun, horoz, aslan ve fil tabelaya göre zıplayıp çömeliyor.', vibeEn: 'On a wooden barn stage, a straw-hatted sheep, rooster, lion and elephant hop and crouch to the signpost.', say: 'UP zıpla, OOPS çömel—şaşırma!', sayEn: 'Jump on UP, crouch on OOPS—stay sharp!' },
     { type: 'project', name: 'SUÇÜSTÜ!', nameEn: 'CAUGHT!', kind: 'OYUN', kindEn: 'GAME', href: 'sucustu.html', desc: 'Çöp, boya ve korna failini yakala! Oyuncak görünümlü 3D dünyalarda 236 bölüm, 12 kural ve 50 hayvan dostu.', descEn: 'Spot litter, spray & horn culprits! 236 levels in toy-like 3D worlds, 12 level twists, and 50 animal pals.', color: '#C99BFF', vibe: 'Pistte dans edenler çöp atıyor, sonra dans ederek süpürüyor.', vibeEn: 'Dancers on the floor drop litter, then sweep it up in rhythm.', say: 'Attım ama süpürüyorum, söz!', sayEn: 'I dropped it, but I am sweeping it up!' },
     { type: 'project', name: 'Hoşgeldiniz Efendim', kind: 'WEB', kindEn: 'WEB', href: 'hosgeldiniz.html', color: '#F28AB8', desc: 'Türkiye\'nin kült viral videolarını izometrik minyatür adalarda gezdiren yaşayan bir web dünyası.', descEn: 'A living isometric web archipelago where Turkey\'s cult viral videos inhabit miniature islands.', vibe: 'Semaver tütüyor, çaycı tepsiyle dolaşıyor, eski televizyonda kült videolar dönüyor.', vibeEn: 'The samovar steams, the tea server makes the rounds, and cult clips play on an old TV.', say: 'Hoş geldiniz efendim! Çayınız taze.', sayEn: 'Welcome aboard! Fresh tea is ready.' },
     { type: 'project', name: 'Pati Kulaç', kind: 'OYUN', kindEn: 'GAME', href: 'patikulac.html', desc: 'Parmak ritmini pati vuruşuna çeviren, spor yayını havasında bir kedi yüzme yarışı. Şu an iç testte.', descEn: 'A 3D cat swimming race with a sports-broadcast feel that turns finger rhythm into paw strokes. In internal testing.', color: '#7FD0EE', vibe: 'Gölette kulaç atan kediler; cankurtaran kedi nöbette.', vibeEn: 'Cats swimming laps in the pond while the lifeguard cat watches from the chair.', say: 'Koşmak yok, kulaç var!', sayEn: 'No running—just paddling!' },
     { type: 'contact', name: 'Posta kutusu', nameEn: 'Mailbox', color: '#F28A7A', vibe: 'Ormanın sonu. Bir mektup bırakırsan okurum.', vibeEn: 'The end of the woods. Leave a letter and I will read it.', eyebrow: 'İLETİŞİM', eyebrowEn: 'CONTACT', say: 'Mektubunu bekliyorum.', sayEn: 'Waiting for your letter.' }
   ];
-  const IDS = ['kulube', 'cozy-camp', 'muchineko', 'sucustu', 'hosgeldiniz-efendim', 'pati-kulac', 'posta'];
-  const LAST = IDS.length - 1, NPROJ = 5;
+  const IDS = ['kulube', 'cozy-camp', 'muchineko', 'up-or-oops', 'sucustu', 'hosgeldiniz-efendim', 'pati-kulac', 'posta'];
+  const LAST = IDS.length - 1, NPROJ = 6;
   const loadLang = () => {
     try {
       const q = new URLSearchParams(location.search).get('lang');
@@ -219,7 +220,7 @@ const Engine = window.BuyukkolEngine;
       introDesc: 'Fenerini al, ormanda yürü. Her köşede başka bir proje, başka bir hava var.',
       enterSound: 'Sesle gir',
       enterQuiet: 'Sessiz gir',
-      keys: '← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–5 İLE PROJEYE ATLA',
+      keys: '← → İLE YÜRÜ · DOKUN, ORAYA GİT · 1–6 İLE PROJEYE ATLA',
       touch: 'DOKUN, ORAYA GİT · KAYDIR, SONRAKİ PROJE',
       tagline: 'Ormanda dolaş, her köşede başka bir proje var.',
       soundOn: 'Sesi kapat',
@@ -256,7 +257,7 @@ const Engine = window.BuyukkolEngine;
       introDesc: 'Grab your lantern, walk the woods. Every clearing holds a different project and mood.',
       enterSound: 'Enter with sound',
       enterQuiet: 'Enter quietly',
-      keys: '← → TO WALK · TAP TO MOVE · 1–5 JUMP TO PROJECT',
+      keys: '← → TO WALK · TAP TO MOVE · 1–6 JUMP TO PROJECT',
       touch: 'TAP TO MOVE · SWIPE, NEXT PROJECT',
       tagline: 'Wander the woods, every corner holds a project.',
       soundOn: 'Mute sound',

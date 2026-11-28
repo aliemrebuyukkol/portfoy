@@ -76,11 +76,12 @@
         '.work-meta': [
           'A journal and focus app: write a few lines, spark your fire, and grow your camp.',
           'A landscape iPhone game where your cat runs across rooftops drawn in ink and cream paper: 10 maps, 21 cats. SwiftUI, SpriteKit.',
+          'A cozy 3D reaction game: jump on UP, crouch on OOPS, reverse on FLIP, hold on FREEZE! 58 sculpted animals across 6 biomes and 20 stages. Three.js, React, Capacitor.',
           'Spot litter, spray & horn culprits! 236 levels across toy-like 3D worlds, 12 twists, and 50 animal pals. RealityKit, SwiftUI.',
           "A living web world placing Turkey's cult viral videos onto isometric miniature islands. React, PixiJS.",
           'A sports-broadcast-style cat swimming race that turns finger rhythm into paw strokes. SwiftUI, RealityKit.'
         ],
-        '#araclar + .chips .chip': ['Swift & SwiftUI', 'SpriteKit', 'SceneKit', 'RealityKit', 'React', 'PixiJS', 'React Native & Expo', 'Firebase', 'Supabase', 'Blender', 'Claude Code'],
+        '#araclar + .chips .chip': ['Swift & SwiftUI', 'SpriteKit', 'SceneKit', 'RealityKit', 'Three.js', 'React', 'Capacitor', 'PixiJS', 'React Native & Expo', 'Firebase', 'Supabase', 'Blender', 'Claude Code'],
         '#iletisim + .stack .muted': ['Feel free to write about a project, a collaboration, or just to say hello.'],
         '#iletisim .row a.btn': ['Write an email', 'Walk the woods']
       },
@@ -397,6 +398,82 @@
         'Home screen widget: Mochi, breakfast, lunch and dinner meals, Dry, Wet and Fish food buttons, and a Pet button.'
       ]
     },
+    uporoops: {
+      title: 'Up or Oops — Ali Emre Büyükkol',
+      desc: 'Up or Oops: a cozy 3D reaction game inspired by classic stand-up/sit-down play. Jump on UP, crouch on OOPS, reverse on FLIP, hold on FREEZE! 58 animals across 6 biomes and 20 stages.',
+      soundOff: 'Hear the barn',
+      text: {
+        '.stage .hint': 'TAP THE STAGE',
+        '.intro .eyebrow': 'GAME · iPHONE · 3D',
+        '.intro .sub': 'Jump, crouch, stay sharp—classic reflex play in 3D',
+        '.intro .lead': 'React to the signpost in a split second: jump on UP, crouch on OOPS. As the tempo picks up, FLIP turns every cue upside down, DOUBLE asks for two moves in a row, and FREEZE dares you not to touch a thing. Background animals fake the wrong move to throw you off—trust only the board.',
+        '#nasil': 'Two buttons, five rules',
+        '#biyomlar': 'From the barnyard to the sanctuary',
+        '.biome-lead': 'Every animal is sculpted from scratch in 3D: the sheep’s straw hat, the elephant’s curling trunk, the toucan’s bright beak, the axolotl’s pink gills. Unlock 40 animals simply by playing and earning Acorns and stars; 18 exclusive animals join through optional Biome Packs and Barn VIP.',
+        '#bolgeler': '20 stages, Endless & Daily Challenge',
+        '#ekranlar': 'From the game',
+        '#yapim': 'How was it built?',
+        '#destek': 'Help & privacy'
+      },
+      html: {
+        '.status p': '<b>Version 3.0 is in TestFlight.</b> Testing 58 animals, 6 biomes, 6 languages, and natural anatomical crouch physics. The App Store link will appear here on launch.'
+      },
+      lists: {
+        '.facts .chip': ['58 3D animals · 6 biomes', '20 stages · 4 worlds', '5 reflex mechanics', '6 languages · Offline'],
+        'main > .section .eyebrow': ['01 · HOW TO PLAY', '02 · 58 ANIMALS, 6 BIOMES', '03 · FOUR WORLDS & MODES', '04 · SCREENS', '05 · BUILD NOTES', '06 · SUPPORT'],
+        'section[aria-labelledby="nasil"] .muted': [
+          'Tap the two big buttons below or swipe up and down. The signpost always sits cleanly above your animal so you can read every cue at a glance:',
+          'Keep your streak going to charge the Fever bar, speed up the beat, and multiply your score. Prefer a calmer rhythm? Toggle Gentle Pace and Reduced Motion anytime in Settings.'
+        ],
+        '.rule div b': ['UP ▲ · JUMP', 'OOPS ▼ · CROUCH', 'FLIP ↺ · REVERSE', 'DOUBLE ×2 · COMBO', 'FREEZE ❄ · HOLD'],
+        '.rule div p': [
+          'Spring into the air—ears, wings, and straw hats bounce with secondary physics.',
+          'Legs fold and head dips with volume-conserving anatomy instead of unnatural squashing.',
+          'When a purple card flips the rules, crouch on UP and jump on OOPS.',
+          'Hit two cues back-to-back in a single beat as the barn tempo climbs.',
+          'When ice locks the board, keep your hands off until the timer empties.'
+        ],
+        '.biome-card h3': ['Farm', 'Forest', 'Savanna', 'Tropical', 'Arctic', 'Sanctuary'],
+        '.biome-card p': [
+          'Sheep, Rooster, Cow, Duck, Goat, Donkey, Piglet, Llama, Turkey and friends.',
+          'Fox, Frog, Bear, Deer, Owl, Raccoon, Hedgehog, Squirrel, Beaver and Badger.',
+          'Camel, Giraffe, Lion, Elephant, Zebra, Hippo, Rhino, Cheetah and Meerkat.',
+          'Toucan, Flamingo, Sloth, Panda, Koala, Kangaroo, Capybara and Lemur.',
+          'Penguin, Polar Bear, Seal, Walrus, Snowy Owl, Arctic Fox and Reindeer.',
+          'Axolotl, Red Panda, Narwhal, Unicorn, Red Stag, Dragon and Phoenix.'
+        ],
+        'section[aria-labelledby="biyomlar"] .note': ['Fair-play rule: every animal passive is balanced; you can three-star all 20 stages even with your starter animal.'],
+        '.feat .card h3': ['FAKE CROWD', 'ENDLESS MODE', 'DAILY CHALLENGE'],
+        '.feat .card p': [
+          'In later stages, background animals deliberately perform the wrong move to trick your eyes.',
+          'Reaction windows shrink and all five mechanics blend together—how far can you push your record?',
+          'One seeded course shared by everyone each day, with one attempt, a daily streak, and bonus Acorns.'
+        ],
+        '.shot figcaption': ['Home screen · Lion', 'OOPS! crouch pose', 'UP! jump with motion lines', 'Barn · 6 biomes, 58 animals', 'Savanna · Elephant', 'Sanctuary · Axolotl'],
+        'section[aria-labelledby="yapim"] .muted': ['Built with Three.js, React, and TypeScript, and packaged for iPhone via Capacitor. None of the 58 animals are off-the-shelf models—each is procedurally sculpted from articulated 3D parts. A fixed 120 Hz physics step drives leg bending, spine tilt, and ear/tail spring motion while conserving body volume. All sound effects and rhythmic barn tunes are synthesized live with the Web Audio API.'],
+        '.build .stat b': ['58', '120 Hz', '6 languages', '3.0'],
+        '.build .stat span': ['procedurally sculpted 3D animals', 'volume-conserving anatomy physics', 'EN, TR, JA, ES, DE, FR', 'TestFlight release'],
+        'section[aria-labelledby="yapim"] .note': ['Developer: Ali Emre Büyükkol.'],
+        'section[aria-labelledby="destek"] .muted': ['No account or sign-in required; your progress, stars, and collection stay on your device. The free version includes optional rewarded ads, a menu banner, and occasional post-run interstitials after onboarding. Remove Ads, Starter Kit, Biome Packs, and Barn VIP are one-time purchases—no subscriptions.'],
+        'section[aria-labelledby="destek"] .btn': ['Privacy policy', 'Support', 'Terms of use']
+      },
+      ownLists: {
+        '.bays li': ['Sunny Barn', 'Golden Harvest', 'Campfire Woods', 'Highland Festival']
+      },
+      attrs: {
+        '#scene': ['aria-label', 'Pixel-art wooden barn stage: under festive bunting, a straw-hatted sheep, rooster, lion and elephant hop and crouch to the UP/OOPS signpost.'],
+        '.facts': ['aria-label', 'Game details'],
+        '.shots': ['aria-label', 'Screenshots, horizontally scrollable']
+      },
+      imgAlts: [
+        'Up or Oops home screen: sculpted 3D lion on a wooden barn stage with Play, Barn, Stages and Shop navigation.',
+        'Gameplay screen: OOPS ▼ command overhead while a straw-hatted sheep crouches naturally above two large control buttons.',
+        'Gameplay screen: sheep springing upward on an UP ▲ command with speed lines and streak counter.',
+        '58-animal Barn collection screen with 6 biome filter chips and sculpted 3D animal cards.',
+        'Sculpted 3D Savanna elephant standing on the wooden barn stage.',
+        'Sculpted 3D Sanctuary axolotl with pink gills on the barn stage.'
+      ]
+    },
     '404': {
       title: 'Path not found — Büyükkol',
       text: {
@@ -425,6 +502,7 @@
     if (t.indexOf('Hoşgeldiniz') >= 0) return 'hosgeldiniz';
     if (t.indexOf('Pati') >= 0) return 'patikulac';
     if (t.indexOf('Muchineko') >= 0) return 'muchineko';
+    if (t.indexOf('Up or Oops') >= 0) return 'uporoops';
     return 'hakkimda';
   };
 

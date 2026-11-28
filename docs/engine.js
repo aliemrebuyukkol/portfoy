@@ -3,9 +3,10 @@
 window.BuyukkolEngine = class {
   /* ================= Ambiyans sesi (Web Audio, sentez) ================= */
   buildAudio() {
-    let ac = null, master = null, timer = 0, B = null, noise = null, mix = [0, 0, 0, 0, 0];
-    let nPop = 0, nChime = 0, nBeat = 0, beatN = 0, nClink = 0;
+    let ac = null, master = null, timer = 0, B = null, noise = null, mix = [0, 0, 0, 0, 0, 0];
+    let nPop = 0, nChime = 0, nBeat = 0, beatN = 0, nClink = 0, nBarn = 0, barnN = 0;
     const PENTA = [523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66];
+    const BARN_NOTES = [587.33, 440, 659.25, 392, 783.99, 523.25];
     const BASS = [55, 55, 65.41, 49];
     const env = (g, t0, a, peak, d) => { g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(peak, t0 + a); g.gain.exponentialRampToValueAtTime(0.0001, t0 + a + d); };
     const burst = (dest, t0, type, freq, peak, dur) => {
@@ -47,6 +48,16 @@ window.BuyukkolEngine = class {
         }
         beatN++; nBeat += 0.5;
       }
+      if (nBarn < now) nBarn = now + 0.08;
+      while (nBarn < ahead) {
+        if (mix[5] > 0.02) {
+          const up = barnN % 2 === 0;
+          const f = BARN_NOTES[barnN % BARN_NOTES.length];
+          tone(B.barn, nBarn, 'triangle', up ? f : f * 0.72, up ? f * 1.18 : f * 0.58, 0.24, 0.16);
+          if (up && barnN % 4 === 0) tone(B.barn, nBarn + 0.14, 'sine', f * 1.5, 0, 0.12, 0.22);
+        }
+        barnN++; nBarn += 0.45 + (barnN % 2 ? 0.45 : 0.15);
+      }
     };
     const init = () => {
       const AC = window.AudioContext || window.webkitAudioContext;
@@ -55,7 +66,7 @@ window.BuyukkolEngine = class {
       master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
       noise = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
       const d = noise.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-      B = { wind: bed('lowpass', 380), fire: bed('bandpass', 700), water: bed('lowpass', 520), murmur: bed('bandpass', 320), pop: bus(), chime: bus(), beat: bus(), tea: bus() };
+      B = { wind: bed('lowpass', 380), fire: bed('bandpass', 700), water: bed('lowpass', 520), murmur: bed('bandpass', 320), pop: bus(), chime: bus(), beat: bus(), tea: bus(), barn: bus() };
       const dl = ac.createDelay(1); dl.delayTime.value = 0.33;
       const fb = ac.createGain(); fb.gain.value = 0.35;
       B.chime.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(master);
@@ -66,7 +77,7 @@ window.BuyukkolEngine = class {
       if (!ac) return;
       const n = ac.currentTime, set = (g, v) => g.gain.setTargetAtTime(v, n, 0.4);
       set(B.wind, 0.035); set(B.fire, mix[0] * 0.05); set(B.pop, mix[0] * 0.35);
-      set(B.chime, mix[1] * 0.3); set(B.water, mix[2] * 0.16); set(B.beat, mix[3] * 0.32); set(B.tea, mix[4] * 0.35); set(B.murmur, mix[4] * 0.05);
+      set(B.chime, mix[1] * 0.3); set(B.water, mix[2] * 0.16); set(B.beat, mix[3] * 0.32); set(B.tea, mix[4] * 0.35); set(B.murmur, mix[4] * 0.05); set(B.barn, (mix[5] || 0) * 0.34);
     };
     let wantedOn = false;
     return {
@@ -95,7 +106,7 @@ window.BuyukkolEngine = class {
     const wrapOf = () => cv.parentElement || cv;
     const mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
     const reduce = !!(mq && mq.matches);
-    const TAU = Math.PI * 2, WH = 180, WW = 1760, HZ = 74;
+    const TAU = Math.PI * 2, WH = 180, WW = 2060, HZ = 74;
     let S = 4, VW = 320, VH = 180, OY = 0;
     let t = 0, lastT = 0, raf = 0, alive = true, visible = true, tickAcc = 1, mixAcc = 0;
     let camX = 0, camShift = 0, sky = null, hills = null, bg = null, stars = [];
@@ -125,14 +136,19 @@ window.BuyukkolEngine = class {
     };
 
     // Dünya sabit koordinatlarda çizilir; yürüyüş sırası ise parçaları yeniden dizer:
-    // kulübe+Cozy Camp | Muchineko | Suçüstü+Hoşgeldiniz+Pati Kulaç | posta kutusu.
+    // kulübe+Cozy Camp | Muchineko | Up or Oops | Suçüstü+Hoşgeldiniz+Pati Kulaç | posta kutusu.
     // Her parça dikeyde kaydırılır ki yol eklerde kesintisiz birleşsin.
-    const C1 = 420, C2 = 1300, C3 = 1600, SL = C3 - C2;
+    const C1 = 420, C2 = 1300, C3 = 1600, C4 = 1760, SL = C3 - C2, UL = WW - C4;
+    const dy1 = pathY(C1) - pathY(C2);
+    const dy2 = pathY(C3) + dy1 - pathY(C4);
+    const dy3 = pathY(WW) + dy2 - pathY(C1);
+    const dy4 = pathY(C2) + dy3 - pathY(C3);
     const SEGS = [
       { v0: 0, v1: C1, d: 0, dy: 0 },
-      { v0: C1, v1: C1 + SL, d: C2 - C1, dy: pathY(C1) - pathY(C2) },
-      { v0: C1 + SL, v1: C3, d: -SL, dy: pathY(C3) - pathY(C2) },
-      { v0: C3, v1: WW, d: 0, dy: 0 }
+      { v0: C1, v1: C1 + SL, d: C2 - C1, dy: dy1 },
+      { v0: C1 + SL, v1: C1 + SL + UL, d: C4 - (C1 + SL), dy: dy2 },
+      { v0: C1 + SL + UL, v1: C3 + UL, d: -(SL + UL), dy: dy3 },
+      { v0: C3 + UL, v1: WW, d: -UL, dy: dy4 }
     ];
     const segAt = (v) => SEGS.find((g) => v < g.v1) || SEGS[SEGS.length - 1];
     const toWorld = (v) => v + segAt(v).d;
@@ -142,6 +158,7 @@ window.BuyukkolEngine = class {
       zoneAt(96, 112, 86, 100),
       zoneAt(246, 216, 226, 121),
       zoneAt(1450, 1420, 1416, 127),
+      zoneAt(1910, 1882, 1910, 80),
       zoneAt(552, 522, 552, 97),
       zoneAt(860, 838, 852, 116),
       zoneAt(1146, 1116, 1084, 74),
@@ -313,6 +330,7 @@ window.BuyukkolEngine = class {
       for (let x = 20; x < WW; x += 40 + rand() * 34) {
         const y = 90 + Math.round(rand() * 8), sc = 0.62 + rand() * 0.14, r = rand();
         if (x > 462 && x < 642) continue;
+        if (x > 1830 && x < 1990) continue;
         trees.push(r < 0.35 ? makePine(x, y, sc, 0.22) : makeLeafy(x, y, sc, r < 0.55 ? 'birch' : 'oak', 0.22));
       }
       trees.push(makePine(305, 118, 0.95, 0));
@@ -326,23 +344,26 @@ window.BuyukkolEngine = class {
       trees.push(makeLeafy(706, 124, 0.95, 'oak', 0));
       trees.push(makeLeafy(1582, 118, 1.0, 'oak', 0));
       trees.push(makePine(1730, 120, 1.0, 0));
+      trees.push(makeLeafy(1816, 120, 0.95, 'birch', 0));
+      trees.push(makePine(2004, 122, 0.95, 0));
       trees.push(makeLeafy(40, 120, 0.95, 'oak', 0));
-      [[150, 146, 1.0], [688, 150, 1.1], [1304, 150, 1.0], [1600, 150, 1.0], [372, 150, 0.9], [1746, 152, 1.0]].forEach((b) => trees.push(makeLeafy(b[0], b[1], b[2], 'bush', 0)));
+      [[150, 146, 1.0], [688, 150, 1.1], [1304, 150, 1.0], [1600, 150, 1.0], [372, 150, 0.9], [1746, 152, 1.0], [1822, 148, 0.95], [1998, 148, 0.95]].forEach((b) => trees.push(makeLeafy(b[0], b[1], b[2], 'bush', 0)));
       trees.push(makeLeafy(410, 198, 1.45, 'oak', 0));
       trees.push(makePine(700, 194, 1.3, 0));
       trees.push(makeLeafy(1306, 198, 1.5, 'oak', 0));
       trees.push(makePine(20, 194, 1.25, 0));
       trees.push(makeLeafy(1618, 198, 1.4, 'oak', 0));
       // Kesim noktasının üstüne düşen ağaç ikiye bölünmesin: dünyadan çıkar, ek yerini çerçeve ağaçları örter.
-      const cuts = [C1, C2, C3];
+      const cuts = [C1, C2, C3, C4];
       trees = trees.filter((it) => { const w = (it.R || it.Ht * 0.3) + 2; return cuts.every((c) => Math.abs(it.cx - c) > w); });
-      seamTrees = [C1, C1 + SL, C3].flatMap((v) => [makeLeafy(v - 4, 150, 1.0, 'bush', 0), makeLeafy(v + 2, 198, 1.45, 'oak', 0)]);
+      seamTrees = [C1, C1 + SL, C1 + SL + UL, C3 + UL].flatMap((v) => [makeLeafy(v - 4, 150, 1.0, 'bush', 0), makeLeafy(v + 2, 198, 1.45, 'oak', 0)]);
       tufts = [];
-      for (let i = 0; i < 260; i++) {
+      for (let i = 0; i < 300; i++) {
         const x = rand() * WW, y = HZ + 12 + rand() * (WH - HZ - 12);
         if (Math.abs(y - pathY(x)) < 7) continue;
         if (((x - 1146) / 80) ** 2 + ((y - 122) / 23) ** 2 < 1) continue;
         if (x > 470 && x < 638 && y > 106 && y < 146) continue;
+        if (x > 1846 && x < 1974 && y > 106 && y < 146) continue;
         if (((x - 246) / 50) ** 2 + ((y - 136) / 15) ** 2 < 1) continue;
         if (x > 72 && x < 112 && y > 110 && y < 132) continue;
         if (x > 1652 && x < 1716 && y > 126 && y < 150) continue;
@@ -355,6 +376,7 @@ window.BuyukkolEngine = class {
 
     const POND = { cx: 1146, cy: 122, rx: 72, ry: 18 };
     const FLOOR = { x0: 477, x1: 627, y0: 110, y1: 140, cols: 10, rows: 5 };
+    const BARN = { cx: 1910, x0: 1854, x1: 1966, y0: 115, y1: 140 };
 
     const buildBg = () => {
       const c = mk(WW, WH), g = c.getContext('2d'), img = g.createImageData(WW, WH), d = img.data;
@@ -399,6 +421,15 @@ window.BuyukkolEngine = class {
       const fl = rgb('#1C1626'), flE = rgb('#0E0B14'), flL = rgb('#2C2340');
       for (let y = FLOOR.y0 - 1; y <= FLOOR.y1 + 2; y++) for (let x = FLOOR.x0 - 1; x <= FLOOR.x1 + 1; x++) {
         put(x, y, y > FLOOR.y1 ? (y === FLOOR.y1 + 1 ? flL : flE) : (x === FLOOR.x0 - 1 || x === FLOOR.x1 + 1 || y === FLOOR.y0 - 1) ? flE : fl);
+      }
+      // Up or Oops ahşap çiftlik sahnesi
+      const wA = rgb('#8C633B'), wB = rgb('#7B5532'), wC = rgb('#644326'), wE = rgb('#3D2716'), wH = rgb('#A87B4C');
+      for (let y = BARN.y0 - 1; y <= BARN.y1 + 2; y++) for (let x = BARN.x0 - 1; x <= BARN.x1 + 1; x++) {
+        if (y === BARN.y0 - 1 || x === BARN.x0 - 1 || x === BARN.x1 + 1 || y === BARN.y1 + 2) put(x, y, wE);
+        else if (y === BARN.y1 + 1) put(x, y, wC);
+        else if (y === BARN.y0) put(x, y, wH);
+        else if ((y - BARN.y0) % 5 === 0) put(x, y, wC);
+        else put(x, y, ((Math.floor((y - BARN.y0) / 5) + Math.floor((x - BARN.x0) / 18)) % 2 === 0) ? wA : wB);
       }
       for (const it of trees) {
         const rx = Math.max(2, it.shadowR), ry = Math.max(1.5, rx * 0.28), ox = Math.round(it.cx - rx * 0.2);
@@ -612,6 +643,179 @@ window.BuyukkolEngine = class {
       const x = 1496, y = 128;
       R(x, y - 18, 1, 18, '#3B291C'); R(x, y - 18, 6, 1, '#3B291C'); R(x + 5, y - 17, 1, 2, '#2A2A30');
       R(x + 4, y - 15, 3, 4, '#E0694E'); R(x + 5, y - 14, 1, 2, '#FFD39A'); R(x + 4, y - 15, 3, 1, '#7A2E28'); R(x + 4, y - 12, 3, 1, '#7A2E28');
+    };
+
+    /* ---------- Up or Oops: çiftlik sahnesi, UP/OOPS tabelası ve 4 hayvan ---------- */
+    const barn = {
+      cmd: 'up', cmdT: 1.8, pulse: 0, fakeIdx: -1, fakeT: 0, sparkT: 0.4,
+      animals: [
+        { kind: 'sheep', x: 1876, y: 134, ph: 0.0, hop: 0, crouch: 0, bang: 0 },
+        { kind: 'rooster', x: 1898, y: 127, ph: 0.14, hop: 0, crouch: 0, bang: 0 },
+        { kind: 'lion', x: 1922, y: 135, ph: 0.08, hop: 0, crouch: 0, bang: 0 },
+        { kind: 'elephant', x: 1945, y: 129, ph: 0.2, hop: 0, crouch: 0, bang: 0 }
+      ]
+    };
+    const flipBarnCmd = (byTap) => {
+      barn.cmd = barn.cmd === 'up' ? 'oops' : 'up';
+      barn.cmdT = 2.0 + fx() * 0.7;
+      barn.pulse = 0.5;
+      barn.fakeIdx = !byTap && fx() < 0.4 ? (1 + Math.floor(fx() * 3)) : -1;
+      barn.fakeT = barn.fakeIdx >= 0 ? 0.55 : 0;
+      for (let i = 0; i < barn.animals.length; i++) {
+        const a = barn.animals[i];
+        const act = i === barn.fakeIdx ? (barn.cmd === 'up' ? 'oops' : 'up') : barn.cmd;
+        if (act === 'up') { a.hop = 0.56; a.crouch = 0; }
+        else { a.crouch = 0.78; a.hop = 0; }
+        if (i === barn.fakeIdx) a.bang = 0.65;
+      }
+      const col = barn.cmd === 'up' ? '#F4B942' : '#2BB3B1';
+      const cnt = byTap ? 18 : 6;
+      for (let i = 0; i < cnt; i++) {
+        parts.push({ k: 'dot', c: i % 2 ? col : '#FFE9B0', x: BARN.cx + (fx() - 0.5) * (byTap ? 76 : 22), y: byTap ? 124 : 96, vx: (fx() - 0.5) * 28, vy: -14 - fx() * 18, g: 38, life: 0.8 + fx() * 0.4, max: 1.2 });
+      }
+    };
+    const drawBarnBackdrop = () => {
+      const x0 = BARN.x0, x1 = BARN.x1, yB = BARN.y0;
+      // Arka çit direkleri ve yatay çıtalar
+      R(x0 + 2, yB - 6, x1 - x0 - 4, 1, '#7B5532');
+      R(x0 + 2, yB - 3, x1 - x0 - 4, 1, '#644326');
+      for (let px = x0 + 2; px <= x1 - 2; px += 14) {
+        R(px, yB - 8, 2, 8, '#5A3B22');
+        R(px, yB - 8, 1, 8, '#8C633B');
+      }
+      // İki yanda ahşap festival direkleri + sıcak fenerler
+      for (const px of [x0, x1 - 2]) {
+        R(px, 84, 3, yB - 83, '#4E331D');
+        R(px, 84, 1, yB - 83, '#7E5A38');
+        R(px - 1, 83, 5, 2, '#644326');
+        R(px, 86, 3, 3, '#FFE08A');
+        R(px + 1, 87, 1, 1, '#FFFFFF');
+      }
+      // Sarkan üçgen festival flamaları
+      const flags = ['#F4B942', '#2BB3B1', '#F3ECDD', '#E86A5A'];
+      const span = x1 - x0 - 4;
+      for (let i = 0; i <= span; i++) {
+        const u = i / span, fx0 = x0 + 2 + i, fy0 = 86 + Math.round(Math.sin(Math.PI * u) * 8);
+        R(fx0, fy0, 1, 1, '#3A281A');
+        if (i > 4 && i < span - 4 && i % 7 === 0) {
+          const fc = flags[Math.floor(i / 7) % flags.length];
+          const sw = Math.round(Math.sin(t * 2.4 + i * 0.2) * 0.6);
+          R(fx0 - 1, fy0 + 1, 3, 1, fc);
+          R(fx0 + sw, fy0 + 2, 2, 1, fc);
+          R(fx0 + sw, fy0 + 3, 1, 1, fc);
+        }
+      }
+      // Ortadaki UP / OOPS komut tabelası
+      const sx = BARN.cx, sy = 96;
+      const isUp = barn.cmd === 'up';
+      const pop = barn.pulse > 0 ? Math.round(Math.sin(barn.pulse * Math.PI * 2)) : 0;
+      const by = sy - 7 - pop;
+      R(sx - 1, sy + 5, 3, yB - sy - 4, '#5A3B22');
+      R(sx - 1, sy + 5, 1, yB - sy - 4, '#8C633B');
+      R(sx - 13, by - 1, 27, 13, '#3D2716');
+      R(sx - 12, by, 25, 11, '#F6EDD9');
+      R(sx - 12, by, 25, 1, '#FFFFFF');
+      const badge = isUp ? '#F4B942' : '#2BB3B1';
+      const badgeD = isUp ? '#C68A1E' : '#1B8280';
+      R(sx - 10, by + 2, 21, 7, badge);
+      R(sx - 10, by + 8, 21, 1, badgeD);
+      // Yukarı (UP ▲) veya Aşağı (OOPS ▼) piksel ok + kısa çubuklar
+      if (isUp) {
+        // ▲ ok ortada
+        R(sx, by + 3, 1, 1, '#141A30');
+        R(sx - 1, by + 4, 3, 1, '#141A30');
+        R(sx - 2, by + 5, 5, 1, '#141A30');
+        R(sx - 3, by + 6, 7, 1, '#141A30');
+        // sol-sağ küçük UP vurgu noktaları
+        R(sx - 8, by + 4, 2, 3, '#141A30');
+        R(sx + 7, by + 4, 2, 3, '#141A30');
+      } else {
+        // ▼ ok ortada
+        R(sx - 3, by + 3, 7, 1, '#141A30');
+        R(sx - 2, by + 4, 5, 1, '#141A30');
+        R(sx - 1, by + 5, 3, 1, '#141A30');
+        R(sx, by + 6, 1, 1, '#141A30');
+        // sol-sağ OOPS vurgu çizgileri
+        R(sx - 8, by + 5, 3, 1, '#141A30');
+        R(sx + 6, by + 5, 3, 1, '#141A30');
+      }
+    };
+    const drawBarnAnimal = (a) => {
+      const x = Math.round(a.x);
+      const jumpH = a.hop > 0 ? Math.round(9 * Math.sin(Math.PI * (1 - a.hop / 0.56))) : 0;
+      const cr = a.crouch > 0 ? Math.round(2 * Math.sin(Math.min(1, (0.78 - a.crouch) * 4) * Math.PI * 0.5)) : 0;
+      const idle = (a.hop <= 0 && a.crouch <= 0 && Math.sin(t * 3.2 + a.ph * 12) > 0.65) ? 1 : 0;
+      const y = Math.round(a.y) - jumpH;
+      // Gölge
+      const sw = jumpH > 3 ? 6 : 9;
+      R(x - (sw >> 1), Math.round(a.y) + 1, sw, 1, 'rgba(20,14,10,0.38)');
+      if (a.kind === 'sheep') {
+        // Koyun + hasır şapka
+        const legH = cr ? 1 : 3;
+        R(x - 3, y - legH, 2, legH, '#2B2433'); R(x + 2, y - legH, 2, legH, '#2B2433');
+        const by = y - legH - (cr ? 5 : 6) + idle;
+        R(x - 5, by, 11, cr ? 5 : 6, '#F4EFE4');
+        R(x - 4, by - 1, 9, 1, '#FFFFFF');
+        R(x - 5, by + (cr ? 4 : 5), 11, 1, '#CFC7B8');
+        // Koyu koyun yüzü ve pembe burun
+        R(x - 3, by + 1, 6, 4, '#2A2334');
+        R(x - 2, by + 2, 1, 1, '#FFFFFF'); R(x + 1, by + 2, 1, 1, '#FFFFFF');
+        R(x - 1, by + 3, 2, 1, '#E88DA2');
+        // Hasır şapka (zıplayınca hafif havalanır)
+        const hy = by - 3 - (jumpH > 4 ? 1 : 0);
+        R(x - 5, hy + 2, 11, 1, '#E8B84B');
+        R(x - 3, hy, 7, 2, '#F4CB69');
+        R(x - 3, hy + 1, 7, 1, '#C9473F');
+      } else if (a.kind === 'rooster') {
+        // Horoz: beyaz gövde, kırmızı ibik, sarı gaga, kanat çırpma
+        const legH = cr ? 1 : 2;
+        R(x - 2, y - legH, 1, legH, '#E89B35'); R(x + 1, y - legH, 1, legH, '#E89B35');
+        const by = y - legH - (cr ? 4 : 5) + idle;
+        R(x - 4, by, 8, cr ? 4 : 5, '#F5EFE2');
+        R(x - 4, by + (cr ? 3 : 4), 8, 1, '#D1C4B2');
+        // Kanatlar zıplarken yana açılır
+        if (jumpH > 2) { R(x - 6, by + 1, 2, 2, '#E5D9C3'); R(x + 4, by + 1, 2, 2, '#E5D9C3'); }
+        // Kuyruk
+        R(x - 5, by - 1, 2, 2, '#4A6E5C');
+        // Kafa & kırmızı ibik
+        R(x, by - 3, 4, 3, '#F5EFE2');
+        R(x + 1, by - 5, 3, 2, '#D9433E');
+        R(x + 4, by - 2, 2, 1, '#F4B942');
+        R(x + 2, by - 2, 1, 1, '#1A1418');
+      } else if (a.kind === 'lion') {
+        // Aslan: altın yele, sıcak gövde
+        const legH = cr ? 1 : 3;
+        R(x - 3, y - legH, 2, legH, '#C98A3A'); R(x + 2, y - legH, 2, legH, '#C98A3A');
+        const by = y - legH - (cr ? 5 : 6) + idle;
+        R(x - 4, by + 1, 9, cr ? 4 : 5, '#E8A948');
+        // Yele
+        R(x - 5, by - 2, 10, 6, '#9C4D1E');
+        R(x - 4, by - 3, 8, 1, '#B35D28');
+        // Yüz
+        R(x - 3, by - 1, 6, 4, '#F4C16A');
+        R(x - 2, by, 1, 1, '#241812'); R(x + 1, by, 1, 1, '#241812');
+        R(x - 1, by + 1, 2, 1, '#6E3518');
+        // Kulaklar
+        R(x - 4, by - 3, 2, 1, '#E8A948'); R(x + 2, by - 3, 2, 1, '#E8A948');
+      } else {
+        // Fil: mavi-gri yuvarlak gövde, büyük kulaklar, sevimli hortum
+        const legH = cr ? 1 : 3;
+        R(x - 4, y - legH, 2, legH, '#6C84A2'); R(x + 2, y - legH, 2, legH, '#6C84A2');
+        const by = y - legH - (cr ? 5 : 7) + idle;
+        R(x - 5, by, 10, cr ? 5 : 7, '#8BA4C2');
+        R(x - 4, by - 1, 8, 1, '#A6BED9');
+        // Büyük kulaklar
+        R(x - 7, by + 1, 2, 4, '#6C84A2'); R(x + 5, by + 1, 2, 4, '#6C84A2');
+        R(x - 6, by + 2, 1, 2, '#D9A7B8'); R(x + 5, by + 2, 1, 2, '#D9A7B8');
+        // Gözler & hortum (zıplarken kalkar)
+        R(x - 2, by + 2, 1, 1, '#1A1C28'); R(x + 2, by + 2, 1, 1, '#1A1C28');
+        if (jumpH > 2) { R(x, by + 2, 1, 3, '#A6BED9'); R(x + 1, by + 1, 1, 2, '#A6BED9'); }
+        else { R(x, by + 3, 1, 4, '#7992B0'); R(x + 1, by + 6, 1, 1, '#7992B0'); }
+      }
+      if (a.bang > 0) {
+        const ey = y - 15 - Math.round(Math.sin(a.bang * 14));
+        R(x, ey, 1, 3, '#FFE14F'); R(x, ey + 4, 1, 1, '#FFE14F');
+      }
     };
 
     /* ---------- Pati Kulaç ---------- */
@@ -966,6 +1170,25 @@ window.BuyukkolEngine = class {
       neko.zT -= dt;
       if (neko.zT < 0) { neko.zT = 1.6; parts.push({ k: 'z', x: neko.sleeper.x - 3, y: neko.sleeper.y - 9, vx: 1.5, vy: -4, life: 2.2, max: 2.2 }); }
 
+      // up or oops
+      barn.cmdT -= dt;
+      if (barn.pulse > 0) barn.pulse = Math.max(0, barn.pulse - dt);
+      if (barn.cmdT <= 0 && !reduce) flipBarnCmd(false);
+      if (barn.fakeT > 0) {
+        barn.fakeT -= dt;
+        if (barn.fakeT <= 0 && barn.fakeIdx >= 0) {
+          const fa = barn.animals[barn.fakeIdx];
+          if (barn.cmd === 'up') { fa.hop = 0.52; fa.crouch = 0; }
+          else { fa.crouch = 0.6; fa.hop = 0; }
+          barn.fakeIdx = -1;
+        }
+      }
+      for (const a of barn.animals) {
+        if (a.hop > 0) a.hop = Math.max(0, a.hop - dt);
+        if (a.crouch > 0) a.crouch = Math.max(0, a.crouch - dt);
+        if (a.bang > 0) a.bang = Math.max(0, a.bang - dt);
+      }
+
       // pati kulaç
       for (const s of swim) {
         s.rip -= dt;
@@ -1114,6 +1337,8 @@ window.BuyukkolEngine = class {
       add(neko.kitten.y, neko.kitten.x, 10, () => drawKitten(neko.kitten));
       add(neko.fly.y + 14, neko.fly.x, 4, drawFly);
       add(128, 1498, 10, drawLantern);
+      add(115, BARN.cx, 70, drawBarnBackdrop);
+      barn.animals.forEach((a) => add(a.y, a.x, 14, () => drawBarnAnimal(a)));
       swim.forEach((s) => { const p = swimPos(s); add(p.y, p.x, 10, () => drawSwimmer(s)); });
       add(guard.y, guard.x, 10, drawGuard);
       add(122, 1212, 30, drawDock);
@@ -1155,6 +1380,12 @@ window.BuyukkolEngine = class {
       if (visX(246, 160)) for (const q of camp.flies) if (Math.sin(t * 2 + q.ph * 3) > 0.2) glow(q.x0 + Math.sin(t * q.sp + q.ph) * 10, q.y0 + Math.cos(t * q.sp * 1.3 + q.ph) * 5, 4, '240,240,140', 0.35);
       glow(1501, 115, 28, '255,130,170', 0.24);
       glow(1446, 112, 70, '255,150,200', 0.07);
+      if (visX(BARN.cx, 120)) {
+        glow(BARN.x0 + 1, 88, 22, '255,214,120', 0.28);
+        glow(BARN.x1 - 1, 88, 22, '255,214,120', 0.28);
+        glow(BARN.cx, 96, 36 + (barn.pulse > 0 ? 8 : 0), barn.cmd === 'up' ? '244,185,66' : '43,179,177', 0.26);
+        glow(BARN.cx, 128, 72, '244,185,66', 0.11);
+      }
       glow(1146, 122, 84, '80,170,230', 0.1);
       if (visX(850, 120)) {
         glow(852, 118, 64, '255,180,100', 0.17);
@@ -1187,7 +1418,7 @@ window.BuyukkolEngine = class {
       mixAcc += dt;
       if (mixAcc > 0.25) {
         mixAcc = 0;
-        audio.setMix([ZONES[1], ZONES[2], ZONES[5], ZONES[3], ZONES[4]].map((z) => { const m = clamp(1 - Math.abs(player.x - z.cx) / 210, 0, 1); return m * m * (3 - 2 * m); }));
+        audio.setMix([ZONES[1], ZONES[2], ZONES[6], ZONES[4], ZONES[5], ZONES[3]].map((z) => { const m = clamp(1 - Math.abs(player.x - z.cx) / 210, 0, 1); return m * m * (3 - 2 * m); }));
       }
       oddFrame = !oddFrame;
       if (!coarse || oddFrame) draw();
@@ -1276,6 +1507,8 @@ window.BuyukkolEngine = class {
           for (let i = 0; i < 8; i++) parts.push({ k: 'dot', c: '#BFE6F5', x: wx, y: wy, vx: fx() * 16 - 8, vy: -14 - fx() * 10, g: 50, life: 0.6, max: 0.6 });
         }
         if (wx > FLOOR.x0 && wx < FLOOR.x1 && wy > FLOOR.y0 - 20 && wy < FLOOR.y1) for (let i = 0; i < 30; i++) parts.push({ k: 'dot', c: TILE[i % 5], x: wx, y: wy - 10, vx: fx() * 40 - 20, vy: -20 - fx() * 30, g: 45, life: 1.4, max: 1.4 });
+        if (wx > BARN.x0 - 4 && wx < BARN.x1 + 4 && wy > 80 && wy < BARN.y1 + 6) flipBarnCmd(true);
+        for (const a of barn.animals) if (Math.hypot(wx - a.x, wy - (a.y - 6)) < 9) parts.push({ k: 'heart', x: a.x, y: a.y - 16, vx: 0, vy: -6, life: 1.4, max: 1.4 });
         if (windOn) extraG.push({ t0: t, x0: wx - 40, v: 75, k: 0.9, w: 45 });
         start();
       },

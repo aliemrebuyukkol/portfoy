@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141A30">
+<title>Up or Oops — Ali Emre Büyükkol</title>
+<meta name="description" content="Up or Oops: klasik Deve-Cüce oyunundan ilham alan 3D refleks oyunu. UP zıpla, OOPS çömel, FLIP tersini yap, FREEZE kımıldama! 6 biyomda 58 hayvan, 20 bölge.">
+<meta property="og:title" content="Up or Oops">
+<meta property="og:description" content="UP zıpla, OOPS çömel, FLIP tersini yap! 6 biyomda 58 3D hayvan, 20 bölge ve 5 refleks mekaniği.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://buyukkol.com/uporoops.html">
+<link rel="alternate" hreflang="tr" href="https://buyukkol.com/uporoops.html">
+<link rel="alternate" hreflang="en" href="https://buyukkol.com/en/uporoops.html">
+<link rel="alternate" hreflang="x-default" href="https://buyukkol.com/uporoops.html">
+<meta property="og:url" content="https://buyukkol.com/uporoops.html">
+<meta property="og:site_name" content="Büyükkol">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://buyukkol.com/img/og-uporoops.png">
+<meta property="og:image:secure_url" content="https://buyukkol.com/img/og-uporoops.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Piksel ormanda ahşap çiftlik sahnesi, UP/OOPS tabelası, zıplayan koyun, horoz, aslan, fil ve Up or Oops oyun kartı.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Up or Oops">
+<meta name="twitter:description" content="UP zıpla, OOPS çömel, FLIP tersini yap! 6 biyomda 58 3D hayvan, 20 bölge ve 5 refleks mekaniği.">
+<meta name="twitter:image" content="https://buyukkol.com/img/og-uporoops.png">
+<meta name="twitter:image:alt" content="Piksel ormanda ahşap çiftlik sahnesi, UP/OOPS tabelası, zıplayan koyun, horoz, aslan, fil ve Up or Oops oyun kartı.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23141A30'/%3E%3Crect x='7' y='3' width='2' height='2' fill='%23F4B942'/%3E%3Crect x='5' y='5' width='6' height='2' fill='%23F4B942'/%3E%3Crect x='3' y='7' width='10' height='2' fill='%23F4B942'/%3E%3Crect x='5' y='11' width='6' height='2' fill='%232BB3B1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Pixelify+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{--accent:#F4B942}
+.stage{position:relative;height:clamp(300px,64vh,600px);overflow:hidden;overflow:clip;background:#141A30}
+.scene{position:absolute;left:0;bottom:0;image-rendering:pixelated;cursor:pointer;touch-action:pan-y}
+.stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(rgba(20,26,48,0),#141A30);pointer-events:none}
+.stage-ui{position:absolute;right:calc(16px + env(safe-area-inset-right));bottom:20px;z-index:2;display:flex;gap:8px;align-items:center}
+.pill{min-height:44px;padding:0 14px;border:0;border-radius:3px;background:rgba(14,16,30,.84);color:var(--text);font-family:var(--body);font-weight:500;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pill:hover{background:rgba(14,16,30,.96)}
+.hint{position:absolute;left:calc(16px + env(safe-area-inset-left));bottom:30px;z-index:2;font-family:var(--pixel);font-size:13px;letter-spacing:.08em;color:#E4DDEC;text-shadow:0 1px 0 rgba(14,16,30,.9)}
+@media (max-width:420px){.hint{display:none}}
+.intro{display:flex;flex-direction:column;gap:18px;padding-top:8px}
+.title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{width:64px;height:64px;border-radius:14px;background:#1E2442;box-shadow:inset 0 0 0 1px var(--line2);display:grid;place-items:center;flex:0 0 64px}
+.mark.app-icon{background:none;padding:0;overflow:hidden;border-radius:22%}
+.mark.app-icon img{width:100%;height:100%;display:block}
+h1{color:var(--accent)}
+.sub{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,24px);color:var(--text);margin-top:4px}
+.status{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-left:0;border-radius:4px;padding:14px 16px;font-size:15px;color:var(--muted)}
+.status b{color:var(--text);font-weight:600}
+.status .led{flex:0 0 10px;height:10px;margin-top:7px;background:#F4B942;box-shadow:0 0 0 3px rgba(244,185,66,.2)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.feat .card{padding:18px}
+.feat h3{font-size:16px;font-family:var(--pixel);font-weight:600;letter-spacing:.06em;color:var(--accent)}
+.rule{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr));gap:8px}
+.rule div{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.rule b{display:block;font-family:var(--pixel);font-size:15px;letter-spacing:.04em;color:var(--accent);margin-bottom:4px}
+.rule p{font-size:14px;color:var(--muted);line-height:1.45}
+.bays{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
+.bays li{display:flex;gap:12px;align-items:baseline;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;font-size:15px}
+.bays span{font-family:var(--pixel);font-size:13px;color:var(--soft);flex:0 0 46px}
+.shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--pad) 14px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
+.shot{flex:0 0 clamp(190px,46vw,240px);margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+.shot img{width:100%;height:auto;border-radius:22px;box-shadow:0 0 0 6px #0E1222,0 0 0 7px var(--line2);background:#F4EFE6}
+.shot figcaption{font-size:14px;color:var(--muted);text-align:center}
+.build{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.stat b{display:block;font-family:var(--display);font-size:24px}
+.stat span{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--soft)}
+.biome-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;margin-top:14px}
+.biome-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:14px}
+.biome-card h3{font-size:15px;font-family:var(--pixel);font-weight:600;letter-spacing:.04em;color:var(--accent);margin:0 0 6px}
+.biome-card p{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap">
+<a class="back" href="index.html#up-or-oops"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Ormana dön</a>
+<a class="brand" href="index.html#up-or-oops" aria-label="Büyükkol ana sayfa">BÜYÜKKOL</a>
+</div>
+</header>
+
+<div class="stage" id="stage">
+<canvas class="scene" id="scene" role="img" aria-label="Piksel sanat ahşap çiftlik sahnesi: festival flamalarının altında UP ve OOPS tabelasına göre zıplayıp çömelen hasır şapkalı koyun, horoz, aslan ve fil."></canvas>
+<span class="hint" aria-hidden="true">SAHNEYE DOKUN</span>
+<div class="stage-ui"><button type="button" class="pill" id="snd" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2.5 7v4h3l4 3.5v-11l-4 3.5h-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path id="snd-w" d="M12.5 6.5l4 5M16.5 6.5l-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span id="snd-lbl">Çiftliği dinle</span></button></div>
+</div>
+
+<main class="wrap">
+<section class="intro" aria-labelledby="baslik">
+<div class="title-row">
+<div class="mark app-icon" aria-hidden="true"><img src="img/uporoops-ikon.webp" width="96" height="96" alt=""></div>
+<div><p class="eyebrow">OYUN · iPHONE · 3D</p><h1 id="baslik">Up or Oops</h1><p class="sub">Zıpla, çömel, şaşırma—klasik Deve-Cüce'nin 3D hâli</p></div>
+</div>
+<p class="lead">Tabeladaki komuta anında tepki ver: UP görünce zıpla, OOPS görünce çömel. İşler hızlandıkça FLIP komutu her şeyi tersine çevirir, DOUBLE peş peşe iki hamle ister, FREEZE tek bir dokunuşu bile affetmez. Arka plandaki hayvanlar bilerek yanlış yapıp kafanı karıştırır; sen yalnızca tabelaya güven.</p>
+<div class="status" role="note"><span class="led" aria-hidden="true"></span><p><b>Sürüm 3.0 TestFlight'ta.</b> 58 hayvan, 6 biyom, 6 dil ve doğal anatomik çömelme fiziğiyle test ediliyor. App Store bağlantısı yayında burada olacak.</p></div>
+<div class="facts" aria-label="Oyun bilgileri"><span class="chip">58 3D hayvan · 6 biyom</span><span class="chip">20 bölge · 4 dünya</span><span class="chip">5 refleks mekaniği</span><span class="chip">6 dil · Çevrimdışı</span></div>
+</section>
+
+<section class="section" aria-labelledby="nasil">
+<div class="section-head"><p class="eyebrow">01 · NASIL OYNANIR</p></div>
+<h2 id="nasil">İki düğme, beş kural</h2>
+<div class="stack">
+<p class="muted">Alttaki iki büyük düğmeye dokun veya yukarı/aşağı kaydır. Tabela her zaman hayvanın üzerinde net durur; komutu anında okuyup doğru hamleyi yap:</p>
+<div class="rule">
+<div><b>UP ▲ · ZIPLA</b><p>Hayvanını havaya sıçrat; kulaklar, kanatlar ve hasır şapka fizikle tepki verir.</p></div>
+<div><b>OOPS ▼ · ÇÖMEL</b><p>Bacaklar katlanır, baş öne eğilir; doğal hacim koruyan çömelme pozuyla yere yaklaş.</p></div>
+<div><b>FLIP ↺ · TERSİ</b><p>Mor kart geldiğinde refleksini kır: UP görünce çömel, OOPS görünce zıpla.</p></div>
+<div><b>DOUBLE ×2 · İKİLİ</b><p>Aynı turda ardışık iki komutu ritimle yakala; hızlanırken elini sıcak tut.</p></div>
+<div><b>FREEZE ❄ · DON</b><p>Buz kartında hiçbir düğmeye basma; süre bitene kadar sakin kal.</p></div>
+</div>
+<p class="muted">Serin büyüdükçe Ateş (Fever) çubuğu dolar, tempo yükselir ve puan çarpanı katlanır. İstersen Rahat Tempo ve Hareketi Azalt seçenekleriyle daha sakin bir ritimde de oynayabilirsin.</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="biyomlar">
+<div class="section-head"><p class="eyebrow">02 · 58 HAYVAN, 6 BİYOM</p></div>
+<h2 id="biyomlar">Ahırdan sığınağa bütün sürü</h2>
+<div class="stack">
+<p class="muted biome-lead">Her hayvan sıfırdan 3D parçalarla şekillendirildi: koyunun hasır şapkası, filin kıvrılan hortumu, tukanın renkli gagası, aksolotl'un pembe solungaçları. 40 hayvanı oynayıp Palamut ve yıldız toplayarak açarsın; 18 özel hayvan isteğe bağlı Biyom Paketleri ve Çiftlik VIP ile koleksiyona katılır.</p>
+<div class="biome-grid">
+<div class="biome-card"><h3>Çiftlik</h3><p>Koyun, Horoz, İnek, Ördek, Keçi, Eşek, Domuzcuk, Lama, Hindi ve dostları.</p></div>
+<div class="biome-card"><h3>Orman</h3><p>Tilki, Kurbağa, Ayı, Geyik, Baykuş, Rakun, Kirpi, Sincap, Kunduz ve Porsuk.</p></div>
+<div class="biome-card"><h3>Savana</h3><p>Deve, Zürafa, Aslan, Fil, Zebra, Su Aygırı, Gergedan, Çita ve Mirket.</p></div>
+<div class="biome-card"><h3>Tropik</h3><p>Tukan, Flamingo, Tembel Hayvan, Panda, Koala, Kanguru, Kapibara ve Lemur.</p></div>
+<div class="biome-card"><h3>Kutup</h3><p>Penguen, Kutup Ayısı, Fok, Mors, Kar Baykuşu, Kutup Tilkisi ve Ren Geyiği.</p></div>
+<div class="biome-card"><h3>Sığınak</h3><p>Aksolotl, Kızıl Panda, Narval, Tek Boynuzlu, Kızıl Geyik, Ejderha ve Anka.</p></div>
+</div>
+<p class="note">Adil oyun kuralı: bütün hayvan pasifleri dengelidir; ilk hayvanla bile 20 bölgenin tamamı üç yıldızla bitirilebilir.</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="bolgeler">
+<div class="section-head"><p class="eyebrow">03 · DÖRT DÜNYA VE MODLAR</p></div>
+<h2 id="bolgeler">20 bölge, Sonsuz ve Günlük Meydan Okuma</h2>
+<ul class="bays">
+<li><span>01–05</span>Güneşli Ahır</li>
+<li><span>06–10</span>Altın Hasat</li>
+<li><span>11–15</span>Kamp Ateşi Ormanı</li>
+<li><span>16–20</span>Yayla Festivali</li>
+</ul>
+<div class="feat" style="margin-top:14px">
+<div class="card"><h3>SAHTE KALABALIK</h3><p>İleri bölgelerde arka plandaki hayvanlar bilerek ters hareket edip seni şaşırtmaya çalışır.</p></div>
+<div class="card"><h3>SONSUZ MOD</h3><p>Süre giderek daralır, tüm mekanikler karışır; kişisel rekorunu ne kadar uzağa taşıyabilirsin?</p></div>
+<div class="card"><h3>GÜNLÜK MEYDAN OKUMA</h3><p>Her gün aynı sabit tohumla herkes için aynı parkur; tek şans, günlük seri ve ekstra palamut.</p></div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="ekranlar">
+<div class="section-head"><p class="eyebrow">04 · EKRANLAR</p></div>
+<h2 id="ekranlar">Oyundan kareler</h2>
+<div class="shots" tabindex="0" aria-label="Ekran görüntüleri, yatay kaydırılabilir">
+<figure class="shot"><img src="img/uporoops-01-home.webp" width="600" height="1298" loading="lazy" alt="Up or Oops ana ekranı: ahşap çiftlik sahnesinde 3D aslan, Oyna düğmesi, Ahır, Bölgeler ve Mağaza erişimi."><figcaption>Ana ekran · Aslan</figcaption></figure>
+<figure class="shot"><img src="img/uporoops-02-oops.webp" width="600" height="1298" loading="lazy" alt="Oynanış ekranı: üstte OOPS ▼ komutu, ahşap zeminde doğal pozda çömelen hasır şapkalı koyun ve altta iki büyük kontrol düğmesi."><figcaption>OOPS! çömelme anı</figcaption></figure>
+<figure class="shot"><img src="img/uporoops-03-up.webp" width="600" height="1298" loading="lazy" alt="Oynanış ekranı: UP ▲ komutunda hareket çizgileriyle havaya zıplayan koyun ve seri göstergesi."><figcaption>UP! zıplama anı</figcaption></figure>
+<figure class="shot"><img src="img/uporoops-04-barn.webp" width="600" height="1298" loading="lazy" alt="58 hayvanlık Ahır koleksiyon ekranı: 6 biyom filtresi ve 3D hayvan kartları."><figcaption>Ahır · 6 biyom, 58 hayvan</figcaption></figure>
+<figure class="shot"><img src="img/uporoops-05-elephant.webp" width="600" height="1298" loading="lazy" alt="Savana biyomundan 3D şekillendirilmiş fil modeli ahşap sahnede."><figcaption>Savana · Fil</figcaption></figure>
+<figure class="shot"><img src="img/uporoops-06-axolotl.webp" width="600" height="1298" loading="lazy" alt="Sığınak biyomundan pembe solungaçlı 3D aksolotl sahnede."><figcaption>Sığınak · Aksolotl</figcaption></figure>
+</div>
+</section>
+
+<section class="section" aria-labelledby="yapim">
+<div class="section-head"><p class="eyebrow">05 · YAPIM NOTLARI</p></div>
+<h2 id="yapim">Nasıl yapıldı?</h2>
+<div class="stack">
+<p class="muted">Three.js, React ve TypeScript ile yazıldı; Capacitor üzerinden iPhone'a derleniyor. 58 hayvanın hiçbiri hazır 3D model değil—her biri ayrı anatomik parçalarla kod içinde şekillendirildi. Sabit 120 Hz fizik adımı bacak katlanmasını, gövde eğimini, kuyruk ve kulak salınımını hacim koruyarak hesaplar; hayvanlar yapay biçimde ezilmeden doğal hareket eder. Tüm ses efektleri ve ritmik çiftlik müzikleri Web Audio API ile canlı sentezleniyor.</p>
+<div class="build">
+<div class="stat"><b>58</b><span>kodla şekillendirilmiş 3D hayvan</span></div>
+<div class="stat"><b>120 Hz</b><span>hacim koruyan anatomik fizik</span></div>
+<div class="stat"><b>6 dil</b><span>TR, EN, JA, ES, DE, FR</span></div>
+<div class="stat"><b>3.0</b><span>TestFlight sürümü</span></div>
+</div>
+<p class="note">Geliştirici: Ali Emre Büyükkol.</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="destek">
+<div class="section-head"><p class="eyebrow">06 · DESTEK</p></div>
+<h2 id="destek">Yardım ve gizlilik</h2>
+<div class="stack">
+<p class="muted">Hesap veya giriş gerekmez; ilerlemen, kazandığın yıldızlar ve koleksiyonun yalnızca cihazında saklanır. Ücretsiz sürümde isteğe bağlı ödüllü reklamlar, menü bandı ve ilk turlardan sonra aralıklı geçiş reklamları yer alır. Reklamları Kaldır, Başlangıç Paketi, Biyom Paketleri ve Çiftlik VIP tek seferlik satın almalardır; abonelik yoktur.</p>
+<div class="row">
+<a class="btn ghost" href="up-or-oops/privacy/">Gizlilik politikası</a>
+<a class="btn ghost" href="up-or-oops/support/">Destek</a>
+<a class="btn ghost" id="btn-terms" href="up-or-oops/terms/">Kullanım koşulları</a>
+</div>
+</div>
+</section>
+</main>
+
+<nav class="pnav wrap" aria-label="Diğer projeler"><a class="pn prev" href="muchineko.html"><span class="pn-k"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>Önceki proje</span><span class="pn-n" style="color:#F5A8CB">Muchineko</span></a><a class="pn next" href="sucustu.html"><span class="pn-k">Sonraki proje<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></span><span class="pn-n" style="color:#C99BFF">SUÇÜSTÜ!</span></a></nav>
+
+<footer class="foot">
+<div class="wrap"><span>© 2026 Ali Emre Büyükkol · Up or Oops</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="hakkimda.html">Hakkımda</a><a href="index.html#up-or-oops">Ormana dön</a></span></div>
+</footer>
+
+<script src="engine.js"></script>
+<script src="lightbox.js" defer></script>
+<script src="i18n.js" defer></script>
+<script>
+"use strict";
+(function () {
+  const cv = document.getElementById('scene');
+  if (!window.BuyukkolEngine || !cv.getContext) return;
+  const eng = new window.BuyukkolEngine();
+  const game = eng.buildGame(cv, { onZone: function () {} }, eng.buildAudio());
+  game.jump(3);
+  cv.addEventListener('click', (e) => game.tap(e.clientX, e.clientY, cv.getBoundingClientRect(), true));
+  if (window.IntersectionObserver) {
+    new IntersectionObserver((ents) => game.setVisible(ents[0].isIntersecting)).observe(document.getElementById('stage'));
+  }
+  let on = false;
+  const btn = document.getElementById('snd');
+  btn.addEventListener('click', () => {
+    on = !on;
+    const ok = game.setSound(on);
+    if (on && ok === false) { on = false; document.getElementById('snd-lbl').textContent = 'Ses bu tarayıcıda çalışmıyor'; return; }
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    document.getElementById('snd-lbl').textContent = on ? 'Sesi kapat' : 'Çiftliği dinle';
+    document.getElementById('snd-w').setAttribute('d', on ? 'M12 6.5a3.5 3.5 0 0 1 0 5M14.5 4a7 7 0 0 1 0 10' : 'M12.5 6.5l4 5M16.5 6.5l-4 5');
+  });
+})();
+</script>
+</body>
+</html>
